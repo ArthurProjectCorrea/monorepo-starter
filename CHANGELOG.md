@@ -3,6 +3,15 @@
 
 ### Features
 
+* **setup:** torna interativa a configuração de proteção de branch e renomeação do commit inicial ([0f0283e](https://github.com/ArthurProjectCorrea/monorepo-starter/commit/0f0283e68e8dd19664300f26747f5cd39951712f))
+* **setup:** torna interativa a configuração de proteção de branch e renomeação do commit inicial ([88f064a](https://github.com/ArthurProjectCorrea/monorepo-starter/commit/88f064a42048f03092365456ed05e2c7036b895c))
+* **setup:** torna interativa a configuração de proteção de branch e renomeação do commit inicial ([f346071](https://github.com/ArthurProjectCorrea/monorepo-starter/commit/f346071e375252009ac1655d44f09dc85ebcb933))
+
+# [1.2.0](https://github.com/ArthurProjectCorrea/monorepo-starter/compare/v1.1.2...v1.2.0) (2025-07-22)
+
+
+### Features
+
 * **setup:** torna interativa a configuração de proteção de branch e renomeação do commit inicial ([88f064a](https://github.com/ArthurProjectCorrea/monorepo-starter/commit/88f064a42048f03092365456ed05e2c7036b895c))
 * **setup:** torna interativa a configuração de proteção de branch e renomeação do commit inicial ([f346071](https://github.com/ArthurProjectCorrea/monorepo-starter/commit/f346071e375252009ac1655d44f09dc85ebcb933))
 
