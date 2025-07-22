@@ -1,16 +1,14 @@
 # [1.1.0](https://github.com/ArthurProjectCorrea/monorepo-starter/compare/v1.0.1...v1.1.0) (2025-07-22)
 
-
 ### Features
 
-* **bot:** adiciona workflow para criação automática de PRs via bot ([f11d858](https://github.com/ArthurProjectCorrea/monorepo-starter/commit/f11d858ded500cc3c2002353889a9ac61d07d14c))
+- **bot:** adiciona workflow para criação automática de PRs via bot ([f11d858](https://github.com/ArthurProjectCorrea/monorepo-starter/commit/f11d858ded500cc3c2002353889a9ac61d07d14c))
 
 ## [1.0.1](https://github.com/ArthurProjectCorrea/monorepo-starter/compare/v1.0.0...v1.0.1) (2025-07-22)
 
-
 ### Bug Fixes
 
-* **setup:** melhorias de robustez no alinhamento e proteção de branches no setup ([a7b2a31](https://github.com/ArthurProjectCorrea/monorepo-starter/commit/a7b2a31660c87b34f6598d082aa77e838333b256))
+- **setup:** melhorias de robustez no alinhamento e proteção de branches no setup ([a7b2a31](https://github.com/ArthurProjectCorrea/monorepo-starter/commit/a7b2a31660c87b34f6598d082aa77e838333b256))
 
 # 1.0.0 (2025-07-22)
 
