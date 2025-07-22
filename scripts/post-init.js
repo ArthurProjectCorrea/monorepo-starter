@@ -70,9 +70,19 @@ async function main() {
     );
   }
 
-  // 4. Renomear último commit
-  run('git commit --amend -m "chore(initial-setup): initialize project structure"');
-  run('git push --force origin main');
+  // 4. Renomear último commit (apenas se estiver na main)
+  let currentBranch = '';
+  try {
+    currentBranch = execSync('git rev-parse --abbrev-ref HEAD').toString().trim();
+  } catch (e) {
+    console.warn('Não foi possível identificar a branch atual. Pulando amend do commit.');
+  }
+  if (currentBranch === 'main') {
+    run('git commit --amend -m "chore(initial-setup): initialize project structure"');
+    run('git push --force origin main');
+  } else {
+    console.log('Pulando git commit --amend: só é executado na branch main.');
+  }
 
   // 5. Solicitar/criar .env apenas se não existir
   let githubToken, githubUser, githubRepo;
@@ -97,10 +107,35 @@ async function main() {
     process.exit(1);
   }
 
-  // 7. Criar/configurar branches dev e main
+  // 7. Garantir alinhamento entre dev e main
   run('git checkout main');
   run('git pull origin main');
-  run('git checkout -b dev || git checkout dev');
+
+  // Verifica se a branch dev existe localmente
+  let devExistsLocal = false;
+  try {
+    execSync('git show-ref --verify --quiet refs/heads/dev');
+    devExistsLocal = true;
+  } catch {}
+
+  // Verifica se a branch dev existe remotamente
+  let devExistsRemote = false;
+  try {
+    const remoteBranches = execSync('git ls-remote --heads origin dev').toString();
+    if (remoteBranches.includes('refs/heads/dev')) devExistsRemote = true;
+  } catch {}
+
+  if (devExistsLocal || devExistsRemote) {
+    // Se existe, faz checkout e rebase/merge da main
+    run('git checkout dev');
+    run('git pull origin dev');
+    // Rebase da main para dev (pode trocar para merge se preferir)
+    run('git rebase main');
+  } else {
+    // Se não existe, cria a partir da main
+    run('git checkout -b dev main');
+  }
+
   // Tenta push, se falhar por divergência, faz pull/rebase e tenta novamente
   try {
     run('git push -u origin dev');
