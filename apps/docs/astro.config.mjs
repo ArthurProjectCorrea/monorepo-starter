@@ -14,10 +14,9 @@ export default defineConfig({
 			sidebar: [
 				{
 					label: 'Guides',
-					items: [
-						// Each item here is one entry in the navigation menu.
-						{ label: 'Example Guide', slug: 'guides/example' },
-					],
+		  items: [
+			// Example Guide removido pois o arquivo não existe mais
+		  ],
 				},
 				{
 					label: 'Reference',
