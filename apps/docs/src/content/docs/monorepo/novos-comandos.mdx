@@ -1,0 +1,30 @@
+---
+title: Como criar novos comandos
+---
+
+# 📝 Como criar novos comandos globais
+
+Você pode adicionar comandos globais para todo o monorepo usando o `package.json` raiz e o Turborepo.
+
+## Passo a passo
+
+1. Abra o `package.json` na raiz do projeto.
+2. Em `scripts`, adicione o novo comando. Exemplo:
+   ```json
+   "scripts": {
+     "check": "turbo run lint test build",
+     "docs:build": "pnpm --filter docs build"
+   }
+   ```
+3. Rode o comando com `pnpm <nome-do-script>`.
+
+## Dicas
+- Use `turbo run <script>` para rodar em todos os workspaces.
+- Use `pnpm --filter <app> <script>` para rodar em um app/pacote específico.
+- Scripts podem ser encadeados para automações complexas.
+
+## Exemplos úteis
+- `pnpm check` — roda lint, test e build em todos os apps/pacotes.
+- `pnpm docs:build` — builda apenas a documentação.
+
+> Consulte o README e os scripts existentes para inspiração.

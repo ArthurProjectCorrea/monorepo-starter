@@ -1,0 +1,34 @@
+---
+title: Automações e CI/CD
+---
+
+# 🤖 Automações e CI/CD
+
+O monorepo já vem pronto para automação de tarefas e integração contínua.
+
+## GitHub Actions
+- Workflows para lint, test, build e release automático.
+- Arquivos em `.github/workflows/`.
+- Exemplo de etapas:
+  - Instala dependências (`pnpm install`)
+  - Roda lint, test, build
+  - Gera release com semantic-release
+
+## Husky & Lint-Staged
+- Hooks de git para garantir código limpo antes dos commits.
+- Configuração em `.husky/` e `.lintstagedrc`.
+- Exemplo: roda `pnpm lint` e `pnpm format` antes do commit.
+
+## Script pós-clone
+- `scripts/post-init.js` automatiza:
+  - Instalação de dependências
+  - Login no GitHub
+  - Proteção de branches
+  - Validações iniciais
+
+## Como customizar automações
+- Edite os workflows em `.github/workflows/`.
+- Adicione novos scripts em `scripts/`.
+- Ajuste hooks em `.husky/` conforme necessidade.
+
+> Consulte cada arquivo para exemplos e customizações avançadas.

@@ -1,0 +1,35 @@
+---
+title: Configurações Globais
+---
+
+# ⚙️ Configurações Globais
+
+O monorepo centraliza configurações para garantir padrão e facilitar manutenção.
+
+## ESLint, Prettier, Tailwind, TypeScript
+- Todas as configs ficam em `packages/config`.
+- Apps e pacotes estendem essas configs via `extends` ou `import`.
+- Para customizar, edite os arquivos em `packages/config` ou sobrescreva localmente.
+
+## Como configurar uma ferramenta global
+
+1. Crie/edite o arquivo de config em `packages/config` (ex: `eslint`, `prettier`, `tsconfig`).
+2. Nos apps/pacotes, aponte para o config compartilhado:
+   - Exemplo para TypeScript:
+     ```json
+     {
+       "extends": "@repo/config/typescript/base.json"
+     }
+     ```
+   - Exemplo para ESLint:
+     ```js
+     module.exports = require('@repo/config/eslint')
+     ```
+3. Rode `pnpm lint` ou `pnpm build` para validar.
+
+## Vantagens
+- Atualização centralizada.
+- Padrão de código garantido.
+- Menos duplicidade e erros de configuração.
+
+> Consulte cada config em `packages/config` para detalhes e exemplos.

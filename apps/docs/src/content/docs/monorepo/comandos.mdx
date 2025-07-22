@@ -1,0 +1,34 @@
+---
+title: Comandos Globais e Scripts
+---
+
+# 🛠️ Comandos Globais e Scripts
+
+O monorepo utiliza scripts globais via PNPM e automações para facilitar o fluxo de desenvolvimento.
+
+## Comandos Principais
+
+- `pnpm install` — instala todas as dependências
+- `pnpm dev` — inicia todos os apps em modo desenvolvimento
+- `pnpm build` — builda todos os apps/pacotes
+- `pnpm lint` — roda o lint em todos os apps/pacotes
+- `pnpm test` — executa todos os testes automatizados
+- `pnpm dev --filter=<app> ` — roda um app específico (ex: `web`, `api`, `docs`)
+
+## Como criar um novo comando global
+
+1. Adicione o script desejado no `package.json` raiz, em `scripts`.
+2. Use comandos do Turborepo para rodar scripts em todos os workspaces, ex:
+   ```json
+   "scripts": {
+     "check": "turbo run lint test build"
+   }
+   ```
+3. Rode com `pnpm check` para executar em todos os apps/pacotes.
+
+## Scripts de automação
+
+- **scripts/post-init.js**: Automatiza setup pós-clone (instalação, login, validações, proteção de branches).
+- **CI/CD**: Workflows GitHub Actions para lint, test, build e release.
+
+> Consulte o README e os scripts para exemplos e customizações.
