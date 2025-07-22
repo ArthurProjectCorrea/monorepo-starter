@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/ArthurProjectCorrea/monorepo-starter/compare/v1.1.5...v1.2.0) (2025-07-22)
+
+
+### Features
+
+* **workflow:** PR Bot agora atualiza único PR de dev para main a cada push em dev ([9e5de25](https://github.com/ArthurProjectCorrea/monorepo-starter/commit/9e5de2515453dd6ceef836059550c7863696c002))
+
 ## [1.1.5](https://github.com/ArthurProjectCorrea/monorepo-starter/compare/v1.1.4...v1.1.5) (2025-07-22)
 
 
