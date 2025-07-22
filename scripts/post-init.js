@@ -155,6 +155,9 @@ async function main() {
     }),
   });
   console.log('Proteções de branch removidas e reconfiguradas!');
+  console.log(
+    '\nATENÇÃO: Se o semantic-release continuar falhando por proteção da branch dev, revise manualmente as configurações em Settings > Branches > Branch protection rules no GitHub. Certifique-se de que "Require a pull request before merging" e outras restrições estejam desmarcadas para a branch dev.',
+  );
 
   // 9. Rodar validações
   run('pnpm lint');
