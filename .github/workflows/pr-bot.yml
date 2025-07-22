@@ -26,6 +26,6 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           base: ${{ github.event.inputs.to_branch }}
-          branch: create-pr/${{ github.event.inputs.from_branch }}-to-${{ github.event.inputs.to_branch }}
+          branch: create-pr/${{ github.event.inputs.from_branch }}-to-${{ github.event.inputs.to_branch }}-${{ github.run_id }}
           title: 'PR automático: ${{ github.event.inputs.from_branch }} → ${{ github.event.inputs.to_branch }}'
           body: 'Este PR foi criado automaticamente pelo bot do repositório.'
