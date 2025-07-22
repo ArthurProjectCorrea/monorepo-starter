@@ -1,0 +1,26 @@
+name: PR Bot (dev → main)
+
+on:
+  workflow_dispatch:
+    inputs:
+      from_branch:
+        description: 'Branch de origem'
+        required: true
+        default: 'dev'
+      to_branch:
+        description: 'Branch de destino'
+        required: true
+        default: 'main'
+
+jobs:
+  create-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Criar Pull Request automático
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          base: ${{ github.event.inputs.to_branch }}
+          head: ${{ github.event.inputs.from_branch }}
+          title: 'PR automático: ${{ github.event.inputs.from_branch }} → ${{ github.event.inputs.to_branch }}'
+          body: 'Este PR foi criado automaticamente pelo bot do repositório.'
