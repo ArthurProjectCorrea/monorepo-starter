@@ -122,7 +122,17 @@ async function main() {
   const apiBase = `https://api.github.com/repos/${githubRepo}/branches`;
   const headers = { Authorization: `token ${githubToken}`, Accept: 'application/vnd.github+json' };
 
-  // Proteção main
+  // Remove proteções antigas das branches main e dev antes de aplicar as novas
+  await fetch(`${apiBase}/main/protection`, {
+    method: 'DELETE',
+    headers,
+  });
+  await fetch(`${apiBase}/dev/protection`, {
+    method: 'DELETE',
+    headers,
+  });
+
+  // Proteção main (nova)
   await fetch(`${apiBase}/main/protection`, {
     method: 'PUT',
     headers,
@@ -133,7 +143,7 @@ async function main() {
       restrictions: null,
     }),
   });
-  // Proteção dev (libera push/tag sem PR/review, sem status checks obrigatórios)
+  // Proteção dev (nova, libera push/tag sem PR/review, sem status checks obrigatórios)
   await fetch(`${apiBase}/dev/protection`, {
     method: 'PUT',
     headers,
@@ -144,7 +154,7 @@ async function main() {
       restrictions: null,
     }),
   });
-  console.log('Proteções de branch configuradas!');
+  console.log('Proteções de branch removidas e reconfiguradas!');
 
   // 9. Rodar validações
   run('pnpm lint');
