@@ -48,6 +48,14 @@ async function ask(question, mask = false) {
 }
 
 async function main() {
+  // 0. Verificar se há arquivos não commitados
+  const status = execSync('git status --porcelain').toString().trim();
+  if (status) {
+    console.error(
+      '\nERRO: Existem arquivos não commitados ou alterações pendentes no repositório.\nPor favor, faça commit ou stash das alterações antes de rodar o setup.\n',
+    );
+    process.exit(1);
+  }
   // 1. Instalar dependências
   run('pnpm install');
 
@@ -136,11 +144,13 @@ async function main() {
     run('git checkout -b dev main');
   }
 
-  // Tenta push, se falhar por divergência, faz pull/rebase e tenta novamente
+  // Tenta push, se falhar por divergência ou non-fast-forward, faz pull --rebase e tenta novamente
   try {
     run('git push -u origin dev');
   } catch (e) {
-    console.log('Branch dev local e remota divergiram. Tentando resolver automaticamente...');
+    console.log(
+      'Push para dev falhou. Tentando git pull --rebase origin dev para alinhar com remoto...',
+    );
     try {
       run('git pull --rebase origin dev');
       run('git push -u origin dev');
