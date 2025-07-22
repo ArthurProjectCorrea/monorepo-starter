@@ -12,6 +12,7 @@
     "setup-start": "node scripts/post-init.js"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.29.5",
     "@nestjs/cli": "^11.0.7",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
