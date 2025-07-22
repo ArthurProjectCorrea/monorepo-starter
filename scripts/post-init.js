@@ -48,6 +48,21 @@ async function ask(question, mask = false) {
 }
 
 async function main() {
+  // Perguntar se exige deployments bem-sucedidos antes do merge na main
+  let mainRequiredDeployments = [];
+  const mainRequireDeployments =
+    (
+      await ask('Exigir deployments bem-sucedidos antes do merge na main? (y/n): ')
+    ).toLowerCase() === 'y';
+  if (mainRequireDeployments) {
+    const envs = await ask(
+      'Quais ambientes devem ser implantados com sucesso antes do merge? (separe por vírgula, ex: production,staging): ',
+    );
+    mainRequiredDeployments = envs
+      .split(',')
+      .map((e) => e.trim())
+      .filter(Boolean);
+  }
   // 0. Verificar se há arquivos não commitados
   const status = execSync('git status --porcelain').toString().trim();
   if (status) {
@@ -204,6 +219,10 @@ async function main() {
         ? { required_approving_review_count: mainReviewCount }
         : null,
       restrictions: null,
+      required_deployments:
+        mainRequireDeployments && mainRequiredDeployments.length > 0
+          ? { required_deployment_environments: mainRequiredDeployments }
+          : undefined,
     }),
   });
 
