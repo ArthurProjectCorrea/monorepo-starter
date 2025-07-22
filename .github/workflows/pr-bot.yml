@@ -1,4 +1,4 @@
-name: PR Bot (dev → main)
+name: PR Bot (dev → main) - monorepo-starter
 
 on:
   push:
@@ -31,7 +31,7 @@ jobs:
           base: main
           branch: create-pr/dev-to-main
           title: 'PR automático: dev → main'
-          body: 'Este PR foi criado e é atualizado automaticamente pelo bot do repositório sempre que há mudanças em dev.'
+          body: 'Este PR foi criado e é atualizado automaticamente pelo bot do repositório monorepo-starter sempre que há mudanças em dev.'
           commit-message: '[create-pull-request] automated change'
           delete-branch: false
           draft: false
