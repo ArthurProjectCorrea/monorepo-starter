@@ -48,6 +48,14 @@ async function ask(question, mask = false) {
 }
 
 async function main() {
+  // Perguntar se exige histórico linear (sem merge commits) na main
+  const mainRequireLinear =
+    (await ask('Exigir histórico linear (sem merge commits) na main? (y/n): ')).toLowerCase() ===
+    'y';
+  // Perguntar se exige histórico linear (sem merge commits) na dev
+  const devRequireLinear =
+    (await ask('Exigir histórico linear (sem merge commits) na dev? (y/n): ')).toLowerCase() ===
+    'y';
   // Perguntar se exige deployments bem-sucedidos antes do merge na main
   let mainRequiredDeployments = [];
   const mainRequireDeployments =
@@ -223,6 +231,7 @@ async function main() {
         mainRequireDeployments && mainRequiredDeployments.length > 0
           ? { required_deployment_environments: mainRequiredDeployments }
           : undefined,
+      required_linear_history: mainRequireLinear,
     }),
   });
 
@@ -252,6 +261,7 @@ async function main() {
         ? { required_approving_review_count: devReviewCount }
         : null,
       restrictions: null,
+      required_linear_history: devRequireLinear,
     }),
   });
 
