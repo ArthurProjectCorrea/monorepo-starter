@@ -1,3 +1,10 @@
+## [1.1.3](https://github.com/ArthurProjectCorrea/monorepo-starter/compare/v1.1.2...v1.1.3) (2025-07-22)
+
+
+### Bug Fixes
+
+* **workflow:** força criação do PR no repositório principal (push-to-fork: false) ([8c74c4e](https://github.com/ArthurProjectCorrea/monorepo-starter/commit/8c74c4e186bd1eb960540665fcb30151e2f84798))
+
 ## [1.1.2](https://github.com/ArthurProjectCorrea/monorepo-starter/compare/v1.1.1...v1.1.2) (2025-07-22)
 
 ### Bug Fixes
