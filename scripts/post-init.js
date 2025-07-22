@@ -78,7 +78,7 @@ async function main() {
     );
   }
 
-  // 4. Renomear último commit (apenas se estiver na main)
+  // 4. Perguntar se deseja renomear o último commit (apenas se estiver na main)
   let currentBranch = '';
   try {
     currentBranch = execSync('git rev-parse --abbrev-ref HEAD').toString().trim();
@@ -86,8 +86,15 @@ async function main() {
     console.warn('Não foi possível identificar a branch atual. Pulando amend do commit.');
   }
   if (currentBranch === 'main') {
-    run('git commit --amend -m "chore(initial-setup): initialize project structure"');
-    run('git push --force origin main');
+    const renameCommit = (
+      await ask('Deseja renomear o último commit da main? (y/n): ')
+    ).toLowerCase();
+    if (renameCommit === 'y') {
+      run('git commit --amend -m "chore(initial-setup): initialize project structure"');
+      run('git push --force origin main');
+    } else {
+      console.log('Pulando renomeação do último commit.');
+    }
   } else {
     console.log('Pulando git commit --amend: só é executado na branch main.');
   }
@@ -162,47 +169,74 @@ async function main() {
     }
   }
 
-  // 8. Configurar proteções de branch via API do GitHub
+  // 8. Perguntar regras de proteção de branch
   const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
   const apiBase = `https://api.github.com/repos/${githubRepo}/branches`;
   const headers = { Authorization: `token ${githubToken}`, Accept: 'application/vnd.github+json' };
 
   // Remove proteções antigas das branches main e dev antes de aplicar as novas
+  await fetch(`${apiBase}/main/protection`, { method: 'DELETE', headers });
+  await fetch(`${apiBase}/dev/protection`, { method: 'DELETE', headers });
+
+  // Perguntas para main
+  console.log('\nConfiguração de proteção da branch main:');
+  const mainStrictStatus =
+    (await ask('Exigir status checks antes do merge? (y/n): ')).toLowerCase() === 'y';
+  const mainEnforceAdmins =
+    (await ask('Aplicar regras para admins? (y/n): ')).toLowerCase() === 'y';
+  const mainRequireReview =
+    (await ask('Exigir review antes do merge? (y/n): ')).toLowerCase() === 'y';
+  let mainReviewCount = 0;
+  if (mainRequireReview) {
+    const reviewCount = await ask(
+      'Quantos reviews são necessários para aprovar o merge? (número): ',
+    );
+    mainReviewCount = parseInt(reviewCount) || 1;
+  }
+
   await fetch(`${apiBase}/main/protection`, {
-    method: 'DELETE',
+    method: 'PUT',
     headers,
-  });
-  await fetch(`${apiBase}/dev/protection`, {
-    method: 'DELETE',
-    headers,
+    body: JSON.stringify({
+      required_status_checks: mainStrictStatus ? { strict: true, contexts: [] } : null,
+      enforce_admins: mainEnforceAdmins,
+      required_pull_request_reviews: mainRequireReview
+        ? { required_approving_review_count: mainReviewCount }
+        : null,
+      restrictions: null,
+    }),
   });
 
-  // Proteção main (nova)
-  await fetch(`${apiBase}/main/protection`, {
-    method: 'PUT',
-    headers,
-    body: JSON.stringify({
-      required_status_checks: { strict: true, contexts: [] },
-      enforce_admins: true,
-      required_pull_request_reviews: { required_approving_review_count: 1 },
-      restrictions: null,
-    }),
-  });
-  // Proteção dev (nova, libera push/tag sem PR/review, sem status checks obrigatórios)
+  // Perguntas para dev
+  console.log('\nConfiguração de proteção da branch dev:');
+  const devStrictStatus =
+    (await ask('Exigir status checks antes do push/merge em dev? (y/n): ')).toLowerCase() === 'y';
+  const devEnforceAdmins =
+    (await ask('Aplicar regras para admins em dev? (y/n): ')).toLowerCase() === 'y';
+  const devRequireReview =
+    (await ask('Exigir review antes do merge em dev? (y/n): ')).toLowerCase() === 'y';
+  let devReviewCount = 0;
+  if (devRequireReview) {
+    const reviewCount = await ask(
+      'Quantos reviews são necessários para aprovar o merge em dev? (número): ',
+    );
+    devReviewCount = parseInt(reviewCount) || 1;
+  }
+
   await fetch(`${apiBase}/dev/protection`, {
     method: 'PUT',
     headers,
     body: JSON.stringify({
-      required_status_checks: null,
-      enforce_admins: false,
-      required_pull_request_reviews: null,
+      required_status_checks: devStrictStatus ? { strict: true, contexts: [] } : null,
+      enforce_admins: devEnforceAdmins,
+      required_pull_request_reviews: devRequireReview
+        ? { required_approving_review_count: devReviewCount }
+        : null,
       restrictions: null,
     }),
   });
+
   console.log('Proteções de branch removidas e reconfiguradas!');
-  console.log(
-    '\nATENÇÃO: Se o semantic-release continuar falhando por proteção da branch dev, revise manualmente as configurações em Settings > Branches > Branch protection rules no GitHub. Certifique-se de que "Require a pull request before merging" e outras restrições estejam desmarcadas para a branch dev.',
-  );
 
   // 9. Rodar validações
   run('pnpm lint');
