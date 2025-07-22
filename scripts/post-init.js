@@ -60,24 +60,42 @@ async function main() {
   }
 
   // 3. Login no cache remoto Turborepo
-  run('pnpm dlx turbo login');
-  run('npx turbo link');
+  const turboConfigPath = path.join('.turbo', 'config.json');
+  if (!fs.existsSync(turboConfigPath)) {
+    run('pnpm dlx turbo login');
+    run('npx turbo link');
+  } else {
+    console.log(
+      'Turbo Remote Cache já está vinculado. Pulando "pnpm dlx turbo login" e "npx turbo link".',
+    );
+  }
 
   // 4. Renomear último commit
   run('git commit --amend -m "chore(initial-setup): initialize project structure"');
   run('git push --force origin main');
 
-  // 5. Solicitar dados da API do GitHub
-  const githubToken = await ask('Informe seu GitHub Personal Access Token: ', true);
-  const githubUser = await ask('Informe seu usuário do GitHub: ');
-  const githubRepo = await ask('Informe o nome do repositório (ex: user/repo): ');
+  // 5. Solicitar/criar .env apenas se não existir
+  let githubToken, githubUser, githubRepo;
+  if (!fs.existsSync('.env')) {
+    githubToken = await ask('Informe seu GitHub Personal Access Token: ', true);
+    githubUser = await ask('Informe seu usuário do GitHub: ');
+    githubRepo = await ask('Informe o nome do repositório (ex: user/repo): ');
+    fs.writeFileSync(
+      '.env',
+      `GITHUB_TOKEN=${githubToken}\nGITHUB_USER=${githubUser}\nGITHUB_REPO=${githubRepo}\n`,
+    );
+    console.log('Arquivo .env criado com sucesso!');
+  }
 
-  // 6. Criar .env
-  fs.writeFileSync(
-    '.env',
-    `GITHUB_TOKEN=${githubToken}\nGITHUB_USER=${githubUser}\nGITHUB_REPO=${githubRepo}\n`,
-  );
-  console.log('Arquivo .env criado com sucesso!');
+  // 6. Ler dados do .env
+  require('dotenv').config();
+  githubToken = process.env.GITHUB_TOKEN;
+  githubUser = process.env.GITHUB_USER;
+  githubRepo = process.env.GITHUB_REPO;
+  if (!githubToken || !githubUser || !githubRepo) {
+    console.error('Variáveis GITHUB_TOKEN, GITHUB_USER ou GITHUB_REPO não encontradas no .env.');
+    process.exit(1);
+  }
 
   // 7. Criar/configurar branches dev e main
   run('git checkout main');
@@ -115,14 +133,14 @@ async function main() {
       restrictions: null,
     }),
   });
-  // Proteção dev
+  // Proteção dev (libera push/tag sem PR/review, sem status checks obrigatórios)
   await fetch(`${apiBase}/dev/protection`, {
     method: 'PUT',
     headers,
     body: JSON.stringify({
-      required_status_checks: { strict: false, contexts: [] },
+      required_status_checks: null,
       enforce_admins: false,
-      required_pull_request_reviews: { required_approving_review_count: 0 },
+      required_pull_request_reviews: null,
       restrictions: null,
     }),
   });
