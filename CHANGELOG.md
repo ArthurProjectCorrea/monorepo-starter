@@ -1,16 +1,14 @@
 ## [1.1.2](https://github.com/ArthurProjectCorrea/monorepo-starter/compare/v1.1.1...v1.1.2) (2025-07-22)
 
-
 ### Bug Fixes
 
-* **workflow:** corrige parâmetros do PR Bot e adiciona checkout do branch de origem ([fefa95f](https://github.com/ArthurProjectCorrea/monorepo-starter/commit/fefa95f25f83bfe1df0a006a35d5ae90392830cc))
+- **workflow:** corrige parâmetros do PR Bot e adiciona checkout do branch de origem ([fefa95f](https://github.com/ArthurProjectCorrea/monorepo-starter/commit/fefa95f25f83bfe1df0a006a35d5ae90392830cc))
 
 ## [1.1.1](https://github.com/ArthurProjectCorrea/monorepo-starter/compare/v1.1.0...v1.1.1) (2025-07-22)
 
-
 ### Bug Fixes
 
-* **setup:** impede execução do setup com alterações não commitadas e garante robustez do fluxo ([af285b4](https://github.com/ArthurProjectCorrea/monorepo-starter/commit/af285b49eb1d1ab4cdd820a2643d278506139508))
+- **setup:** impede execução do setup com alterações não commitadas e garante robustez do fluxo ([af285b4](https://github.com/ArthurProjectCorrea/monorepo-starter/commit/af285b49eb1d1ab4cdd820a2643d278506139508))
 
 # [1.1.0](https://github.com/ArthurProjectCorrea/monorepo-starter/compare/v1.0.1...v1.1.0) (2025-07-22)
 
