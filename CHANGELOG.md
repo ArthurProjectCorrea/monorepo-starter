@@ -1,3 +1,10 @@
+## [1.1.4](https://github.com/ArthurProjectCorrea/monorepo-starter/compare/v1.1.3...v1.1.4) (2025-07-22)
+
+
+### Bug Fixes
+
+* **workflow:** remove push-to-fork para evitar erro e usar padrão da action ([5b479c5](https://github.com/ArthurProjectCorrea/monorepo-starter/commit/5b479c522708d4e4233fbb5b03528238a939046c))
+
 ## [1.1.3](https://github.com/ArthurProjectCorrea/monorepo-starter/compare/v1.1.2...v1.1.3) (2025-07-22)
 
 
