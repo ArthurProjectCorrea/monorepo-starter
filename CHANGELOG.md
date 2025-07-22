@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/ArthurProjectCorrea/monorepo-starter/compare/v1.0.1...v1.1.0) (2025-07-22)
+
+
+### Features
+
+* **bot:** adiciona workflow para criação automática de PRs via bot ([f11d858](https://github.com/ArthurProjectCorrea/monorepo-starter/commit/f11d858ded500cc3c2002353889a9ac61d07d14c))
+
 ## [1.0.1](https://github.com/ArthurProjectCorrea/monorepo-starter/compare/v1.0.0...v1.0.1) (2025-07-22)
 
 
