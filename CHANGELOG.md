@@ -1,3 +1,10 @@
+## [1.1.5](https://github.com/ArthurProjectCorrea/monorepo-starter/compare/v1.1.4...v1.1.5) (2025-07-22)
+
+
+### Bug Fixes
+
+* **workflow:** garante PR único por execução usando sufixo github.run_id no branch temporário ([49e8e67](https://github.com/ArthurProjectCorrea/monorepo-starter/commit/49e8e671578bcb20aeb6b04815dccd1ab6ae3bff))
+
 ## [1.1.4](https://github.com/ArthurProjectCorrea/monorepo-starter/compare/v1.1.3...v1.1.4) (2025-07-22)
 
 
