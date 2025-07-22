@@ -29,3 +29,4 @@ jobs:
           branch: create-pr/${{ github.event.inputs.from_branch }}-to-${{ github.event.inputs.to_branch }}
           title: 'PR automático: ${{ github.event.inputs.from_branch }} → ${{ github.event.inputs.to_branch }}'
           body: 'Este PR foi criado automaticamente pelo bot do repositório.'
+          push-to-fork: false
