@@ -123,16 +123,25 @@ async function main() {
   }
 
   // 5. Solicitar/criar .env apenas se não existir
-  let githubToken, githubUser, githubRepo;
+  let githubToken, githubUser, githubRepo, npmToken;
   if (!fs.existsSync('.env')) {
     githubToken = await ask('Informe seu GitHub Personal Access Token: ', true);
     githubUser = await ask('Informe seu usuário do GitHub: ');
     githubRepo = await ask('Informe o nome do repositório (ex: user/repo): ');
+    npmToken = await ask('Informe seu NPM_TOKEN (token do npm para publicação): ', true);
     fs.writeFileSync(
       '.env',
-      `GITHUB_TOKEN=${githubToken}\nGITHUB_USER=${githubUser}\nGITHUB_REPO=${githubRepo}\n`,
+      `GITHUB_TOKEN=${githubToken}\nGITHUB_USER=${githubUser}\nGITHUB_REPO=${githubRepo}\nNPM_TOKEN=${npmToken}\n`,
     );
     console.log('Arquivo .env criado com sucesso!');
+  } else {
+    // Se já existe, garantir que o NPM_TOKEN está presente
+    const envContent = fs.readFileSync('.env', 'utf8');
+    if (!envContent.includes('NPM_TOKEN=')) {
+      npmToken = await ask('Informe seu NPM_TOKEN (token do npm para publicação): ', true);
+      fs.appendFileSync('.env', `NPM_TOKEN=${npmToken}\n`);
+      console.log('NPM_TOKEN adicionado ao .env!');
+    }
   }
 
   // 6. Ler dados do .env
@@ -140,8 +149,11 @@ async function main() {
   githubToken = process.env.GITHUB_TOKEN;
   githubUser = process.env.GITHUB_USER;
   githubRepo = process.env.GITHUB_REPO;
-  if (!githubToken || !githubUser || !githubRepo) {
-    console.error('Variáveis GITHUB_TOKEN, GITHUB_USER ou GITHUB_REPO não encontradas no .env.');
+  npmToken = process.env.NPM_TOKEN;
+  if (!githubToken || !githubUser || !githubRepo || !npmToken) {
+    console.error(
+      'Variáveis GITHUB_TOKEN, GITHUB_USER, GITHUB_REPO ou NPM_TOKEN não encontradas no .env.',
+    );
     process.exit(1);
   }
 
