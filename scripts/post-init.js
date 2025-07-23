@@ -37,6 +37,8 @@ async function runInitScripts() {
     require('./init/08-update-ui-deps')(oldUiName, newUiName);
   }
 
+  // 9. Configura secrets do GitHub para workflow
+  require('./init/09-setup-gh-secrets')();
   // ...continue scripts de proteção de branch, validações, etc
 }
 
