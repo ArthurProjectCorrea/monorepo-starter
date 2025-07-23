@@ -37,22 +37,16 @@ jobs:
         run: pnpm exec changeset publish
 
       - name: Push changes with personal token
-        env:
-          GH_PAT: ${{ secrets.GH_PAT }}
         run: |
-          git remote -v
+          GH_PAT="${{ secrets.GH_PAT }}"
           echo "GH_PAT length: ${#GH_PAT}"
           git config user.name "ArthurProjectCorrea"
           git config user.email "arthurdepaulacorrea@hotmail.com"
           git add .
           git commit -m "chore(release): version packages [skip ci]" || echo "No changes to commit"
-          git remote set-url origin https://ArthurProjectCorrea:${GH_PAT}@github.com/${{ github.repository }}
           echo "[DEBUG] Remote configurado:"
           git remote -v
-          echo "[DEBUG] Usuário Git:" $(git config --get user.name)
-          echo "[DEBUG] E-mail Git:" $(git config --get user.email)
-          # Se o erro persistir, revise as branch protection rules no GitHub:
-          # Settings > Branches > Branch protection rules > main
-          # Desative "Restrict who pode push to matching branches" ou adicione seu usuário como permitido.
+          echo "[DEBUG] Usuário Git: $(git config --get user.name)"
+          echo "[DEBUG] E-mail Git: $(git config --get user.email)"
           echo "[DEBUG] Tentando push com URL completa:"
           git push https://ArthurProjectCorrea:${GH_PAT}@github.com/${{ github.repository }} HEAD:main
