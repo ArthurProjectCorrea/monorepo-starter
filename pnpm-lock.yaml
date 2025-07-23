@@ -172,7 +172,7 @@ importers:
 
   apps/web:
     dependencies:
-      '@repo/ui':
+      '@arthurcorreadev/monorepo-starter-ui':
         specifier: workspace:*
         version: link:../../packages/ui
       next:

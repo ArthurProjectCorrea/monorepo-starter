@@ -1,5 +1,8 @@
 {
-  "name": "@repo/ui",
+  "name": "@arthurcorreadev/monorepo-starter-ui",
+  "publishConfig": {
+    "access": "public"
+  },
   "version": "0.0.0",
   "sideEffects": [
     "**/*.css"
@@ -9,7 +12,9 @@
   ],
   "exports": {
     "./styles.css": "./dist/index.css",
-    "./*": "./dist/*.js"
+    "./card": "./dist/card.js",
+    "./gradient": "./dist/gradient.js",
+    "./turborepo-logo": "./dist/turborepo-logo.js"
   },
   "license": "MIT",
   "scripts": {
@@ -23,6 +28,9 @@
     "test:ui": "vitest --ui",
     "test:watch": "vitest"
   },
+  "main": "./dist/card.js",
+  "types": "./dist/card.d.ts",
+  "style": "./dist/index.css",
   "peerDependencies": {
     "react": "^19"
   },

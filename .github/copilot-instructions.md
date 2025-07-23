@@ -39,7 +39,7 @@
 
 ## Exemplos de Comandos
 
-- Build do UI: `pnpm build:components --filter=@repo/ui `
+- Build do UI: `pnpm build:components --filter=@arthurcorreadev/monorepo-starter-ui `
 - Testes do web: `pnpm test --filter=web `
 - Lint global: `pnpm lint`
 

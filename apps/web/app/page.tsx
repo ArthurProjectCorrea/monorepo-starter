@@ -1,7 +1,7 @@
 import Image from 'next/image';
-import { Card } from '@repo/ui/card';
-import { Gradient } from '@repo/ui/gradient';
-import { TurborepoLogo } from '@repo/ui/turborepo-logo';
+import { Card } from '@arthurcorreadev/monorepo-starter-ui/card';
+import { Gradient } from '@arthurcorreadev/monorepo-starter-ui/gradient';
+import { TurborepoLogo } from '@arthurcorreadev/monorepo-starter-ui/turborepo-logo';
 
 const LINKS = [
   {

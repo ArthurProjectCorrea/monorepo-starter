@@ -12,7 +12,7 @@
     "test": "vitest --run"
   },
   "dependencies": {
-    "@repo/ui": "workspace:*",
+    "@arthurcorreadev/monorepo-starter-ui": "workspace:*",
     "next": "^15.3.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
