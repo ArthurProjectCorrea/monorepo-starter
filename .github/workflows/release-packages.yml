@@ -36,13 +36,16 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: pnpm exec changeset publish
 
-      - name: Push changes
+      - name: Debug git remote and token
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          git remote -v
+          echo "GITHUB_TOKEN length: ${#GITHUB_TOKEN}"
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add .
           git commit -m "chore(release): version packages [skip ci]" || echo "No changes to commit"
           git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}
+          git remote -v
           git push origin HEAD:main
