@@ -54,4 +54,5 @@ jobs:
           # Se o erro persistir, revise as branch protection rules no GitHub:
           # Settings > Branches > Branch protection rules > main
           # Desative "Restrict who pode push to matching branches" ou adicione seu usuário como permitido.
-          git push origin HEAD:main
+          echo "[DEBUG] Tentando push com URL completa:"
+          git push https://ArthurProjectCorrea:${GH_PAT}@github.com/${{ github.repository }} HEAD:main
