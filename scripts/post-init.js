@@ -40,6 +40,13 @@ async function runInitScripts() {
   // 9. Configura secrets do GitHub para workflow
   require('./init/09-setup-gh-secrets')();
   // ...continue scripts de proteção de branch, validações, etc
+  // 10. Sincroniza labels do GitHub
+  try {
+    require('./sync-labels');
+    console.log('Labels do GitHub sincronizadas com sucesso.');
+  } catch (err) {
+    console.warn('Falha ao sincronizar labels do GitHub:', err.message);
+  }
 }
 
 runInitScripts();

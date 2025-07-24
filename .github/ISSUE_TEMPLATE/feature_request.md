@@ -1,0 +1,93 @@
+---
+name: 'Feature Request'
+description: 'Solicite uma nova feature para o monorepo.'
+title: '[Feature] <Nome da Feature>'
+labels: ['feature', 'enhancement']
+assignees: []
+---
+
+## 🚧 Nome da Branch
+
+Padrão sugerido: `feat/<etapa>/<nome-descritivo>`
+
+<!-- Exemplo: feat/etapa-x/nome-da-feature -->
+<!-- Substitua pelo nome da branch sugerido -->
+
+---
+
+## 📌 Descrição da Feature
+
+Descreva de forma clara e objetiva:
+
+- O que será implementado?
+- Qual o problema/motivo dessa implementação?
+- Qual valor essa feature agrega?
+
+---
+
+## 📋 Tarefas
+
+- [ ] Implementação principal
+- [ ] Testes unitários e e2e
+- [ ] Atualização da documentação
+- [ ] Validação com demais pacotes/apps
+- [ ] Revisão de código
+
+---
+
+## 🛠️ Detalhes Técnicos
+
+| Item                      | Descrição                                     |
+| ------------------------- | --------------------------------------------- |
+| **Apps/Pacotes afetados** | Ex: `apps/api`, `apps/web`, `packages/ui`     |
+| **Dependências**          | Ex: `zod`, `axios`                            |
+| **Aliases/Paths**         | Ex: `@/shared/*`, `@api/*`                    |
+| **Scripts auxiliares**    | Scripts de build, seed, deploy, etc.          |
+| **Ambiente**              | Alguma variável nova? Configuração no `.env`? |
+
+---
+
+## 🧪 Estratégia de Testes
+
+- Frameworks utilizados: `Jest`, `Vitest`, etc.
+- Tipos: unitários, integração, e2e
+- Principais cenários de teste
+- Mocks/stubs esperados
+- Cobertura mínima desejada (ex: 80%)
+
+---
+
+## 📚 Documentação
+
+- [ ] `README.md` do pacote ou app
+- [ ] `apps/docs` via Starlight
+- [ ] Comentários diretamente no código
+
+---
+
+## ✅ Critérios de Aceite
+
+- [ ] Comportamento esperado implementado
+- [ ] Sem regressões em apps/pacotes impactados
+- [ ] Testes cobrindo os principais fluxos
+- [ ] Documentação técnica clara e acessível
+- [ ] Merge sem conflitos com a `dev`
+
+---
+
+## 🧠 Observações Finais
+
+- Possíveis dúvidas, riscos, dependências externas ou bloqueios
+- Sugestões de abordagem, validações extras ou integrações futuras
+
+---
+
+🔁 **Gatilhos IA (Copilot/ChatGPT)**  
+Use os comandos abaixo para automações específicas:
+
+- `@start`: Iniciar fluxo da feature
+- `@branch`: Gerar nome da branch
+- `@testar`: Planejar e gerar testes
+- `@documentar`: Iniciar documentação
+- `@commitar`: Gerar commit semântico
+- `@pullrequest`: Criar e validar PR
