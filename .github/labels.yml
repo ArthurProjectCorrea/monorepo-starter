@@ -1,0 +1,6 @@
+- name: feature
+  color: "1D76DB"
+  description: "Nova funcionalidade ou melhoria"
+- name: enhancement
+  color: "84b6eb"
+  description: "Aprimoramento de funcionalidade existente"
