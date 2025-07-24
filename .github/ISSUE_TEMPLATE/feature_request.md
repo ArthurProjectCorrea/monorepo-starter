@@ -1,6 +1,7 @@
 ---
 name: 'Feature Request'
 description: 'Solicite uma nova feature para o monorepo.'
+about: 'Template para solicitação de nova feature, cobrindo implementação, testes e documentação.'
 title: '[Feature] <Nome da Feature>'
 labels: ['feature', 'enhancement']
 assignees: []
