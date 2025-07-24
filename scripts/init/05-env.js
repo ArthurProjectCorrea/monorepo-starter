@@ -34,16 +34,16 @@ async function ask(question, mask = false) {
 }
 
 module.exports = async function setupEnv() {
-  let githubToken, githubUser, githubRepo, npmToken, npmUser;
+  let ghPat, githubUser, githubRepo, npmToken, npmUser;
   if (!fs.existsSync('.env')) {
-    githubToken = await ask('Informe seu GitHub Personal Access Token: ', true);
+    ghPat = await ask('Informe seu GitHub Personal Access Token: ', true);
     githubUser = await ask('Informe seu usuário do GitHub: ');
     githubRepo = await ask('Informe o nome do repositório (ex: user/repo): ');
     npmUser = await ask('Informe seu nome de usuário no npm: ');
     npmToken = await ask('Informe seu NPM_TOKEN (token do npm para publicação): ', true);
     fs.writeFileSync(
       '.env',
-      `GITHUB_TOKEN=${githubToken}\nGITHUB_USER=${githubUser}\nGITHUB_REPO=${githubRepo}\nNPM_USER=${npmUser}\nNPM_TOKEN=${npmToken}\n`,
+      `GH_PAT=${ghPat}\nGITHUB_USER=${githubUser}\nGITHUB_REPO=${githubRepo}\nNPM_USER=${npmUser}\nNPM_TOKEN=${npmToken}\n`,
     );
     console.log('Arquivo .env criado com sucesso!');
   } else {
