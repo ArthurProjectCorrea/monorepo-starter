@@ -1,43 +1,35 @@
-# 📚 Documentação Técnica — Astro + Starlight
+# apps/docs — Documentação Técnica Centralizada
 
-Este diretório contém a documentação técnica do monorepo, construída com [Astro](https://astro.build/) e o tema [Starlight](https://starlight.astro.build/).
+Este projeto reúne toda a documentação técnica do monorepo, construída com [Astro](https://astro.build/) e [Starlight](https://starlight.astro.build/).
+
+## Status
+
+Em constante atualização — reflete sempre o estado real do monorepo.
+
+## Estrutura
+
+Organize a documentação por assunto e tópicos em `src/content/docs/`.
+Use exemplos reais do projeto e mantenha os sumários/índices atualizados.
+
+## Como rodar localmente
+
+```bash
+pnpm dev --filter=docs
+```
+
+Acesse em [http://localhost:4321](http://localhost:4321)
+
+## Como gerar build de produção
+
+```bash
+pnpm build --filter=docs
+```
+
+Saída em `apps/docs/dist`.
 
 ---
 
-## 📂 Estrutura
-
-```
-apps/docs/
-  public/           → Assets estáticos (favicons, imagens)
-  src/
-    assets/         → Imagens para uso em docs
-    content/        → Documentação em Markdown/Mdx
-      docs/         → Seções principais (overview, checklist, guias, etc)
-      monorepo/     → Padrões, automações, comandos do monorepo
-      reference/    → Referências técnicas
-    content.config.ts
-  astro.config.mjs  → Configuração Astro
-  package.json      → Dependências e scripts
-  tsconfig.json     → Configuração TypeScript
-```
-
----
-
-## 🚦 Fluxo de Uso
-
-1. **Editar ou criar docs:**
-   - Adicione arquivos `.md` ou `.mdx` em `src/content/docs/`.
-   - Use subpastas para organizar por tema (ex: `monorepo/`, `guides/`, `reference/`).
-2. **Rodar localmente:**
-   ```sh
-   pnpm dev --filter=docs
-   ```
-   Acesse em [http://localhost:4321](http://localhost:4321)
-3. **Build de produção:**
-   ```sh
-   pnpm build --filter=docs
-   ```
-   Saída em `apps/docs/dist`.
+**Consulte este projeto sempre que precisar de informações técnicas, exemplos reais e guias de uso do monorepo.**
 
 ---
 

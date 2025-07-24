@@ -1,36 +1,76 @@
 ---
-title: Welcome to Starlight
-description: Get started building your docs site with Starlight.
+title: Documentação do Monorepo
+description: Portal técnico do monorepo — navegue por apps, pacotes, automações e boas práticas.
 template: splash
 hero:
-  tagline: Congrats on setting up a new Starlight project!
+  tagline: Monorepo profissional fullstack — backend, frontend, docs e automações.
   image:
     file: ../../assets/houston.webp
   actions:
-    # - text: Example Guide
-    #   link: /guides/example/
-    #   icon: right-arrow
-    - text: Read the Starlight docs
-      link: https://starlight.astro.build
-      icon: external
-      variant: minimal
+    - text: Visão Geral
+      link: /docs/overview
+    - text: Estrutura do Monorepo
+      link: /docs/monorepo/estrutura
+    - text: Apps & Pacotes
+      link: /docs/monorepo
+    - text: Boas Práticas
+      link: /docs/monorepo/boas-praticas
+    - text: FAQ
+      link: /docs/monorepo/faq
 ---
 
-import { Card, CardGrid } from '@astrojs/starlight/components';
 
-## Next steps
+import { LinkCard, CardGrid } from '@astrojs/starlight/components';
+
+## Bem-vindo à documentação técnica do monorepo
 
 <CardGrid stagger>
-	<Card title="Update content" icon="pencil">
-		Edit `src/content/docs/index.mdx` to see this page change.
-	</Card>
-	<Card title="Add new content" icon="add-document">
-		Add Markdown or MDX files to `src/content/docs` to create new pages.
-	</Card>
-	<Card title="Configure your site" icon="setting">
-		Edit your `sidebar` and other config in `astro.config.mjs`.
-	</Card>
-	<Card title="Read the docs" icon="open-book">
-		Learn more in [the Starlight Docs](https://starlight.astro.build/).
-	</Card>
+  <LinkCard
+    title="Visão Geral"
+    href="overview"
+    icon="dashboard"
+    description="Entenda a proposta, arquitetura e principais recursos do monorepo."
+  />
+  <LinkCard
+    title="Estrutura do Monorepo"
+    href="monorepo/estrutura"
+    icon="folder"
+    description="Veja como apps, pacotes e automações se organizam."
+  />
+  <LinkCard
+    title="Apps"
+    href="frontend-structure"
+    icon="rocket"
+    description="Frontend (Next.js) e Backend (NestJS) — estrutura, exemplos e dicas."
+  />
+  <LinkCard
+    title="Pacotes & Configs"
+    href="packages/ui"
+    icon="package"
+    description="Componentes, configs e utilitários compartilhados."
+  />
+  <LinkCard
+    title="Automação & Scripts"
+    href="monorepo/automacoes"
+    icon="bolt"
+    description="CI/CD, scripts pós-clone, integrações e dicas de automação."
+  />
+  <LinkCard
+    title="Boas Práticas"
+    href="monorepo/boas-praticas"
+    icon="check"
+    description="Dicas para manter o monorepo saudável, produtivo e escalável."
+  />
+  <LinkCard
+    title="FAQ"
+    href="monorepo/faq"
+    icon="help"
+    description="Perguntas frequentes e soluções para dúvidas comuns."
+  />
+  <LinkCard
+    title="Contribuição"
+    href="contributing"
+    icon="edit"
+    description="Como contribuir, abrir PRs e seguir o fluxo de desenvolvimento."
+  />
 </CardGrid>

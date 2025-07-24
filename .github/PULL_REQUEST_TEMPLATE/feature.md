@@ -4,33 +4,45 @@ description: 'Pull Request para implementação de nova feature'
 labels: ['feature', 'enhancement']
 ---
 
-## Nome da Feature
+## Descrição da Feature
 
-<!-- Informe o nome da feature implementada -->
+Descreva resumidamente a feature implementada.
 
-## Referência à Issue
+### Referência à Issue
 
-<!-- Link para a issue relacionada. Exemplo: Closes #123 -->
+<!-- Informe o número/link da issue relacionada. Exemplo: Closes #123 -->
 
-## Descrição
+### O que foi implementado
 
-<!-- Resuma o que foi implementado, contexto e motivação -->
+<!-- Liste tudo que foi entregue, incluindo melhorias ou ajustes além do escopo original -->
 
-## Recursos Adicionais
+### O que NÃO foi implementado
 
-<!-- Liste recursos extras, codificações fora do escopo da issue ou melhorias implementadas -->
+<!-- Liste itens do escopo da issue que não foram entregues e o motivo -->
 
-## Screenshots/Demonstrações
+### Extras implementados
 
-<!-- Adicione imagens, GIFs ou vídeos mostrando a feature funcionando -->
+<!-- Detalhe entregas que não estavam previstas na issue, mas foram incluídas -->
 
-## Impacto/Repercussão
+---
 
-<!-- Descreva possíveis impactos em outros sistemas, breaking changes ou migrações necessárias -->
+## Checklist
+
+- [ ] Testes realizados
+- [ ] Documentação atualizada (se aplicável)
+- [ ] Não há conflitos com a branch base
+
+---
+
+## Observações
+
+Inclua aqui observações adicionais relevantes ao PR, como decisões técnicas, riscos, dúvidas ou pontos de atenção para o revisor.
 
 ## Checklist de Implementação
 
-- [ ] Código implementado conforme especificação
+- [ ] Código implementado conforme especificação da issue
+- [ ] Tudo que foi implementado está descrito neste PR
+- [ ] O que não foi implementado está justificado
 - [ ] Testes automatizados (unitários, integração, e2e)
 - [ ] Documentação atualizada
 - [ ] Changelog atualizado (se aplicável)

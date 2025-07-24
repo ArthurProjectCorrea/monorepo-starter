@@ -2,19 +2,26 @@
 title: Boas Práticas e Dicas
 ---
 
+
+import { FileTree, Badge } from '@astrojs/starlight/components';
+
 # 🧠 Boas Práticas e Dicas
 
+:::tip[Padronização é chave]
+Sempre siga as convenções do monorepo para garantir colaboração e qualidade.
+:::
+
 ## Organização
-- Separe responsabilidades: apps para produtos finais, packages para recursos compartilhados.
-- Documente cada pacote/app com README próprio.
+- Separe responsabilidades: apps para produtos finais, packages para recursos compartilhados. <Badge text="Recomendado" variant="tip" />
+- Documente cada pacote/app com README próprio. <Badge text="Importante" variant="note" />
 
 ## Padronização
-- Use sempre as configs globais de ESLint, Prettier, tsconfig e Tailwind.
+- Use sempre as configs globais de ESLint, Prettier, tsconfig e Tailwind. <Badge text="Recomendado" variant="tip" />
 - Mantenha dependências atualizadas e evite duplicidade.
 
 ## Fluxo de trabalho
 - Use `pnpm dev` para desenvolvimento integrado.
-- Faça PRs pequenas e bem descritas.
+- Faça PRs pequenas e bem descritas. <Badge text="Facilita revisão" variant="note" />
 - Rode `pnpm lint` e `pnpm test` antes de commitar.
 
 ## Customização
@@ -26,4 +33,29 @@ title: Boas Práticas e Dicas
 - Veja exemplos nos scripts e configs.
 - Abra issues ou PRs para melhorias!
 
-> Um monorepo bem documentado e padronizado facilita a colaboração e a escalabilidade.
+<FileTree>
+  <ul>
+    <li>
+      apps/
+      <ul>
+        <li>api/</li>
+        <li>web/</li>
+        <li>docs/</li>
+      </ul>
+    </li>
+    <li>
+      packages/
+      <ul>
+        <li>ui/</li>
+        <li>config/</li>
+        <li>...</li>
+      </ul>
+    </li>
+    <li>scripts/</li>
+    <li>...</li>
+  </ul>
+</FileTree>
+
+:::note[Por que tudo isso?]
+Um monorepo bem documentado e padronizado facilita a colaboração e a escalabilidade.
+:::

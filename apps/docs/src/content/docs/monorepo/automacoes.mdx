@@ -2,7 +2,14 @@
 title: Automações e CI/CD
 ---
 
+
+import { Steps } from '@astrojs/starlight/components';
+
 # 🤖 Automações e CI/CD
+
+:::caution[Segurança]
+Nunca exponha segredos ou tokens em arquivos de workflow ou scripts!
+:::
 
 O monorepo já vem pronto para automação de tarefas e integração contínua.
 
@@ -10,14 +17,36 @@ O monorepo já vem pronto para automação de tarefas e integração contínua.
 - Workflows para lint, test, build e release automático.
 - Arquivos em `.github/workflows/`.
 - Exemplo de etapas:
-  - Instala dependências (`pnpm install`)
-  - Roda lint, test, build
-  - Gera release com semantic-release
+
+```yaml title=".github/workflows/ci.yml"
+jobs:
+  build:
+    steps:
+      - uses: actions/checkout@v3
+      - run: pnpm install
+      - run: pnpm lint
+      - run: pnpm test
+      - run: pnpm build
+```
+
+<Steps>
+  <ol>
+    <li>Checkout do código</li>
+    <li>Instalação de dependências</li>
+    <li>Lint, Testes e Build</li>
+    <li>Release automatizado</li>
+  </ol>
+</Steps>
 
 ## Husky & Lint-Staged
 - Hooks de git para garantir código limpo antes dos commits.
 - Configuração em `.husky/` e `.lintstagedrc`.
-- Exemplo: roda `pnpm lint` e `pnpm format` antes do commit.
+- Exemplo:
+
+```bash title=".husky/pre-commit"
+pnpm lint
+pnpm format
+```
 
 ## Script pós-clone
 - `scripts/post-init.js` automatiza:
@@ -31,4 +60,6 @@ O monorepo já vem pronto para automação de tarefas e integração contínua.
 - Adicione novos scripts em `scripts/`.
 - Ajuste hooks em `.husky/` conforme necessidade.
 
-> Consulte cada arquivo para exemplos e customizações avançadas.
+:::note[Customização]
+Consulte cada arquivo para exemplos e customizações avançadas.
+:::

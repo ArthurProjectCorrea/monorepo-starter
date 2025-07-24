@@ -1,0 +1,32 @@
+---
+title: Configurações e Boas Práticas do .github
+---
+
+# Configurações e Boas Práticas do .github
+
+O diretório `.github` centraliza automações, templates, fluxos de PR/issues e integrações do monorepo.
+
+## Templates de Issue e Pull Request
+- **feature_request.md**: Template detalhado para novas features, cobrindo escopo, entregas, rastreabilidade e exemplos reais.
+- **feature.md**: Template de PR para features, exigindo descrição completa, referência à issue, o que foi/foi não entregue e decisões técnicas.
+
+## Workflows de CI/CD
+- **ci.yml**: Lint, test e build automatizados em todos os pushes e PRs.
+- **release-packages.yml**: Release automatizado de pacotes com semantic-release.
+
+## Labels e Automação
+- **labels.yml**: Padrão de labels para issues/PRs, sincronizável via script.
+- **scripts/sync-labels.js**: Sincroniza labels do repositório com o padrão do projeto.
+
+## Copilot Chat e Fluxo Interativo
+- **chatmodes/**: Modos de chat para Copilot (fullstack, docs, test, devops), cada um com personalidade e contexto próprio.
+- **prompts/**: Prompts interativos para guiar o fluxo de desenvolvimento, sempre com confirmação do usuário.
+- **instructions/**: Instruções detalhadas para agentes Copilot, garantindo rastreabilidade e padronização.
+
+## Boas práticas
+- Sempre use os templates ao abrir issues/PRs.
+- Siga o fluxo interativo do Copilot para desenvolvimento (iniciado com `@start <URL_ISSUE>`).
+- Consulte os arquivos de instrução para entender o padrão esperado.
+- Labels e automações garantem rastreabilidade e qualidade.
+
+> Consulte os arquivos em `.github` para exemplos reais e adapte conforme a evolução do projeto.

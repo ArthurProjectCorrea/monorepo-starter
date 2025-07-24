@@ -9,9 +9,9 @@ assignees: []
 
 ## 🚧 Nome da Branch
 
-Padrão sugerido: `feat/<etapa>/<nome-descritivo>`
+Padrão sugerido: `feat/<numero-issue><nome-descritivo>`
 
-<!-- Exemplo: feat/etapa-x/nome-da-feature -->
+<!-- Exemplo: feat/123-nome-da-feature -->
 <!-- Substitua pelo nome da branch sugerido -->
 
 ---
@@ -21,8 +21,11 @@ Padrão sugerido: `feat/<etapa>/<nome-descritivo>`
 Descreva de forma clara e objetiva:
 
 - O que será implementado?
+- O que NÃO será entregue nesta issue (escopo fora ou adiado)?
 - Qual o problema/motivo dessa implementação?
 - Qual valor essa feature agrega?
+
+> **Importante:** Ao criar o PR, referencie esta issue e detalhe no PR tudo que foi implementado, não implementado e qualquer extra realizado.
 
 ---
 
@@ -80,6 +83,7 @@ Descreva de forma clara e objetiva:
 
 - Possíveis dúvidas, riscos, dependências externas ou bloqueios
 - Sugestões de abordagem, validações extras ou integrações futuras
+- Pontos que devem ser revisados no PR (ex: decisões técnicas, desvios do escopo, entregas extras)
 
 ---
 

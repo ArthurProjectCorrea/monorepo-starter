@@ -1,0 +1,25 @@
+---
+title: Gerenciamento de Versões com .changeset
+---
+
+# Gerenciamento de Versões com .changeset
+
+O diretório `.changeset` é responsável por controlar o versionamento e o changelog dos pacotes do monorepo.
+
+## Como funciona
+- Utiliza o [Changesets](https://github.com/changesets/changesets) para gerar changelogs e releases semânticos.
+- Cada mudança relevante deve ser registrada com um arquivo de changeset (via `pnpm changeset`).
+- O arquivo `config.json` define as regras de versionamento e publicação.
+
+## Boas práticas
+- Sempre crie um changeset ao adicionar uma feature, fix ou breaking change.
+- Use mensagens claras e siga o padrão semântico.
+- O release automatizado (via workflow do GitHub) lê os changesets e publica os pacotes.
+- Consulte o `README.md` do diretório para detalhes e exemplos reais.
+
+## Exemplo de uso
+```bash
+pnpm changeset
+```
+
+> Consulte `.changeset/README.md` e `config.json` para detalhes de configuração e exemplos.
