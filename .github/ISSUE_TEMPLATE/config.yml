@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+defaults:
+  - name: Feature Request
+    description: Solicite uma nova feature seguindo o template detalhado.
+    title: "[Feature] <Nome da Feature>"
+    labels: [feature, enhancement]
+    assignees: []
+    template: feature_request.md
