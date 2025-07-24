@@ -8,11 +8,11 @@ const axios = require('axios');
 require('dotenv').config();
 
 const LABELS_PATH = path.resolve(__dirname, '../.github/labels.yml');
-const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
+const GITHUB_TOKEN = process.env.GH_PAT;
 const REPO = process.env.GITHUB_REPOSITORY || 'ArthurProjectCorrea/monorepo-starter';
 
 if (!GITHUB_TOKEN) {
-  console.error('GITHUB_TOKEN não definido no .env');
+  console.error('GH_PAT não definido no .env');
   process.exit(1);
 }
 
