@@ -1,5 +1,5 @@
 blank_issues_enabled: false
-defaults:
+issue_templates:
   - name: Feature Request
     description: Solicite uma nova feature seguindo o template detalhado.
     title: "[Feature] <Nome da Feature>"
