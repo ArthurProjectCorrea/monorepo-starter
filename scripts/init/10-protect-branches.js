@@ -1,4 +1,7 @@
-const { execSync } = require('child_process');
+const { exec } = require('child_process');
+const util = require('util');
+const fs = require('fs');
+const execAsync = util.promisify(exec);
 const readline = require('readline');
 
 function ask(question, def = 'N') {
@@ -13,7 +16,7 @@ function ask(question, def = 'N') {
 
 async function branchExists(branch) {
   try {
-    execSync(`git show-ref --verify --quiet refs/heads/${branch}`);
+    await execAsync(`git show-ref --verify --quiet refs/heads/${branch}`);
     return true;
   } catch {
     return false;
@@ -22,7 +25,7 @@ async function branchExists(branch) {
 
 async function remoteBranchExists(branch) {
   try {
-    execSync(`git ls-remote --exit-code --heads origin ${branch}`);
+    await execAsync(`git ls-remote --exit-code --heads origin ${branch}`);
     return true;
   } catch {
     return false;
@@ -30,30 +33,43 @@ async function remoteBranchExists(branch) {
 }
 
 async function createAndPushBranch(branch, from = 'main') {
-  execSync(`git checkout ${from}`);
-  execSync(`git checkout -b ${branch}`);
-  execSync(`git push -u origin ${branch}`);
+  await execAsync(`git checkout ${from}`);
+  await execAsync(`git checkout -b ${branch}`);
+  await execAsync(`git push -u origin ${branch}`);
 }
 
 async function syncDevWithMain() {
-  execSync('git checkout dev');
-  execSync('git fetch origin main');
-  execSync('git merge origin/main');
-  execSync('git push origin dev');
+  await execAsync('git checkout dev');
+  await execAsync('git fetch origin main');
+  await execAsync('git merge origin/main');
+  await execAsync('git push origin dev');
 }
 
 async function deleteBranchProtection(repo, branch) {
   try {
-    execSync(`gh api -X DELETE repos/${repo}/branches/${branch}/protection`);
+    await execAsync(`gh api -X DELETE repos/${repo}/branches/${branch}/protection`);
   } catch (err) {
     // Se não existe, ignora
   }
 }
 
 async function setBranchProtection(repo, branch, config) {
-  execSync(
-    `gh api -X PUT repos/${repo}/branches/${branch}/protection -f required_pull_request_reviews='${JSON.stringify(config.reviews)}' -f required_status_checks='${JSON.stringify(config.statusChecks)}' -f enforce_admins=${config.enforceAdmins} -f restrictions='${JSON.stringify(config.restrictions)}' -f required_conversation_resolution=${config.conversationResolution} -f required_signatures=${config.signedCommits}`,
-  );
+  // Cria arquivo JSON temporário para enviar payload correto
+  const payload = {
+    required_pull_request_reviews: config.reviews,
+    required_status_checks: config.statusChecks,
+    enforce_admins: config.enforceAdmins,
+    restrictions: config.restrictions,
+    required_conversation_resolution: config.conversationResolution,
+    required_signatures: config.signedCommits,
+  };
+  const tmpFile = `.tmp-branch-protection-${branch}.json`;
+  fs.writeFileSync(tmpFile, JSON.stringify(payload));
+  try {
+    await execAsync(`gh api -X PUT repos/${repo}/branches/${branch}/protection --input ${tmpFile}`);
+  } finally {
+    fs.unlinkSync(tmpFile);
+  }
 }
 
 module.exports = async function protectBranches() {
@@ -69,24 +85,26 @@ module.exports = async function protectBranches() {
   if (!mainExists) {
     await createAndPushBranch('main', 'HEAD');
   } else if (!remoteMainExists) {
-    execSync('git push origin main');
+    await execAsync('git push origin main');
   }
 
   if (!devExists) {
     await createAndPushBranch('dev', 'main');
   } else if (!remoteDevExists) {
-    execSync('git push origin dev');
+    await execAsync('git push origin dev');
   }
 
-  // 2. Sincroniza dev com main se necessário
-  execSync('git checkout dev');
-  execSync('git fetch origin main');
-  const mainHash = execSync('git rev-parse origin/main').toString().trim();
-  const devHash = execSync('git rev-parse HEAD').toString().trim();
-  if (mainHash !== devHash) {
-    await syncDevWithMain();
-    console.log('Branch dev sincronizada com main.');
+  // 2. Garante que dev seja igual à main: exclui dev local/remoto e recria
+  if (devExists || remoteDevExists) {
+    try {
+      await execAsync('git branch -D dev');
+    } catch {}
+    try {
+      await execAsync('git push origin --delete dev');
+    } catch {}
   }
+  await createAndPushBranch('dev', 'main');
+  console.log('Branch dev recriada a partir da main.');
 
   // 3. Proteção das branches
   // Apaga proteção anterior
