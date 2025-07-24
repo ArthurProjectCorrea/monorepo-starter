@@ -16,9 +16,9 @@ function setupGithubSecrets() {
 
   try {
     // Configura GH_PAT
-    execSync(`gh secret set GH_PAT --body "${pat}" --repo ${user}/${repo}`, { stdio: 'inherit' });
+    execSync(`gh secret set GH_PAT --body "${pat}" --repo ${repo}`, { stdio: 'inherit' });
     // Configura NPM_TOKEN
-    execSync(`gh secret set NPM_TOKEN --body "${npmToken}" --repo ${user}/${repo}`, {
+    execSync(`gh secret set NPM_TOKEN --body "${npmToken}" --repo ${repo}`, {
       stdio: 'inherit',
     });
     console.log('[setup-gh-secrets] Secrets GH_PAT e NPM_TOKEN configurados com sucesso!');
