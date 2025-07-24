@@ -47,6 +47,14 @@ async function runInitScripts() {
   } catch (err) {
     console.warn('Falha ao sincronizar labels do GitHub:', err.message);
   }
+
+  // 11. Protege branches main e dev
+  try {
+    await require('./init/10-protect-branches')();
+    console.log('Proteção das branches main e dev configurada com sucesso.');
+  } catch (err) {
+    console.warn('Falha ao proteger branches:', err.message);
+  }
 }
 
 runInitScripts();
