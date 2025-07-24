@@ -105,21 +105,20 @@ module.exports = async function protectBranches() {
     await execAsync('git push origin main');
   }
 
-  if (!devExists) {
-    await createAndPushBranch('dev', 'main');
-  } else if (!remoteDevExists) {
-    await execAsync('git push origin dev');
-  }
-
-  // 2. Garante que dev seja igual à main: exclui dev local/remoto e recria
-  if (devExists || remoteDevExists) {
+  // 2. Garante que dev seja igual à main: exclui dev local/remoto e só depois recria
+  if (devExists) {
+    // Garante que não está na branch dev antes de excluir
+    await execAsync('git checkout main');
     try {
       await execAsync('git branch -D dev');
     } catch {}
+  }
+  if (remoteDevExists) {
     try {
       await execAsync('git push origin --delete dev');
     } catch {}
   }
+  // Agora cria dev a partir da main
   await createAndPushBranch('dev', 'main');
   console.log('Branch dev recriada a partir da main.');
 
