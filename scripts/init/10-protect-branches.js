@@ -61,12 +61,29 @@ async function setBranchProtection(repo, branch, config) {
     enforce_admins: config.enforceAdmins,
     restrictions: config.restrictions,
     required_conversation_resolution: config.conversationResolution,
-    required_signatures: config.signedCommits,
+    // 'required_signatures' não faz parte do payload principal
   };
   const tmpFile = `.tmp-branch-protection-${branch}.json`;
   fs.writeFileSync(tmpFile, JSON.stringify(payload));
   try {
     await execAsync(`gh api -X PUT repos/${repo}/branches/${branch}/protection --input ${tmpFile}`);
+    // Se commits assinados forem exigidos, ativa via endpoint separado
+    if (config.signedCommits) {
+      try {
+        await execAsync(
+          `gh api -X PUT repos/${repo}/branches/${branch}/protection/required_signatures`,
+        );
+      } catch (err) {
+        console.error(`Falha ao exigir commits assinados na branch ${branch}:`, err.message);
+      }
+    } else {
+      // Desativa exigência de commits assinados se necessário
+      try {
+        await execAsync(
+          `gh api -X DELETE repos/${repo}/branches/${branch}/protection/required_signatures`,
+        );
+      } catch {}
+    }
   } finally {
     fs.unlinkSync(tmpFile);
   }
