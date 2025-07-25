@@ -134,16 +134,25 @@ module.exports = async function protectBranches() {
   await deleteBranchProtection(repo, 'main');
   await deleteBranchProtection(repo, 'dev');
 
+  // Detecta se o repo é de organização (prefixo diferente do usuário)
+  const owner = repo.split('/')[0];
+  const isOrgRepo = process.env.GITHUB_USER
+    ? owner.toLowerCase() !== process.env.GITHUB_USER.toLowerCase()
+    : false;
+
   // Configuração main
   const signedCommitsMain = await ask('Deseja exigir commits assinados na branch main?', 'N');
   const configMain = {
     reviews: { required_approving_review_count: 2 },
     statusChecks: { strict: true, contexts: ['build', 'lint', 'test', 'typecheck'] },
     enforceAdmins: true,
-    restrictions: { users: [], teams: [], apps: [] },
     conversationResolution: true,
     signedCommits: signedCommitsMain,
   };
+  if (isOrgRepo) {
+    configMain.allowRestrictions = true;
+    configMain.restrictions = { users: [], teams: [], apps: [] };
+  }
   await setBranchProtection(repo, 'main', configMain);
   console.log('Proteção da branch main configurada.');
 
@@ -154,10 +163,13 @@ module.exports = async function protectBranches() {
     reviews: { required_approving_review_count: 1 },
     statusChecks: { strict: true, contexts: ['build', 'lint', 'test'] },
     enforceAdmins: false,
-    restrictions: restrictPushDev ? { users: [], teams: [], apps: [] } : null,
     conversationResolution: true,
     signedCommits: signedCommitsDev,
   };
+  if (isOrgRepo && restrictPushDev) {
+    configDev.allowRestrictions = true;
+    configDev.restrictions = { users: [], teams: [], apps: [] };
+  }
   await setBranchProtection(repo, 'dev', configDev);
   console.log('Proteção da branch dev configurada.');
 
