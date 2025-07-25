@@ -65,7 +65,11 @@ async function setBranchProtection(repo, branch, config) {
   if (config.allowRestrictions && config.restrictions && typeof config.restrictions === 'object') {
     payload.restrictions = config.restrictions;
   }
-  const tmpFile = `.tmp-branch-protection-${branch}.json`;
+  const tmpDir = 'scripts/tmp';
+  if (!fs.existsSync(tmpDir)) {
+    fs.mkdirSync(tmpDir, { recursive: true });
+  }
+  const tmpFile = `${tmpDir}/branch-protection-${branch}.json`;
   fs.writeFileSync(tmpFile, JSON.stringify(payload));
   try {
     await execAsync(`gh api -X PUT repos/${repo}/branches/${branch}/protection --input ${tmpFile}`);
