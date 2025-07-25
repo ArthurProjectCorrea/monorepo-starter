@@ -55,6 +55,11 @@ async function deleteBranchProtection(repo, branch) {
 
 async function setBranchProtection(repo, branch, config) {
   // Cria arquivo JSON temporário para enviar payload correto
+  // Detecta se o repo é de organização (prefixo diferente do usuário)
+  const owner = repo.split('/')[0];
+  const isOrgRepo = process.env.GITHUB_USER
+    ? owner.toLowerCase() !== process.env.GITHUB_USER.toLowerCase()
+    : false;
   const payload = {
     required_pull_request_reviews: config.reviews,
     required_status_checks: config.statusChecks,
@@ -62,7 +67,7 @@ async function setBranchProtection(repo, branch, config) {
     required_conversation_resolution: config.conversationResolution,
     // 'restrictions' só se for organização e objeto válido
   };
-  if (config.allowRestrictions && config.restrictions && typeof config.restrictions === 'object') {
+  if (isOrgRepo && config.restrictions && typeof config.restrictions === 'object') {
     payload.restrictions = config.restrictions;
   }
   const tmpDir = 'scripts/tmp';
