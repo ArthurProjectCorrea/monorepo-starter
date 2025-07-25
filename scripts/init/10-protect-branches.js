@@ -56,10 +56,18 @@ async function deleteBranchProtection(repo, branch) {
 async function setBranchProtection(repo, branch, config) {
   // Cria arquivo JSON temporário para enviar payload correto
   // Detecta se o repo é de organização (prefixo diferente do usuário)
-  const owner = repo.split('/')[0];
-  const isOrgRepo = process.env.GITHUB_USER
-    ? owner.toLowerCase() !== process.env.GITHUB_USER.toLowerCase()
-    : false;
+  // Detecta se o repo é de organização via API do GitHub
+  let isOrgRepo = false;
+  try {
+    const orgCheck = await execAsync(`gh api repos/${repo} --jq ".owner.type"`);
+    isOrgRepo = orgCheck.stdout.trim().toLowerCase() === 'organization';
+  } catch {
+    // fallback para heurística antiga
+    const owner = repo.split('/')[0];
+    isOrgRepo = process.env.GITHUB_USER
+      ? owner.toLowerCase() !== process.env.GITHUB_USER.toLowerCase()
+      : false;
+  }
   const payload = {};
   if (config.reviews) {
     payload.required_pull_request_reviews = config.reviews;
