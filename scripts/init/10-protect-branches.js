@@ -71,27 +71,23 @@ async function setBranchProtection(repo, branch, config) {
   }
   const tmpFile = `${tmpDir}/branch-protection-${branch}.json`;
   fs.writeFileSync(tmpFile, JSON.stringify(payload));
-  try {
-    await execAsync(`gh api -X PUT repos/${repo}/branches/${branch}/protection --input ${tmpFile}`);
-    // Se commits assinados forem exigidos, ativa via endpoint separado
-    if (config.signedCommits) {
-      try {
-        await execAsync(
-          `gh api -X PUT repos/${repo}/branches/${branch}/protection/required_signatures`,
-        );
-      } catch (err) {
-        console.error(`Falha ao exigir commits assinados na branch ${branch}:`, err.message);
-      }
-    } else {
-      // Desativa exigência de commits assinados se necessário
-      try {
-        await execAsync(
-          `gh api -X DELETE repos/${repo}/branches/${branch}/protection/required_signatures`,
-        );
-      } catch {}
+  await execAsync(`gh api -X PUT repos/${repo}/branches/${branch}/protection --input ${tmpFile}`);
+  // Se commits assinados forem exigidos, ativa via endpoint separado
+  if (config.signedCommits) {
+    try {
+      await execAsync(
+        `gh api -X PUT repos/${repo}/branches/${branch}/protection/required_signatures`,
+      );
+    } catch (err) {
+      console.error(`Falha ao exigir commits assinados na branch ${branch}:`, err.message);
     }
-  } finally {
-    fs.unlinkSync(tmpFile);
+  } else {
+    // Desativa exigência de commits assinados se necessário
+    try {
+      await execAsync(
+        `gh api -X DELETE repos/${repo}/branches/${branch}/protection/required_signatures`,
+      );
+    } catch {}
   }
 }
 
@@ -159,4 +155,18 @@ module.exports = async function protectBranches() {
   };
   await setBranchProtection(repo, 'dev', configDev);
   console.log('Proteção da branch dev configurada.');
+
+  // Limpeza dos arquivos temporários de branch protection
+  const tmpDir = 'scripts/tmp';
+  try {
+    const files = fs.readdirSync(tmpDir);
+    files.forEach((file) => {
+      if (file.startsWith('branch-protection-') && file.endsWith('.json')) {
+        fs.unlinkSync(`${tmpDir}/${file}`);
+      }
+    });
+    console.log('Arquivos temporários de branch protection removidos.');
+  } catch (err) {
+    // Se pasta não existe ou erro, ignora
+  }
 };
