@@ -144,30 +144,78 @@ module.exports = async function protectBranches() {
     ? owner.toLowerCase() !== process.env.GITHUB_USER.toLowerCase()
     : false;
 
-  // Configuração main (sem perguntas interativas)
+  // Função auxiliar para prompt interativo y/N
+  async function ask(question, defaultNo = true) {
+    return new Promise((resolve) => {
+      process.stdout.write(`${question} ${defaultNo ? 'y/N' : 'Y/n'}: `);
+      process.stdin.resume();
+      process.stdin.setEncoding('utf8');
+      process.stdin.once('data', function (data) {
+        process.stdin.pause();
+        const answer = data.trim().toLowerCase();
+        if (!answer) return resolve(!defaultNo); // Enter = default
+        if (defaultNo) return resolve(answer === 'y');
+        return resolve(answer !== 'n');
+      });
+    });
+  }
+
+  // Configuração main (regras obrigatórias + opcionais)
   const configMain = {
     reviews: { required_approving_review_count: 2 },
     statusChecks: { strict: true, contexts: ['build', 'lint', 'test', 'typecheck'] },
     enforceAdmins: true,
     conversationResolution: true,
     signedCommits: false,
+    restrictions: undefined,
   };
+  // Opcional: commits assinados
+  if (await ask('Exigir commits assinados na main? (recomendado para código sensível)', true)) {
+    configMain.signedCommits = true;
+  }
+  // Opcional: restrição de push (permitir só bots, CI ou admins)
   if (isOrgRepo) {
-    configMain.restrictions = { users: [], teams: [], apps: [] };
+    if (
+      await ask(
+        'Restringir push na main apenas para usuários, times ou apps específicos? (recomendado)',
+        true,
+      )
+    ) {
+      configMain.restrictions = { users: [], teams: [], apps: [] };
+    } else {
+      configMain.restrictions = undefined;
+    }
+  } else {
+    configMain.restrictions = undefined;
   }
   await setBranchProtection(repo, 'main', configMain);
   console.log('Proteção da branch main configurada.');
 
-  // Configuração dev (sem perguntas interativas)
+  // Configuração dev (regras obrigatórias + opcionais)
   const configDev = {
     reviews: { required_approving_review_count: 1 },
     statusChecks: { strict: true, contexts: ['build', 'lint', 'test'] },
     enforceAdmins: false,
     conversationResolution: true,
     signedCommits: false,
+    restrictions: undefined,
   };
-  // Nunca restringe push na dev por padrão
-  // ...
+  // Opcional: commits assinados
+  if (await ask('Exigir commits assinados na dev? (compliance estrita)?', false)) {
+    configDev.signedCommits = true;
+  }
+  // Opcional: restrição de push (dev normalmente é flexível)
+  if (isOrgRepo) {
+    if (
+      await ask('Restringir push na dev apenas para usuários, times ou apps específicos?', false)
+    ) {
+      configDev.restrictions = { users: [], teams: [], apps: [] };
+    } else {
+      configDev.restrictions = undefined;
+    }
+  } else {
+    configDev.restrictions = undefined;
+  }
   await setBranchProtection(repo, 'dev', configDev);
   console.log('Proteção da branch dev configurada.');
 
