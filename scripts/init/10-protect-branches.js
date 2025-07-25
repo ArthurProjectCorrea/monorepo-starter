@@ -68,13 +68,16 @@ async function setBranchProtection(repo, branch, config) {
     payload.required_status_checks = config.statusChecks;
   }
   if (typeof config.enforceAdmins === 'boolean') {
-    payload.enforce_admins = { enabled: config.enforceAdmins };
+    payload.enforce_admins = config.enforceAdmins;
   }
   if (typeof config.conversationResolution === 'boolean') {
     payload.required_conversation_resolution = config.conversationResolution;
   }
-  if (isOrgRepo && config.restrictions && typeof config.restrictions === 'object') {
-    payload.restrictions = config.restrictions;
+  if (isOrgRepo) {
+    payload.restrictions =
+      config.restrictions && typeof config.restrictions === 'object'
+        ? config.restrictions
+        : { users: [], teams: [], apps: [] };
   }
   const tmpDir = 'scripts/tmp';
   if (!fs.existsSync(tmpDir)) {
