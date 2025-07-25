@@ -59,10 +59,12 @@ async function setBranchProtection(repo, branch, config) {
     required_pull_request_reviews: config.reviews,
     required_status_checks: config.statusChecks,
     enforce_admins: config.enforceAdmins,
-    restrictions: config.restrictions,
     required_conversation_resolution: config.conversationResolution,
-    // 'required_signatures' não faz parte do payload principal
+    // 'restrictions' só se for organização e objeto válido
   };
+  if (config.allowRestrictions && config.restrictions && typeof config.restrictions === 'object') {
+    payload.restrictions = config.restrictions;
+  }
   const tmpFile = `.tmp-branch-protection-${branch}.json`;
   fs.writeFileSync(tmpFile, JSON.stringify(payload));
   try {
