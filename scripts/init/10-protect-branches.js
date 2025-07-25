@@ -145,6 +145,18 @@ module.exports = async function protectBranches() {
     : false;
 
   // Função auxiliar para prompt interativo y/N
+
+  // Função para checar se o endpoint de commits assinados está disponível para a branch
+  async function canRequireSignedCommits(repo, branch) {
+    try {
+      await execAsync(
+        `gh api repos/${repo}/branches/${branch}/protection/required_signatures -X GET`,
+      );
+      return true;
+    } catch {
+      return false;
+    }
+  }
   async function ask(question, defaultNo = true) {
     return new Promise((resolve) => {
       process.stdout.write(`${question} ${defaultNo ? 'y/N' : 'Y/n'}: `);
