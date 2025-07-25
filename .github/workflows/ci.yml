@@ -43,7 +43,8 @@ jobs:
           node-version: 18
           cache: 'pnpm'
       - run: pnpm install
-      - run: pnpm check-types
+      - run: pnpm build --filter=@arthurcorreadev/monorepo-starter-ui
+      - run: pnpm check-types --filter=web
 
   build:
     runs-on: ubuntu-latest
