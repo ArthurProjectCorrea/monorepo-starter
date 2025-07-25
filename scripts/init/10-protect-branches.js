@@ -203,7 +203,7 @@ module.exports = async function protectBranches() {
   await setBranchProtection(repo, 'main', configMain);
   console.log('Proteção da branch main configurada.');
 
-  // Configuração dev (regras obrigatórias + opcionais)
+  // Configuração dev (regras obrigatórias + restrição opcional de push)
   const configDev = {
     reviews: { required_approving_review_count: 1 },
     statusChecks: { strict: true, contexts: ['build', 'lint', 'test'] },
@@ -212,10 +212,6 @@ module.exports = async function protectBranches() {
     signedCommits: false,
     restrictions: undefined,
   };
-  // Opcional: commits assinados
-  if (await ask('Exigir commits assinados na dev? (compliance estrita)?', false)) {
-    configDev.signedCommits = true;
-  }
   // Opcional: restrição de push (dev normalmente é flexível)
   if (isOrgRepo) {
     if (
