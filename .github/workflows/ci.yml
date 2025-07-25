@@ -17,6 +17,11 @@ jobs:
           cache: 'pnpm'
 
       - run: pnpm install
-      - run: pnpm lint
-      - run: pnpm test
-      - run: pnpm build
+      - name: lint
+        run: pnpm lint
+      - name: test
+        run: pnpm test
+      - name: typecheck
+        run: pnpm typecheck
+      - name: build
+        run: pnpm build
