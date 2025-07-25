@@ -150,7 +150,6 @@ module.exports = async function protectBranches() {
     signedCommits: signedCommitsMain,
   };
   if (isOrgRepo) {
-    configMain.allowRestrictions = true;
     configMain.restrictions = { users: [], teams: [], apps: [] };
   }
   await setBranchProtection(repo, 'main', configMain);
@@ -167,7 +166,6 @@ module.exports = async function protectBranches() {
     signedCommits: signedCommitsDev,
   };
   if (isOrgRepo && restrictPushDev) {
-    configDev.allowRestrictions = true;
     configDev.restrictions = { users: [], teams: [], apps: [] };
   }
   await setBranchProtection(repo, 'dev', configDev);
