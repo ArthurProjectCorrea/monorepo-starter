@@ -86,6 +86,8 @@ async function setBranchProtection(repo, branch, config) {
       config.restrictions && typeof config.restrictions === 'object'
         ? config.restrictions
         : { users: [], teams: [], apps: [] };
+  } else {
+    payload.restrictions = null;
   }
   const tmpDir = 'scripts/tmp';
   if (!fs.existsSync(tmpDir)) {
