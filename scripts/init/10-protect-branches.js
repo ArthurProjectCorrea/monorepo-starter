@@ -60,13 +60,19 @@ async function setBranchProtection(repo, branch, config) {
   const isOrgRepo = process.env.GITHUB_USER
     ? owner.toLowerCase() !== process.env.GITHUB_USER.toLowerCase()
     : false;
-  const payload = {
-    required_pull_request_reviews: config.reviews,
-    required_status_checks: config.statusChecks,
-    enforce_admins: config.enforceAdmins,
-    required_conversation_resolution: config.conversationResolution,
-    // 'restrictions' só se for organização e objeto válido
-  };
+  const payload = {};
+  if (config.reviews) {
+    payload.required_pull_request_reviews = config.reviews;
+  }
+  if (config.statusChecks) {
+    payload.required_status_checks = config.statusChecks;
+  }
+  if (typeof config.enforceAdmins === 'boolean') {
+    payload.enforce_admins = { enabled: config.enforceAdmins };
+  }
+  if (typeof config.conversationResolution === 'boolean') {
+    payload.required_conversation_resolution = config.conversationResolution;
+  }
   if (isOrgRepo && config.restrictions && typeof config.restrictions === 'object') {
     payload.restrictions = config.restrictions;
   }
