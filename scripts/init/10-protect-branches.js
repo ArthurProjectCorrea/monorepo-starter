@@ -2,17 +2,7 @@ const { exec } = require('child_process');
 const util = require('util');
 const fs = require('fs');
 const execAsync = util.promisify(exec);
-const readline = require('readline');
-
-function ask(question, def = 'N') {
-  return new Promise((resolve) => {
-    const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
-    rl.question(`${question} [y/N]: `, (answer) => {
-      rl.close();
-      resolve(answer.trim().toLowerCase() === 'y');
-    });
-  });
-}
+// ...
 
 async function branchExists(branch) {
   try {
@@ -38,12 +28,7 @@ async function createAndPushBranch(branch, from = 'main') {
   await execAsync(`git push -u origin ${branch}`);
 }
 
-async function syncDevWithMain() {
-  await execAsync('git checkout dev');
-  await execAsync('git fetch origin main');
-  await execAsync('git merge origin/main');
-  await execAsync('git push origin dev');
-}
+// ...
 
 async function deleteBranchProtection(repo, branch) {
   try {
@@ -182,10 +167,7 @@ module.exports = async function protectBranches() {
     signedCommits: false,
   };
   // Nunca restringe push na dev por padrão
-  // Se quiser ativar, altere para true
-  // if (isOrgRepo && true) {
-  //   configDev.restrictions = { users: [], teams: [], apps: [] };
-  // }
+  // ...
   await setBranchProtection(repo, 'dev', configDev);
   console.log('Proteção da branch dev configurada.');
 
