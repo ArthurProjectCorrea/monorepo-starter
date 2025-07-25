@@ -43,19 +43,6 @@
   "peerDependencies": {
     "react": "^19"
   },
-  "typesVersions": {
-    "*": {
-      "card": [
-        "./dist/card.d.ts"
-      ],
-      "gradient": [
-        "./dist/gradient.d.ts"
-      ],
-      "turborepo-logo": [
-        "./dist/turborepo-logo.d.ts"
-      ]
-    }
-  },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
     "@repo/tailwind-config": "workspace:*",
