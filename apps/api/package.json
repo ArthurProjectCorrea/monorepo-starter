@@ -38,9 +38,10 @@
   "@types/node": "^22.10.7",
   "@types/supertest": "^6.0.2",
   "devDependencies": {
+    "@types/jest": "^29.5.14",
+    "@types/supertest": "^6.0.2",
     "@nestjs/testing": "^11.1.5",
     "@repo/eslint-config": "workspace:*",
-    "@types/jest": "^30.0.0",
     "@types/node": "^22.15.30",
     "eslint": "^9.18.0",
     "eslint-config-prettier": "^10.0.1",

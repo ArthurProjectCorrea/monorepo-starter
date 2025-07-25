@@ -12,9 +12,18 @@
   ],
   "exports": {
     "./styles.css": "./dist/index.css",
-    "./card": "./dist/card.js",
-    "./gradient": "./dist/gradient.js",
-    "./turborepo-logo": "./dist/turborepo-logo.js"
+    "./card": {
+      "types": "./dist/card.d.ts",
+      "default": "./dist/card.js"
+    },
+    "./gradient": {
+      "types": "./dist/gradient.d.ts",
+      "default": "./dist/gradient.js"
+    },
+    "./turborepo-logo": {
+      "types": "./dist/turborepo-logo.d.ts",
+      "default": "./dist/turborepo-logo.js"
+    }
   },
   "license": "MIT",
   "scripts": {
