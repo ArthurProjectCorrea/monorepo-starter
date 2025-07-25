@@ -140,14 +140,13 @@ module.exports = async function protectBranches() {
     ? owner.toLowerCase() !== process.env.GITHUB_USER.toLowerCase()
     : false;
 
-  // Configuração main
-  const signedCommitsMain = await ask('Deseja exigir commits assinados na branch main?', 'N');
+  // Configuração main (sem perguntas interativas)
   const configMain = {
     reviews: { required_approving_review_count: 2 },
     statusChecks: { strict: true, contexts: ['build', 'lint', 'test', 'typecheck'] },
     enforceAdmins: true,
     conversationResolution: true,
-    signedCommits: signedCommitsMain,
+    signedCommits: false,
   };
   if (isOrgRepo) {
     configMain.restrictions = { users: [], teams: [], apps: [] };
@@ -155,19 +154,19 @@ module.exports = async function protectBranches() {
   await setBranchProtection(repo, 'main', configMain);
   console.log('Proteção da branch main configurada.');
 
-  // Configuração dev
-  const restrictPushDev = await ask('Deseja restringir quem pode fazer push na branch dev?', 'N');
-  const signedCommitsDev = await ask('Deseja exigir commits assinados na branch dev?', 'N');
+  // Configuração dev (sem perguntas interativas)
   const configDev = {
     reviews: { required_approving_review_count: 1 },
     statusChecks: { strict: true, contexts: ['build', 'lint', 'test'] },
     enforceAdmins: false,
     conversationResolution: true,
-    signedCommits: signedCommitsDev,
+    signedCommits: false,
   };
-  if (isOrgRepo && restrictPushDev) {
-    configDev.restrictions = { users: [], teams: [], apps: [] };
-  }
+  // Nunca restringe push na dev por padrão
+  // Se quiser ativar, altere para true
+  // if (isOrgRepo && true) {
+  //   configDev.restrictions = { users: [], teams: [], apps: [] };
+  // }
   await setBranchProtection(repo, 'dev', configDev);
   console.log('Proteção da branch dev configurada.');
 
