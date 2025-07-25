@@ -51,6 +51,12 @@ packages/
 
 ---
 
+## 📋 Padrão de Commits
+
+Todos os commits devem seguir o padrão [Conventional Commits](./apps/docs/src/content/docs/monorepo/commits.md). Veja exemplos e dicas na documentação.
+
+---
+
 ## 🚦 Fluxo de Inicialização do Template
 
 1. **Clone o repositório:**

@@ -9,10 +9,11 @@ assignees: []
 
 ## 🚧 Nome da Branch
 
-Padrão sugerido: `feat/<numero-issue><nome-descritivo>`
+Padrão sugerido: `feat/<numero-issue>-<nome-descritivo>`
 
-<!-- Exemplo: feat/123-nome-da-feature -->
-<!-- Substitua pelo nome da branch sugerido -->
+Exemplo: `feat/123-login-social`
+
+---
 
 ---
 
