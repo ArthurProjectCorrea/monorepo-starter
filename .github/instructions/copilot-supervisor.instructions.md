@@ -1,5 +1,5 @@
 ---
-applyTo: '**'
+applyTo: 'apps/api/'
 ---
 
 ### Instruções para o Supervisor Copilot
