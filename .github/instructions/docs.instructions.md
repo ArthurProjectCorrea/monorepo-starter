@@ -18,7 +18,17 @@ Este guia define as práticas, estrutura e padrões para manter a documentação
   - `packages/` — pacotes compartilhados (ex: `ui/`, `config/`, `types/`, `utils/`).
   - `ui/` — componentes React reutilizáveis.
   - `github/` — automações, workflows e configurações do repositório.
-- Cada escopo deve ter uma página central (ex: `api/index.mdx`) com tópicos claros, exemplos reais e links para subpáginas detalhadas.
+
+Cada escopo deve ter uma página central (ex: `api/index.mdx`) com tópicos claros, exemplos reais e links para subpáginas detalhadas.
+
+- Antes de documentar qualquer arquivo ou pasta, leia e analise o conteúdo real do(s) arquivo(s) para compreender todas as funcionalidades, exemplos de uso, formas de extensão, integrações e pontos relevantes.
+- Elabore a documentação de forma detalhada, abordando exemplos reais, uso, extensão, integração, dependências e boas práticas.
+- Se a documentação de uma pasta for muito extensa ou abordar muitos arquivos/temas, crie uma subpasta de documentação e divida em arquivos temáticos (ex: `workflows/`, `scripts/`).
+  - Centralize temas correlatos em um mesmo arquivo quando fizer sentido, evitando fragmentação excessiva.
+  - Priorize a clareza, navegabilidade e evolução futura da documentação.
+  - Use sumários, índices e navegação para facilitar o acesso aos tópicos.
+- Subpáginas (ex: scripts.mdx, workflows.mdx) devem ter títulos únicos e não repetir o título do index.mdx do escopo.
+- Sempre que criar ou atualizar uma documentação, revise e atualize o arquivo index.mdx do escopo, a sidebar e qualquer navegação relacionada para garantir que a nova página esteja acessível e visível. Não deixe subpáginas "órfãs" ou ocultas.
 
 ---
 

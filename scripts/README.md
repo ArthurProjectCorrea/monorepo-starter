@@ -1,30 +1,45 @@
 # scripts/
 
-Scripts utilitários e automações para o monorepo.
+Central de automações, pós-clone, validações e setup do monorepo.
 
-## Status
+## O que é esta pasta?
 
-Estável — utilizados em fluxos de pós-clone, validações, sync de labels, setup de ambiente e automações de CI/CD.
-
-## Principais recursos
-
-- Pós-clone: inicialização do ambiente
-- Sincronização de labels do GitHub
-- Validações e checks de ambiente
-- Setup automatizado de dependências e segredos
+A pasta `scripts/` reúne utilitários para facilitar o setup, manutenção e automação do repositório, incluindo pós-clone, sincronização de labels, validações e scripts interativos.
 
 ## Como usar
 
-Execute scripts diretamente via Node.js ou via comandos do package.json:
+- Execute scripts sempre a partir da raiz do monorepo.
+- Exemplos:
+  - Pós-clone/configuração inicial:
+    ```bash
+    node scripts/post-init.js
+    ```
+  - Sincronizar labels do GitHub:
+    ```bash
+    node scripts/sync-labels.js
+    ```
+- Para automações de setup, utilize os scripts em `scripts/init/` na ordem sugerida.
 
-```bash
-node scripts/<nome-do-script>.js
+## Estrutura
+
+```
+scripts/
+  post-init.js         # Pós-clone/configuração inicial
+  sync-labels.js        # Sincronização de labels do GitHub
+  README.md             # Documentação dos scripts
+  init/
+    01-check-git-status.js   # Valida status do git
+    02-install-deps.js       # Instala dependências
+    03-vscode-extensions.js  # Sugere/extensões VSCode
+    04-turbo-login.js        # Login no Turborepo
+    05-env.js                # Configura variáveis de ambiente
+    06-update-ui-name.js     # Atualiza nome do pacote UI
+    07-update-ui-imports.js  # Ajusta imports do UI
+    08-update-ui-deps.js     # Atualiza dependências do UI
+    09-setup-gh-secrets.js   # Configura segredos do GitHub
+    10-protect-branches.js   # Protege branches principais
 ```
 
-## Documentação técnica
+## Documentação oficial
 
-Consulte a documentação completa e exemplos reais em [`apps/docs`](../../docs) ou acesse o site de documentação gerado pelo projeto.
-
----
-
-Este README é um resumo. Para detalhes, exemplos e integrações, consulte sempre a documentação centralizada.
+Para detalhes, exemplos reais e boas práticas, consulte a [documentação oficial dos scripts](../../apps/docs/src/content/docs/github/scripts.mdx).

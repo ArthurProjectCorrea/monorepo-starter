@@ -2,33 +2,53 @@
 title: Visão Geral do Monorepo
 description: Estrutura, arquitetura e integração entre apps e pacotes do monorepo.
 ---
-import { Card, CardGrid, Aside, FileTree, Badge, Steps } from '@astrojs/starlight/components';
 
-# Monorepo — Visão Geral
+import { Card, CardGrid, LinkCard, Aside, FileTree, Badge, Steps } from '@astrojs/starlight/components';
 
-<Aside type="tip" title="O que é?" icon="star">Este monorepo centraliza backend, frontend, UI e automações em um único repositório, facilitando integração e manutenção.</Aside>
+<Aside type="tip" title="O que é?" icon="star">
+  Este monorepo centraliza backend, frontend, UI e automações em um único repositório, facilitando
+  integração e manutenção.
+</Aside>
 
 <CardGrid>
-  <Card title="Backend (api)" icon="server">NestJS modular</Card>
-  <Card title="Frontend (web)" icon="globe">Next.js SSR/SSG</Card>
-  <Card title="UI" icon="component">Componentes React</Card>
-  <Card title="Config" icon="settings">Configs compartilhadas</Card>
+  <Card title="Backend (api)" icon="server">
+    NestJS modular
+  </Card>
+  <Card title="Frontend (web)" icon="globe">
+    Next.js SSR/SSG
+  </Card>
+  <Card title="UI" icon="component">
+    Componentes React
+  </Card>
+  <Card title="Config" icon="settings">
+    Configs compartilhadas
+  </Card>
 </CardGrid>
 
 <FileTree>
-- apps
-  - api
-  - web
-  - docs
-- packages
-  - ui
-  - config
-  - types
-  - utils
+ - apps
+   - api
+   - web
+   - docs
+ - packages
+   - ui
+   - config
+   - types
+   - utils
 </FileTree>
 
 <Steps>
-1. Use os comandos do README para build, lint e testes.
-2. Siga os padrões de import e configuração.
-3. Consulte as subpáginas para detalhes de cada módulo.
+  1. Use os comandos do README para build, lint e testes.
+  2. Siga os padrões de import e configuração.
+  3. Consulte as subpáginas para detalhes de cada módulo.
 </Steps>
+
+## Scripts e Automação
+
+<CardGrid>
+  <LinkCard title="Scripts de Automação" href="./scripts/" description="Automação de setup, pós-clone, sincronização de labels e proteção de branches. Garanta onboarding rápido e ambiente padronizado." />
+</CardGrid>
+
+<Aside type="note" title="Sobre os scripts" icon="star">
+  Os scripts do monorepo automatizam tarefas essenciais como setup local, validações, integração com GitHub e proteção de branches. Consulte a página dedicada para exemplos reais, boas práticas e detalhes de cada script.
+</Aside>
