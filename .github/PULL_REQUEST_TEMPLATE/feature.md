@@ -8,6 +8,10 @@ labels: ['feature', 'enhancement']
 
 Descreva resumidamente a feature implementada.
 
+Exemplo:
+
+> Adiciona autenticação social via Google e Facebook na tela de login.
+
 ### Referência à Issue
 
 <!-- Informe o número/link da issue relacionada. Exemplo: Closes #123 -->

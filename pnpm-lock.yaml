@@ -155,15 +155,6 @@ importers:
       '@repo/eslint-config':
         specifier: workspace:*
         version: link:../../packages/config/eslint
-      '@testing-library/jest-dom':
-        specifier: ^6.6.3
-        version: 6.6.3
-      '@testing-library/react':
-        specifier: ^16.3.0
-        version: 16.3.0(@testing-library/dom@10.4.0)(@types/react-dom@19.1.1)(@types/react@19.1.0)(react-dom@19.1.0)(react@19.1.0)
-      vitest:
-        specifier: ^3.2.4
-        version: 3.2.4(@types/node@22.15.30)
 
   apps/web:
     dependencies:

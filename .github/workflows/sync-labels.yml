@@ -1,0 +1,21 @@
+name: Sync Labels
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  sync-labels:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Instala dependências
+        run: pnpm install
+      - name: Sincroniza labels
+        run: node scripts/sync-labels.js

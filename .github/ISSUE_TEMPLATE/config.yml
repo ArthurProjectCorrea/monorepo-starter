@@ -2,7 +2,36 @@ blank_issues_enabled: false
 issue_templates:
   - name: Feature Request
     description: Solicite uma nova feature seguindo o template detalhado.
-    title: "[Feature] <Nome da Feature>"
+    title: '[Feature] <Nome da Feature>'
     labels: [feature, enhancement]
     assignees: []
     template: feature_request.md
+  - name: Bug Report
+    description: Reporte um bug encontrado no monorepo.
+    title: '[Bug] <Breve descrição>'
+    labels: [bug]
+    assignees: []
+    template: bug_report.md
+  - name: Melhoria/Refactor
+    description: Sugira uma melhoria ou refatoração.
+    title: '[Melhoria] <Breve descrição>'
+    labels: [enhancement, refactor]
+    assignees: []
+    template: improvement.md
+  - name: Documentação
+    description: Solicite ou reporte melhorias na documentação.
+    title: '[Doc] <Breve descrição>'
+    labels: [documentation]
+    assignees: []
+    template: documentation.md
+  - name: Chore/Tarefa Técnica
+    description: Solicite uma tarefa técnica ou manutenção.
+    title: '[Chore] <Breve descrição>'
+    labels: [chore]
+    assignees: []
+    template: chore.md
+  - name: 'Security Issue'
+    description: 'Reporte uma vulnerabilidade de segurança.'
+    labels: ['security']
+    assignees: []
+    template: security.md

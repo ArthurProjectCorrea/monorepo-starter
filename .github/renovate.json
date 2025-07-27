@@ -1,0 +1,11 @@
+{
+  "extends": ["config:base"],
+  "automerge": false,
+  "labels": ["dependencies"],
+  "packageRules": [
+    {
+      "matchPackagePatterns": ["^@repo/"],
+      "groupName": "repo-internal-packages"
+    }
+  ]
+}
