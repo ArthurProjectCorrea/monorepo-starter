@@ -46,8 +46,9 @@ packages/
 - `pnpm dev` — inicia todos os apps em modo desenvolvimento
 - `pnpm build` — builda todos os apps/pacotes
 - `pnpm lint` — roda o lint em todos os apps/pacotes
-- `pnpm test` — executa todos os testes automatizados
-- `pnpm dev --filter=<app> ` — roda um app específico (ex: `web`, `api`, `docs`)
+- `pnpm test` — executa todos os testes automatizados (unitários e integração)
+- `pnpm test:e2e` — executa os testes end-to-end do backend (NestJS/api) a partir da raiz
+- `pnpm dev --filter=<app>` — roda um app específico (ex: `web`, `api`, `docs`)
 
 ---
 
