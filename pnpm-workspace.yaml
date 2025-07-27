@@ -1,6 +1,6 @@
 packages:
   - "apps/*"
   - "packages/*"
-  - "packages/config/eslint"
+  - "packages/config/eslint-config"
   - "packages/config/tailwind-config"
   - "packages/config/typescript-config"
