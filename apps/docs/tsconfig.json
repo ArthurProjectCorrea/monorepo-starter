@@ -1,11 +1,6 @@
 {
-  "extends": "../../packages/config/typescript/base.json",
-  "compilerOptions": {
-    "baseUrl": "./src",
-    "paths": {
-      "@/*": ["*"]
-    }
-  },
+  "extends": "../../packages/config/typescript-config/base.json",
+  "compilerOptions": {},
   "include": [".astro/types.d.ts", "**/*"],
   "exclude": ["dist"]
 }

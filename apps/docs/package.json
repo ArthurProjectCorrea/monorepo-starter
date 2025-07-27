@@ -18,6 +18,7 @@
     "starlight-nextjs-theme": "^0.2.1"
   },
   "devDependencies": {
+    "@repo/typescript-config": "workspace:*",
     "@repo/eslint-config": "workspace:*"
   }
 }
