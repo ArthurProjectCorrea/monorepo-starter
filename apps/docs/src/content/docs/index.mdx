@@ -2,19 +2,31 @@
 title: Documentação do Monorepo
 description: Portal central da documentação técnica do monorepo, arquitetura, integrações e guias.
 ---
+
 import { CardGrid, LinkCard, Aside } from '@astrojs/starlight/components';
 
-
-
 <Aside type="note" title="Sobre" icon="star">
-Esta é a documentação central do monorepo. Navegue pelos tópicos abaixo para acessar guias, referências e exemplos reais de cada módulo.
+  Esta é a documentação central do monorepo. Navegue pelos tópicos abaixo para acessar guias,
+  referências e exemplos reais de cada módulo.
 </Aside>
 
 <CardGrid>
-  <LinkCard title="Monorepo" href="/monorepo/" description="Visão geral, arquitetura e integração." />
+  <LinkCard
+    title="Monorepo"
+    href="/monorepo/"
+    description="Visão geral, arquitetura e integração."
+  />
   <LinkCard title="API" href="/api/" description="Backend NestJS, rotas e integrações." />
   <LinkCard title="Web" href="/web/" description="Frontend Next.js, SSR/SSG e UI." />
   <LinkCard title="UI" href="/ui/" description="Guia de componentes React compartilhados." />
-  <LinkCard title="Packages" href="/packages/ui/" description="Pacotes compartilhados do monorepo." />
-  <LinkCard title="GitHub" href="/github/" description="Automação, workflows e scripts do repositório." />
+  <LinkCard
+    title="Packages"
+    href="/packages/ui/"
+    description="Pacotes compartilhados do monorepo."
+  />
+  <LinkCard
+    title="GitHub"
+    href="/github/"
+    description="Automação, workflows e scripts do repositório."
+  />
 </CardGrid>

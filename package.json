@@ -7,7 +7,6 @@
     "dev": "turbo run dev",
     "lint": "turbo run lint",
     "check-types": "turbo run check-types",
-    "typecheck": "turbo run check-types",
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,md,json,css,scss,html}\"",
     "test": "turbo run test",
     "test:e2e": "pnpm --filter=api test:e2e",

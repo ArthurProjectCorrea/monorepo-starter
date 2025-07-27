@@ -2,15 +2,22 @@
 title: Configurações Compartilhadas
 description: Documentação das configs compartilhadas do monorepo.
 ---
+
 import { Card, Aside, FileTree } from '@astrojs/starlight/components';
 
-
-
-<Aside type="tip" title="Centralização" icon="star">Configs de ESLint, Tailwind, TypeScript e mais, usadas por todos os apps e pacotes.</Aside>
+<Aside type="tip" title="Centralização" icon="star">
+  Configs de ESLint, Tailwind, TypeScript e mais, usadas por todos os apps e pacotes.
+</Aside>
 
 <FileTree>
-- packages/config
-  - eslint/
-  - tailwind/
-  - typescript/
+  <ul>
+    <li>
+      packages/config
+      <ul>
+        <li>eslint</li>
+        <li>tailwind</li>
+        <li>typescript</li>
+      </ul>
+    </li>
+  </ul>
 </FileTree>
