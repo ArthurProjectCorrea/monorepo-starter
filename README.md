@@ -1,5 +1,10 @@
 # 🧱 Fullstack Template Profissional — Turborepo, Next.js, NestJS, Astro
 
+<!-- DESCRIÇÃO DO PROJETO (será preenchida automaticamente pelo setup) -->
+<div id="project-description">
+<em>Descrição do projeto será inserida aqui automaticamente pelo script de setup.</em>
+</div>
+
 > Base sólida, escalável e pronta para qualquer projeto TypeScript moderno. Tudo já configurado: backend, frontend, documentação, automações e padrões profissionais.
 
 ---

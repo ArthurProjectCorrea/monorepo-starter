@@ -7,7 +7,7 @@
     "dev": "turbo run dev",
     "lint": "turbo run lint",
     "check-types": "turbo run check-types",
-    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,md,json,css,scss,html}\"",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,md,mdx,json,css,scss,html,astro,yml,yaml}\"",
     "test": "turbo run test",
     "test:e2e": "pnpm --filter=api test:e2e",
     "prepare": "husky install",
