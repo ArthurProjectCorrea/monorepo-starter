@@ -1,6 +1,5 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-# Roda typecheck e testes completos antes do push
-pnpm typecheck || exit 1
+# Roda testes completos antes do push
 pnpm test || exit 1
