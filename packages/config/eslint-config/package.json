@@ -6,6 +6,7 @@
   "private": true,
   "exports": {
     "./base": "./base.js",
+    "./base.js": "./base.js",
     "./next-js": "./next.js",
     "./next": "./next.js",
     "./react-internal": "./react-internal.js"

@@ -15,7 +15,10 @@
   },
   "devDependencies": {
     "@changesets/cli": "^2.29.5",
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
     "@nestjs/cli": "^11.0.7",
+    "@repo/eslint-config": "workspace:^",
     "@types/node": "^22.15.30",
     "dotenv": "^17.2.0",
     "eslint": "^9.31.0",
@@ -35,8 +38,12 @@
   "engines": {
     "node": ">=18"
   },
+  "type": "module",
   "lint-staged": {
-    "*.{ts,tsx,js,jsx,json,md}": "prettier --write"
+    "*.{ts,tsx,js,jsx,json,md,css,scss,html,astro,yml,yaml}": [
+      "prettier --write",
+      "eslint --fix"
+    ]
   },
   "dependencies": {
     "axios": "^1.11.0",

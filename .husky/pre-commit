@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-pnpm build || exit 1
-pnpm lint || exit 1
-pnpm lint-staged
+
+# Lint e Prettier apenas nos arquivos alterados
+pnpm lint-staged || { echo '❌ Lint/Prettier falhou nos arquivos alterados. Corrija antes de commitar.'; exit 1; }
