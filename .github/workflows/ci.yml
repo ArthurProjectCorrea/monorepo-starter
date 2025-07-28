@@ -44,6 +44,7 @@ jobs:
           node-version: 20
           cache: 'pnpm'
       - run: pnpm install
+      - run: pnpm build --filter=@arthurcorreadev/monorepo-starter-ui
       - run: pnpm check-types --filter=web
       - run: pnpm check-types --filter=api
       - run: pnpm check-types --filter=@arthurcorreadev/monorepo-starter-ui
