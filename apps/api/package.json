@@ -40,7 +40,8 @@
   "devDependencies": {
     "@nestjs/testing": "^11.1.5",
     "@repo/eslint-config": "workspace:*",
-    "@repo/typescript-config": "workspace:*"
+    "@repo/typescript-config": "workspace:*",
+    "supertest": "^7.1.4"
   },
   "jest": {
     "moduleFileExtensions": [
