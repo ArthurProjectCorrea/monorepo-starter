@@ -118,9 +118,7 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git remote set-url origin https://$GH_PAT@github.com/ArthurProjectCorrea/monorepo-starter.git
-        env:
-          GH_PAT: ${{ secrets.GH_PAT }}
+          git remote set-url origin https://x-access-token:${{ secrets.GH_PAT }}@github.com/ArthurProjectCorrea/monorepo-starter.git
       - name: Commit generated/updated changeset
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
