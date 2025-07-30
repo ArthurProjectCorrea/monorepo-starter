@@ -47,7 +47,7 @@ jobs:
           git log --pretty=format:'%s' origin/main..HEAD > .changeset/_auto-commits.txt
           while read -r line; do
             # Extract type and scope
-            if [[ "$line" =~ ^[a-z]+\([^)]+\): ]]; then
+            if [[ "$line" =~ ^([a-z]+)\(([^)]+)\): ]]; then
               tipo="${BASH_REMATCH[1]}"
               escopo="${BASH_REMATCH[2]}"
               # Ignore non-versioned types
