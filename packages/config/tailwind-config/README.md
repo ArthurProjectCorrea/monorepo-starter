@@ -1,52 +1,52 @@
 # @repo/tailwind-config
 
-> Configuração centralizada do Tailwind CSS e PostCSS para o monorepo.
+> Centralized Tailwind CSS and PostCSS configuration for the monorepo.
 
-## Propósito
+## Purpose
 
-Este pacote fornece presets, temas, plugins e configurações globais do Tailwind CSS e PostCSS para todos os apps e pacotes do monorepo, garantindo padronização visual e facilidade de manutenção.
+This package provides presets, themes, plugins, and global configurations for Tailwind CSS and PostCSS for all apps and packages in the monorepo, ensuring visual consistency and easy maintenance.
 
-## Estrutura
+## Structure
 
-- `tailwind.preset.js`: Preset global do Tailwind (theme, plugins, etc).
-- `postcss.config.js`: Configuração compartilhada do PostCSS.
-- `shared-styles.css`: Estilos globais opcionais.
+- `tailwind.preset.js`: Global Tailwind preset (theme, plugins, etc).
+- `postcss.config.js`: Shared PostCSS configuration.
+- `shared-styles.css`: Optional global styles.
 
-## Como usar
+## How to Use
 
-1. Instale as dependências necessárias no app/pacote:
+1. Install the required dependencies in your app/package:
 
    ```sh
    pnpm add -D tailwindcss postcss autoprefixer @repo/tailwind-config
    ```
 
-2. Crie ou edite o arquivo `tailwind.config.js` no app/pacote:
+2. Create or edit the `tailwind.config.js` in your app/package:
 
    ```js
    /** @type {import('tailwindcss').Config} */
    module.exports = {
      presets: [require('@repo/tailwind-config/tailwind.preset')],
-     // Outras configurações locais podem ser adicionadas aqui
+     // Add other local config as needed
    };
    ```
 
-3. Para PostCSS, importe a configuração compartilhada se necessário:
+3. For PostCSS, import the shared config if needed:
 
    ```js
    import { postcssConfig } from '@repo/tailwind-config/postcss';
    export default postcssConfig;
    ```
 
-4. Rode os scripts normalmente:
+4. Run the usual scripts:
    - `pnpm build:styles`
    - `pnpm dev:styles`
 
-## Dependências
+## Dependencies
 
-- `tailwindcss` e `postcss` como devDependencies (apenas neste pacote, apps/pacotes podem precisar para CLI local).
-- Plugins recomendados: `@tailwindcss/forms`, `@tailwindcss/typography`.
+- `tailwindcss` and `postcss` as devDependencies (in this package; apps/packages may need them for local CLI).
+- Recommended plugins: `@tailwindcss/forms`, `@tailwindcss/typography`.
 
-## Estrutura de arquivos
+## File Structure
 
 ```
 packages/config/tailwind-config/
@@ -56,10 +56,10 @@ packages/config/tailwind-config/
 └── README.md
 ```
 
-## Manutenção
+## Maintenance
 
-Atualize este pacote sempre que houver mudanças globais de design, tokens, plugins ou padrões de uso do Tailwind no monorepo.
+Update this package whenever there are global design, token, plugin, or Tailwind usage pattern changes in the monorepo.
 
 ---
 
-Responsável: @ArthurProjectCorrea
+Maintainer: @ArthurProjectCorrea
