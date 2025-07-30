@@ -31,6 +31,12 @@ jobs:
           version: 8
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+
+      - name: Check for changeset
+        run: |
+          pnpm exec changeset status || (
+            echo '❌ Nenhum changeset encontrado. Adicione um arquivo de changeset para documentar as mudanças.' && exit 1
+          )
       - name: Create versions and changelogs
         run: pnpm exec changeset version
       - name: Publish packages
