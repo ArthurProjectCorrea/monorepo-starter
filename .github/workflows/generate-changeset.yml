@@ -119,6 +119,11 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git remote set-url origin https://x-access-token:${{ secrets.GH_PAT }}@github.com/ArthurProjectCorrea/monorepo-starter.git
+      - name: Set up git user and remote for push
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git remote set-url origin https://x-access-token:${{ secrets.GH_PAT }}@github.com/ArthurProjectCorrea/monorepo-starter.git
       - name: Commit and push changeset manually
         run: |
           git add .changeset/auto-impact-pr${{ github.event.pull_request.number }}.md
