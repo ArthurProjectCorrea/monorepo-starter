@@ -1,48 +1,44 @@
 # scripts/
 
-> Scripts utilitários e automações para setup, manutenção e personalização do monorepo.
+> Utility scripts and automations for setup, maintenance, and customization of the monorepo.
 
-## Visão Geral
+## Overview
 
-Esta pasta contém scripts essenciais para o fluxo de onboarding, automação e manutenção do monorepo. O principal destaque é o `post-init.js`, responsável por:
+This folder contains essential scripts for onboarding, automation, and maintenance workflows in the monorepo. The main highlight is `post-init.js`, responsible for:
 
-- Garantir a existência e checkout das branches `main` e `dev`.
-- Automatizar a configuração de variáveis de ambiente e secrets.
-- Personalizar nomes, imports e arquivos do monorepo conforme o novo repositório.
-- Validar o setup (install, lint, build, test) e realizar commit/push automático.
-- Vincular Turbo Remote Cache e instalar extensões recomendadas do VSCode.
-- Disparar workflows essenciais do GitHub Actions para sincronização e manutenção.
+- Ensuring the existence and checkout of `main` and `dev` branches.
+- Automating environment variable and secret setup.
+- Customizing names, imports, and files for new monorepo repositories.
+- Validating setup (install, lint, build, test) and performing automatic commit/push.
+- Linking Turbo Remote Cache and installing recommended VSCode extensions.
+- Triggering key GitHub Actions workflows for synchronization and maintenance.
 
-## Scripts Disponíveis
+## Available Scripts
 
-- **post-init.js**: Script principal de pós-clonagem/configuração. Executa todo o fluxo de personalização e validação do monorepo.
-  - Uso: `node scripts/post-init.js`
-  - Argumentos opcionais:
-    - `--skip-gh` (pula configuração de secrets GitHub)
-    - `--skip-turbo` (pula login Turbo)
-    - `--skip-vscode` (pula instalação de extensões VSCode)
+- **post-init.js**: Main post-clone/setup script. Runs the full monorepo customization and validation flow.
+  - Usage: `node scripts/post-init.js`
+  - Optional arguments:
+    - `--skip-gh` (skip GitHub secrets setup)
+    - `--skip-turbo` (skip Turbo login)
+    - `--skip-vscode` (skip VSCode extension installation)
 
-## Como usar
+## How to Use
 
-1. Certifique-se de ter Node.js, pnpm, GitHub CLI (gh) e VSCode CLI instalados.
-2. Após clonar o repositório, execute:
+1. Make sure you have Node.js, pnpm, GitHub CLI (gh), and VSCode CLI installed.
+2. After cloning the repository, run:
 
    ```sh
    node scripts/post-init.js
    ```
 
-3. Siga as instruções interativas para informar tokens e dados do repositório.
-4. O script fará todo o setup, commit/push e disparará os workflows iniciais.
+3. Follow the interactive instructions to provide tokens and repository data.
+4. The script will handle all setup, commit/push, and trigger initial workflows.
 
-## Estrutura
+## Structure
 
-- `post-init.js`: Automação de setup e personalização do monorepo.
-- (Outros scripts utilitários podem ser adicionados conforme necessidade.)
+- `post-init.js`: Monorepo setup and customization automation.
+- (Other utility scripts may be added as needed.)
 
-## Integração com o Monorepo
+## Integration with the Monorepo
 
-Os scripts desta pasta são fundamentais para garantir que o monorepo esteja sempre alinhado com as melhores práticas, atualizado e pronto para uso em novos repositórios derivados do template.
-
----
-
-Para mais detalhes sobre o fluxo de automação, consulte a documentação em `apps/docs` e o README principal do projeto.
+Scripts in this folder are fundamental to ensure the monorepo is always aligned with best practices, up-to-date, and ready for use in new repositories derived from the template.
