@@ -12,11 +12,6 @@ module.exports = {
         'eslint-config',
         'tailwind-config',
         'typescript-config',
-        '.changeset',
-        '.github',
-        '.husky',
-        '.vscode',
-        'scripts',
         'monorepo'
       ]
     ]

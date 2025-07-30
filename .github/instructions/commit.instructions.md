@@ -4,6 +4,20 @@ applyTo: '**'
 
 # Quick Guide to Conventional Commits for the Monorepo
 
+## Pastas mestre (escopos válidos)
+
+Os únicos escopos permitidos para commits são os nomes das pastas que possuem `package.json` próprio (pastas mestre):
+
+- api (apps/api)
+- web (apps/web)
+- docs (apps/docs)
+- ui (packages/ui)
+- eslint-config (packages/config/eslint-config)
+- tailwind-config (packages/config/tailwind-config)
+- typescript-config (packages/config/typescript-config)
+
+Para arquivos fora dessas pastas, use sempre o escopo `monorepo`.
+
 Standardize your commits to ensure traceability, correct versioning, and CI/CD integration.
 
 ## Commit Structure
@@ -12,7 +26,7 @@ Standardize your commits to ensure traceability, correct versioning, and CI/CD i
 <type>(scope): short description
 ```
 
-- **Scope**: always use the name of the main folder affected (e.g., api, web, docs, ui, eslint-config, etc). For files outside these, use `monorepo`.
+- **Scope**: use only the name of the master folder (see list above). For files outside these, use `monorepo`.
 - **Main types**: feat, fix, refactor, perf, chore, docs, style, test, ci, build, revert.
 - **Title**: up to 72 characters, imperative, no period at the end.
 
@@ -21,7 +35,7 @@ Standardize your commits to ensure traceability, correct versioning, and CI/CD i
 1. Group files by main folder (scope).
 2. Separate by type of change.
 3. Create one commit per group (e.g., feat(api), fix(web), chore(monorepo)).
-4. Never mix different scopes in the same commit.
+4. Never mix different scopes in the same commit. Only use the valid scopes listed above.
 
 ## When to use BREAKING CHANGE
 
