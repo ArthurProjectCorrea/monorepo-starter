@@ -1,0 +1,126 @@
+name: Generate Changeset
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  generate-changeset:
+    runs-on: ubuntu-latest
+    if: github.base_ref == 'main' && github.head_ref == 'dev'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 8
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Generate or update changeset (shell)
+        shell: bash
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          set -e
+          # Define versioned projects
+          declare -A PKGS
+          PKGS["apps/api"]=api
+          PKGS["apps/web"]=web
+          PKGS["apps/docs"]=docs
+          PKGS["packages/ui"]=ui
+          PKGS["packages/config/eslint-config"]=eslint-config
+          PKGS["packages/config/tailwind-config"]=tailwind-config
+          PKGS["packages/config/typescript-config"]=typescript-config
+
+          # Initialize impact map
+          declare -A IMPACT
+
+          # Analyze commits between main and dev
+          git log --pretty=format:'%s' origin/main..HEAD > .changeset/_auto-commits.txt
+          while read -r line; do
+            # Extract type and scope
+            if [[ "$line" =~ ^([a-z]+)\(([^)]+)\): ]]; then
+              tipo="${BASH_REMATCH[1]}"
+              escopo="${BASH_REMATCH[2]}"
+              # Ignore non-versioned types
+              case "$tipo" in
+                chore|docs|style|test|ci|build|revert)
+                  continue
+                  ;;
+              esac
+              # Determine level
+              if [[ "$line" =~ BREAKING\ CHANGE|!: ]]; then
+                nivel=major
+              elif [[ "$tipo" == "feat" ]]; then
+                nivel=minor
+              elif [[ "$tipo" == "fix" ]]; then
+                nivel=patch
+              else
+                nivel=patch
+              fi
+              # If scope is a versioned project, mark it
+              for path in "${!PKGS[@]}"; do
+                if [[ "$escopo" == "${PKGS[$path]}" ]]; then
+                  atual="${IMPACT[$path]}"
+                  if [[ "$nivel" == "major" || ("$nivel" == "minor" && "$atual" != "major") ]]; then
+                    IMPACT[$path]="$nivel"
+                  elif [[ -z "$atual" ]]; then
+                    IMPACT[$path]="$nivel"
+                  fi
+                fi
+              done
+            fi
+          done < .changeset/_auto-commits.txt
+
+          # Analyze changed files
+          git diff --name-only origin/main..HEAD > .changeset/_auto-files.txt
+          while read -r file; do
+            for path in "${!PKGS[@]}"; do
+              if [[ "$file" == $path/* ]]; then
+                if [[ -z "${IMPACT[$path]}" ]]; then
+                  IMPACT[$path]="patch"
+                fi
+              fi
+            done
+          done < .changeset/_auto-files.txt
+
+          CHG_FILE=".changeset/auto-impact-pr${PR_NUMBER}.md"
+
+          # Build versions block
+          VERSIONS_BLOCK="---\n"
+          for path in "${!PKGS[@]}"; do
+            if [[ -n "${IMPACT[$path]}" ]]; then
+              VERSIONS_BLOCK+="\"$path\": ${IMPACT[$path]}\n"
+            fi
+          done
+          VERSIONS_BLOCK+="---"
+
+          if [[ -f "$CHG_FILE" ]]; then
+            # Update only the versions block, preserve description
+            awk -v vblock="$VERSIONS_BLOCK" '
+              BEGIN{inblock=0; done=0}
+              /^---$/ {
+                if(inblock==0){print vblock; inblock=1; getline; while($0!~/^---$/ && !eof){getline}; getline; done=1}
+              }
+              {if(done) print $0}
+            ' "$CHG_FILE" > "$CHG_FILE.tmp"
+            mv "$CHG_FILE.tmp" "$CHG_FILE"
+          else
+            echo -e "$VERSIONS_BLOCK\n" > "$CHG_FILE"
+            echo '[AUTOMATIC] Update this description to detail the main changes for each scope.' >> "$CHG_FILE"
+            echo '' >> "$CHG_FILE"
+          fi
+          cat "$CHG_FILE"
+      - name: Commit generated/updated changeset
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: 'chore(monorepo): generate/update automatic changeset [skip ci]'
+          file_pattern: .changeset/auto-impact-pr${{ github.event.pull_request.number }}.md
