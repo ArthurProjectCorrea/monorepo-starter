@@ -51,6 +51,19 @@ docs(docs): improve setup documentation
 refactor(ui): reorganize internal components
 ```
 
+## [skip ci] — When and How to Use
+
+- Only use `[skip ci]` in the commit message when you are making changes that do **not** require running CI/CD pipelines (e.g., updating documentation, comments, or non-code files).
+- Never use `[skip ci]` in commits that affect source code, configuration, dependencies, or anything that could impact build, test, or release.
+- Place `[skip ci]` at the end of the commit message, after the description.
+- Example:
+
+```bash
+docs(docs): update contributing guide [skip ci]
+```
+
+- Avoid overusing `[skip ci]` to ensure CI/CD always validates relevant changes.
+
 ## Best Practices
 
 - Make small and frequent commits.
