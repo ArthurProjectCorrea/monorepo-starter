@@ -70,7 +70,7 @@ jobs:
               for path in "${!PKGS[@]}"; do
                 if [[ "$escopo" == "${PKGS[$path]}" ]]; then
                   atual="${IMPACT[$path]}"
-                  if [[ "$nivel" == "major" || ("$nivel" == "minor" && "$atual" != "major") ]]; then
+                  if [[ "$nivel" == "major" || ( "$nivel" == "minor" && "$atual" != "major" ) ]]; then
                     IMPACT[$path]="$nivel"
                   elif [[ -z "$atual" ]]; then
                     IMPACT[$path]="$nivel"
