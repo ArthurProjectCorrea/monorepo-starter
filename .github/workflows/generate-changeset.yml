@@ -25,7 +25,7 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
       - name: Generate or update changeset (shell)
-        shell: bash
+        shell: bash {0}
         env:
           PR_NUMBER: ${{ github.event.pull_request.number }}
         run: |
