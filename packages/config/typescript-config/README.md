@@ -1,20 +1,20 @@
 # @repo/typescript-config
 
-> Configurações TypeScript centralizadas e compartilhadas para todo o monorepo.
+> Centralized and shared TypeScript configuration for the entire monorepo.
 
-## Visão Geral
+## Overview
 
-Este pacote fornece presets de configuração TypeScript para todos os apps e pacotes do monorepo, garantindo padronização, manutenção centralizada e DX consistente.
+This package provides TypeScript configuration presets for all apps and packages in the monorepo, ensuring standardization, centralized maintenance, and a consistent DX.
 
-### Arquivos disponíveis
+### Available Files
 
-- `base.json`: configuração base para projetos Node, NestJS, Astro, etc.
-- `nextjs.json`: preset para projetos Next.js (frontend SSR/SSG).
-- `react-library.json`: preset para bibliotecas React.
+- `base.json`: Base config for Node, NestJS, Astro, etc.
+- `nextjs.json`: Preset for Next.js projects (SSR/SSG frontend).
+- `react-library.json`: Preset for React libraries.
 
-## Como usar
+## How to Use
 
-No seu `tsconfig.json`:
+In your `tsconfig.json`:
 
 ```json
 {
@@ -22,7 +22,7 @@ No seu `tsconfig.json`:
 }
 ```
 
-Ou para Next.js:
+For Next.js:
 
 ```json
 {
@@ -30,7 +30,7 @@ Ou para Next.js:
 }
 ```
 
-Ou para bibliotecas React:
+For React libraries:
 
 ```json
 {
@@ -38,15 +38,15 @@ Ou para bibliotecas React:
 }
 ```
 
-## Benefícios
+## Benefits
 
-- Centralização de regras e paths globais
-- Atualização única para todo o monorepo
-- Redução de duplicidade e divergência
-- Pronto para uso com Turborepo e PNPM Workspaces
+- Centralized rules and global paths
+- Single update for the whole monorepo
+- Reduces duplication and divergence
+- Ready for use with Turborepo and PNPM Workspaces
 
-## Manutenção
+## Maintenance
 
-Sempre que precisar alterar regras globais, edite apenas este pacote. Os apps/pacotes herdarão automaticamente as mudanças.
+Whenever you need to change global rules, edit only this package. All apps/packages will inherit changes automatically.
 
-Consulte a documentação geral do monorepo para exemplos e detalhes avançados.
+See the main monorepo documentation for advanced examples and details.
