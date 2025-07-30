@@ -124,3 +124,4 @@ jobs:
         with:
           commit_message: 'chore(monorepo): generate/update automatic changeset [skip ci]'
           file_pattern: .changeset/auto-impact-pr${{ github.event.pull_request.number }}.md
+          push_options: '--repo=https://x-access-token:${{ secrets.GH_PAT }}@github.com/ArthurProjectCorrea/monorepo-starter.git'
