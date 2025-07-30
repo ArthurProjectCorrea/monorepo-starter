@@ -1,56 +1,46 @@
 # @repo/eslint-config
 
-> Configuração compartilhada de ESLint para os projetos do monorepo.
+> Centralized and shareable ESLint configuration for the monorepo.
 
-## Propósito
+## Overview
 
-Este pacote centraliza as regras e extensões de ESLint utilizadas em todos os apps e pacotes do monorepo, garantindo padronização e facilidade de manutenção.
+This package provides base and specialized ESLint configs for all apps and packages in the monorepo, ensuring code quality, consistency, and easy maintenance.
 
-## Estrutura
+### Available Configs
 
-- `base.js`: regras base para projetos TypeScript/JavaScript.
-- `next.js`: regras específicas para projetos Next.js.
-- `react-internal.js`: ajustes para projetos React internos.
-- `package.json`: metadados do pacote.
+- `base.js`: Base ESLint config for general JavaScript/TypeScript projects.
+- `next.js`: Preset for Next.js projects.
+- `react-internal.js`: Preset for internal React packages.
 
-## Como usar
+## How to Use
 
-No seu projeto (app ou pacote), adicione no arquivo de configuração do ESLint:
-
-```js
-// eslint.config.js ou .eslintrc.js
-module.exports = {
-  extends: [require.resolve('@repo/eslint-config/base')],
-  // ou para Next.js:
-  // extends: [require.resolve('@repo/eslint-config/next')],
-};
-```
-
-No monorepo, as dependências internas são resolvidas via `workspace:*`.
-
-### Exemplo real
-
-No `apps/web/eslint.config.js`:
+In your project, extend the desired config in your `eslint.config.js`:
 
 ```js
-module.exports = {
-  extends: [require.resolve('@repo/eslint-config/next')],
-};
+module.exports = require('@repo/eslint-config/base');
 ```
 
-## Instalação
+For Next.js projects:
 
-No contexto do monorepo, a instalação é feita automaticamente pelo `pnpm install`.
+```js
+module.exports = require('@repo/eslint-config/next');
+```
 
-## Manutenção
+For internal React packages:
 
-Para atualizar regras, edite os arquivos `.js` deste pacote. As mudanças impactarão todos os projetos que consomem esta configuração.
+```js
+module.exports = require('@repo/eslint-config/react-internal');
+```
 
-## Referências
+## Benefits
 
-- [Documentação oficial do ESLint](https://eslint.org/docs/latest/)
-- Veja exemplos de uso em `apps/web` e `apps/api`.
+- Centralized linting rules for the entire monorepo
+- Consistent code style and best practices
+- Easy updates and maintenance
+- Ready for use with Turborepo and PNPM Workspaces
 
----
+## Maintenance
 
-Responsável: @arthurcorreadev
+Update this package to change or extend linting rules. All apps/packages using these configs will inherit changes automatically.
+
+See the main monorepo documentation for advanced usage and examples.
