@@ -1,5 +1,3 @@
-name: Generate Changeset
-
 on:
   pull_request:
     branches:
@@ -116,6 +114,13 @@ jobs:
             echo '' >> "$CHG_FILE"
           fi
           cat "$CHG_FILE"
+      - name: Set up git user and remote for push
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git remote set-url origin https://$GH_PAT@github.com/ArthurProjectCorrea/monorepo-starter.git
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
       - name: Commit generated/updated changeset
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
