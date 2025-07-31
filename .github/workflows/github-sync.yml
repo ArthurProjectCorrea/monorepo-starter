@@ -72,4 +72,5 @@ jobs:
         run: |
           echo "GH_PAT: $GH_PAT"
           echo "GITHUB_REPOSITORY: $GITHUB_REPOSITORY"
+          export GITHUB_REPO="$GITHUB_REPOSITORY"
           node .github/scripts/sync-labels.js
