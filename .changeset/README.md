@@ -1,27 +1,30 @@
 # .changeset Directory
 
-This folder stores the changeset files used for automated versioning control in the monorepo.
+This directory stores all pending and historical changeset markdown files for the monorepo. Each file describes the versioning impact, affected packages, and release notes for a set of changes.
 
-## How does the workflow work in this project?
+## Purpose
 
-- **Changesets are generated and updated automatically** by a GitHub Actions workflow whenever there is a PR from `dev` to `main`.
-- The file `.changeset/auto-impact-pr<N>.md` (where <N> is the PR number) is created or updated on every PR update, always reflecting the accumulated versioned changes.
-- The file content follows the Changesets standard and is processed automatically during the release step.
-- Manual creation or editing of changesets is not required, except if you want to improve the description in the file body.
+- Track and document all versionable changes in a transparent, auditable way.
+- Enable automated and manual release workflows using the Changesets tool.
+- Ensure every release is accompanied by clear, technical documentation of what changed and why.
 
-### Example of generated file
+## Workflow
 
-```md
----
-'apps/api': minor
-'packages/ui': patch
----
+1. When you make a change that affects a versioned package, generate a new changeset using:
+   ```bash
+   pnpm changeset
+   ```
+2. After generating, replace the default summary in the new markdown file with a detailed, technical description (see the instructions in `.github/instructions/changeset.instructions.md`).
+3. Commit the changeset file along with your code changes.
+4. When releases are prepared, all changeset files are combined into a changelog and version bumps are applied automatically.
 
-[AUTOMATIC] Update this description to detail the main changes for each scope.
-```
+## Best Practices
 
-> The file is always updated by the workflow. If you want to add details, edit the description before merging.
+- Never delete or manually edit historical changeset files.
+- Always follow the documentation and commit guidelines for writing changeset summaries.
+- Keep this directory under version control.
 
----
+## References
 
-For more details about the flow, see the monorepo documentation or the `generate-changeset.yml` workflow.
+- [Changesets Documentation](https://github.com/changesets/changesets)
+- Project-specific instructions: `.github/instructions/changeset.instructions.md`

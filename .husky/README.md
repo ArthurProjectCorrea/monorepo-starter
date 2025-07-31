@@ -1,56 +1,31 @@
-# Monorepo Git Hooks (`.husky`)
+# .husky Directory
 
-This directory contains the automated Git hooks that ensure code quality, standardization, and safety in the monorepo development workflow.
+This directory contains Git hooks managed by [Husky](https://typicode.github.io/husky) to enforce code quality, commit conventions, and automation in the monorepo.
 
 ## Purpose
 
-Centralize and version all Git hooks used across the monorepo, integrating automatic validations into the commit and push cycle, aligned with CI/CD practices and the project's quality standards.
+- Automate checks and validations before commits and pushes.
+- Enforce commit message conventions and code quality standards.
+- Prevent bad commits or broken code from entering the repository.
 
-## Configured Hooks
+## Common Hooks
 
-- **pre-commit**: Runs global `pnpm build`, `pnpm lint`, and `lint-staged` on changed files, preventing commits with broken or poorly formatted code.
-- **commit-msg**: Validates commit messages using `commitlint` with required scopes matching the main monorepo folders (e.g., api, web, docs, ui, eslint-config, etc). Non-compliant commits are blocked.
-- **pre-push**: Runs `pnpm typecheck` and all tests (`pnpm test`) before allowing a push, ensuring nothing breaks on the remote branch.
+- `pre-commit`: Runs lint, tests, or formatting checks before allowing a commit.
+- `commit-msg`: Validates commit messages against the project's conventional commit rules and scope logic.
+- `pre-push`: Ensures the code builds and passes tests before pushing to remote.
 
-> **Note:** Commitlint is configured to accept only valid scopes according to the automated versioning flow (see `commitlint.config.cjs`). This ensures the changeset workflow correctly recognizes changes and versions each app/package as needed.
+## Usage
 
-## Integration with Automated Versioning Flow
+- Husky hooks are installed automatically when you run `pnpm install` or `npm install` in the project root.
+- Hooks are configured via shell scripts in this directory and can be customized as needed.
 
-Hooks are triggered automatically by Git when running `git commit` or `git push`. They ensure:
+## Best Practices
 
-- **Code quality**: Lint, build, and tests are orchestrated for all relevant packages and apps.
-- **Commit standardization**: Messages are validated with required scopes, ensuring traceability and integration with CI/CD and the changeset workflow.
-- **Error prevention**: Commits and pushes are only allowed if all validations pass.
+- Never bypass hooks unless absolutely necessary (use `git commit --no-verify` only in exceptional cases).
+- Keep hook scripts simple and fast to avoid slowing down development.
+- Update this README and hook scripts whenever validation logic changes.
 
-> **Tip:** Commits with invalid scopes are blocked locally, preventing errors in automatic versioning and release.
+## References
 
-## Usage Examples
-
-```sh
-# Normal commit (hooks will run)
-git add .
-git commit -m "feat(api): add authentication endpoint"
-
-# Commit without hooks (not recommended)
-git commit --no-verify
-
-# Normal push (runs pre-push)
-git push
-
-# Push without hooks (not recommended)
-git push --no-verify
-```
-
-## Customizing Hooks
-
-Each hook script can be edited as needed. To add new hooks, create an executable file in this directory.
-
-> **Attention:** Whenever you change, add, or remove hooks, keep this README updated to reflect the real monorepo workflow.
-
----
-
-### References
-
-- [Husky official documentation](https://typicode.github.io/husky/#/)
-- [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
-- [Monorepo main README](../README.md)
+- [Husky Documentation](https://typicode.github.io/husky)
+- Project commit and scope rules: `.github/instructions/commit.instructions.md`

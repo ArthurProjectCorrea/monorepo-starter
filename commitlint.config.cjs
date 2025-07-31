@@ -8,11 +8,11 @@ module.exports = {
         'api',
         'web',
         'docs',
-        'ui',
-        'eslint-config',
-        'tailwind-config',
-        'typescript-config',
-        'monorepo'
+        '@repo/ui',
+        '@repo/eslint-config',
+        '@repo/tailwind-config',
+        '@repo/typescript-config',
+        'monorepo-starter'
       ]
     ]
   }

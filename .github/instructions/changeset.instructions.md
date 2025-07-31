@@ -1,39 +1,56 @@
 ---
-applyTo: '.changeset/'
+applyTo: '**'
 ---
 
-# Changeset File Maintenance Instructor
+# Changeset Documentation Instructions
+
+This instruction defines the workflow and requirements for generating and documenting changesets in this monorepo. Follow these steps strictly to ensure high-quality, traceable, and informative release notes for every versioned package.
+
+## Workflow
+
+1. **Analyze Impact:**
+   - Run `node scripts/report-version-impact.js` to generate a report of all packages that will be versioned and their respective version bump levels (major, minor, patch).
+   - Review the output to identify which packages will be included in the next changeset and why.
+
+2. **Generate Changeset:**
+   - Run `pnpm changeset` to create a new changeset markdown file.
+   - When prompted for a summary/description, you may enter a placeholder or minimal text, as this will be replaced in the next step.
+
+3. **Replace and Enhance Description:**
+   - Open the newly created changeset file in `.changeset/`.
+   - Replace the default or placeholder description with a detailed, technical summary.
+   - The summary must:
+     - Clearly list all packages being versioned and their bump type (major, minor, patch).
+     - For each package, enumerate the commits that triggered the version bump.
+     - For each commit, document:
+       - What was implemented, changed, or removed.
+       - The reason for the change (if relevant).
+       - Any breaking changes (explicitly call out breaking API/contract changes).
+     - Use clear, technical English. Avoid vague or generic statements.
+     - Example structure:
+
+```
+## Release Summary
+
+- **@repo/ui** (minor):
+  - feat(@repo/ui): add new Card component with customizable props. Enables advanced UI composition. (commit abc123)
+  - fix(@repo/ui): resolve style conflict in Button. Ensures consistent theming. (commit def456)
+
+- **api** (major):
+  - feat(api)!: remove legacy authentication endpoint. BREAKING CHANGE: All clients must migrate to JWT. (commit 789xyz)
+
+---
+
+All changes are grouped by package and described in detail. Breaking changes are clearly marked. This ensures that consumers and maintainers can understand the impact of each release at a glance.
+```
+
+## Requirements
+
+- The changeset description must always be replaced with a detailed, technical summary as described above.
+- All relevant commits must be referenced and described.
+- Use commit messages and diffs as the source of truth for what changed.
+- Write in clear, technical English.
 
 ## Purpose
 
-This instructor defines the rules for Copilot Chat (and any automation) to verify, update, and maintain the changeset file(s) in the monorepo. The goal is to ensure that every changeset file:
-
-- Exists when required (for versioned changes)
-- Has an up-to-date and accurate description reflecting the actual commits and changes that require versioning
-- Only updates the description section, never overwriting the version block or manual edits outside the description
-
-## Guidelines
-
-1. **Existence Check**: If a changeset file does not exist, do nothing. Only proceed if the file is present.
-2. **Description Validation**: If a changeset file exists, check if its description accurately summarizes the versioned changes (based on relevant commits and file diffs).
-3. **Selective Update**: If the description is outdated or missing, update only the description section of the changeset file. Do not modify the version block or any manual notes outside the description.
-4. **Versioned Changes Only**: Only consider commits and changes that impact versioning (ignore chore, docs, style, test, ci, build, revert unless BREAKING CHANGE).
-5. **Description Content**: The description must:
-   - Summarize the main versioned changes for each affected scope/package
-   - Reference the relevant commit types and scopes (e.g., feat(api), fix(web))
-   - Be clear, concise, and reflect the real impact of the PR or set of changes
-6. **Manual Edits**: If the description was manually edited and is still accurate, do not overwrite it. Only update if it is outdated or incomplete.
-7. **Consistency**: Follow the same language, formatting, and standards as other documentation in the monorepo.
-
-## Example Workflow
-
-1. Detect if a changeset file exists for the current PR or set of changes.
-2. Parse the version block (between ---) and do not modify it.
-3. Analyze the commits and file changes that require versioning.
-4. Compare the current description with the actual changes.
-5. If the description is outdated or missing, update only the description section to accurately reflect the versioned changes.
-6. Leave any manual notes or additional context outside the description untouched.
-
----
-
-Copilot Chat and any automation must follow this instructor to ensure all changeset files are always present and their descriptions are accurate, up-to-date, and focused only on versioned changes.
+This process ensures that every changeset provides actionable, transparent, and accurate release documentation, supporting maintainers and consumers in understanding the scope and impact of each release.
