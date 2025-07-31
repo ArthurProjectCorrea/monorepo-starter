@@ -115,16 +115,14 @@ function ask(question, mask = false) {
 }
 
 async function setupEnv(skipGh = false) {
-  let ghPat, githubUser, githubRepo, npmToken, npmUser;
+  let ghPat, githubUser, githubRepo;
   if (!fs.existsSync('.env')) {
     ghPat = await ask('Informe seu GitHub Personal Access Token: ', true);
     githubUser = await ask('Informe seu usuário do GitHub: ');
     githubRepo = await ask('Informe o nome do repositório (ex: user/repo): ');
-    npmUser = await ask('Informe seu nome de usuário no npm: ');
-    npmToken = await ask('Informe seu NPM_TOKEN (token do npm para publicação): ', true);
     fs.writeFileSync(
       '.env',
-      `GH_PAT=${ghPat}\nGITHUB_USER=${githubUser}\nGITHUB_REPO=${githubRepo}\nNPM_USER=${npmUser}\nNPM_TOKEN=${npmToken}\n`,
+      `GH_PAT=${ghPat}\nGITHUB_USER=${githubUser}\nGITHUB_REPO=${githubRepo}\n`,
     );
     console.log(color('Arquivo .env criado com sucesso!', 'success'));
 
@@ -155,32 +153,15 @@ async function setupEnv(skipGh = false) {
         }
         const repo = githubRepo.includes('/') ? githubRepo : `${githubUser}/${githubRepo}`;
         execSync(`gh secret set GH_PAT --body "${ghPat}" --repo "${repo}"`, { stdio: 'inherit' });
-        execSync(`gh secret set NPM_TOKEN --body "${npmToken}" --repo "${repo}"`, {
-          stdio: 'inherit',
-        });
-        console.log(
-          color('Secrets GH_PAT e NPM_TOKEN configurados no repositório com sucesso!', 'success'),
-        );
+        console.log(color('Secret GH_PAT configurado no repositório com sucesso!', 'success'));
       } catch (err) {
         console.warn(
           color(
-            'Não foi possível configurar os secrets automaticamente via GitHub CLI. Configure manualmente se necessário.',
+            'Não foi possível configurar o secret automaticamente via GitHub CLI. Configure manualmente se necessário.',
             'warn',
           ),
         );
       }
-    }
-  } else {
-    const envContent = fs.readFileSync('.env', 'utf8');
-    if (!envContent.includes('NPM_USER=')) {
-      npmUser = await ask('Informe seu nome de usuário no npm: ');
-      fs.appendFileSync('.env', `NPM_USER=${npmUser}\n`);
-      console.log(color('NPM_USER adicionado ao .env!', 'success'));
-    }
-    if (!envContent.includes('NPM_TOKEN=')) {
-      npmToken = await ask('Informe seu NPM_TOKEN (token do npm para publicação): ', true);
-      fs.appendFileSync('.env', `NPM_TOKEN=${npmToken}\n`);
-      console.log(color('NPM_TOKEN adicionado ao .env!', 'success'));
     }
   }
 }
