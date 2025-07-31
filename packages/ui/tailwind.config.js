@@ -1,5 +1,7 @@
+import tailwindPreset from '@repo/tailwind-config/tailwind.preset';
+
 /** @type {import('tailwindcss').Config} */
-module.exports = {
-  presets: [require('@repo/tailwind-config/tailwind.preset')],
+export default {
+  presets: [tailwindPreset],
   // Outras configurações locais podem ser adicionadas aqui
 };
