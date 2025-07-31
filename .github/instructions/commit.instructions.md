@@ -4,6 +4,23 @@ applyTo: '**'
 
 # Conventional Commits Guide for monorepo-starter
 
+## Nova Regra: Commits automatizados devem usar commit-by-scope.js e scopes.json
+
+Sempre que for solicitado a fazer commits em lote ou automatizados (ex: atualização de dependências, refatorações em múltiplos pacotes, etc), siga este fluxo:
+
+1. Execute o script `scripts/commit-by-scope.js` na raiz do projeto. Ele irá gerar o arquivo `scripts/temp/scopes.json` agrupando os arquivos alterados por escopo (nome do package).
+2. Leia o arquivo `scripts/temp/scopes.json` para identificar os grupos de arquivos por escopo.
+3. Para cada escopo listado no arquivo, faça um commit separado, seguindo a estrutura convencional de commit deste guia, agrupando os arquivos daquele escopo.
+4. Nunca misture arquivos de escopos diferentes no mesmo commit.
+
+> Exemplo de fluxo:
+>
+> 1. `node scripts/commit-by-scope.js`
+> 2. Ler o resultado em `scripts/temp/scopes.json`
+> 3. Para cada chave (escopo) no JSON, faça um commit com os arquivos daquele grupo, usando o tipo e mensagem apropriados.
+
+Este procedimento garante que os commits estejam sempre corretos e agrupados conforme as regras do monorepo, mesmo em automações.
+
 ## Scopes: How to determine the correct scope for each file
 
 Scopes are now strictly defined as the `name` field of the nearest `package.json` found when traversing up from the file being committed. This ensures that every file in the monorepo is associated with the correct package for commit and versioning purposes.
