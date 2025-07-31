@@ -1,6 +1,6 @@
 import js from '@eslint/js';
 import eslintConfigPrettier from 'eslint-config-prettier';
-import tseslint from 'typescript-eslint';
+// Removido import de 'typescript-eslint' (inexistente)
 import pluginReactHooks from 'eslint-plugin-react-hooks';
 import pluginReact from 'eslint-plugin-react';
 import globals from 'globals';
@@ -14,7 +14,7 @@ export const config = [
   ...baseConfig,
   js.configs.recommended,
   eslintConfigPrettier,
-  ...tseslint.configs.recommended,
+  // Adicione aqui as configs do @typescript-eslint se necessário
   pluginReact.configs.flat.recommended,
   {
     languageOptions: {

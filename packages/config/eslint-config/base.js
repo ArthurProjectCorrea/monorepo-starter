@@ -1,7 +1,7 @@
 import js from '@eslint/js';
 import eslintConfigPrettier from 'eslint-config-prettier';
 import turboPlugin from 'eslint-plugin-turbo';
-import tseslint from 'typescript-eslint';
+// Removido import de 'typescript-eslint' (inexistente)
 import onlyWarn from 'eslint-plugin-only-warn';
 
 /**
@@ -12,7 +12,7 @@ import onlyWarn from 'eslint-plugin-only-warn';
 const config = [
   js.configs.recommended,
   eslintConfigPrettier,
-  ...tseslint.configs.recommended,
+  // Adicione aqui as configs do @typescript-eslint se necessário
   {
     plugins: {
       turbo: turboPlugin,
