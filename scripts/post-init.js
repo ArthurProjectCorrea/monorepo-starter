@@ -244,7 +244,7 @@ async function main() {
   const rootPkgPath = path.join(process.cwd(), 'package.json');
   const uiPackagePath = path.join('packages', 'ui', 'package.json');
   let oldRepoName = 'monorepo-starter';
-  let oldUiName = '@arthurcorreadev/monorepo-starter-ui';
+  let oldUiName = '@repo/ui';
   let oldUser = 'arthurcorreadev';
   if (fs.existsSync(rootPkgPath)) {
     const rootPkg = JSON.parse(fs.readFileSync(rootPkgPath, 'utf8'));
