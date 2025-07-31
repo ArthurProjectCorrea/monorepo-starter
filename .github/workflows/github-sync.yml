@@ -13,6 +13,7 @@ jobs:
       - name: Configura secret GH_PAT
         env:
           GH_PAT: ${{ secrets.GH_PAT }}
+          GH_TOKEN: ${{ github.token }}
           GITHUB_REPO: ${{ github.repository }}
         run: |
           if [ -z "$GH_PAT" ]; then
@@ -30,6 +31,7 @@ jobs:
       - name: Protege branches principais
         env:
           GH_PAT: ${{ secrets.GH_PAT }}
+          GH_TOKEN: ${{ github.token }}
           GITHUB_REPO: ${{ github.repository }}
         run: |
           set -e
@@ -54,8 +56,12 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
       - name: Instala dependências para YAML
-        run: npm install js-yaml axios
+        run: pnpm add -w js-yaml axios
       - name: Sincroniza labels do GitHub
         env:
           GH_PAT: ${{ secrets.GH_PAT }}
