@@ -1,21 +1,25 @@
 {
-  "name": "with-tailwind",
-  "version": "1.0.0",
+  "name": "monorepo-starter",
+  "version": "0.0.0",
   "private": true,
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
     "check-types": "turbo run check-types",
-    "typecheck": "turbo run check-types",
-    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,md,json,css,scss,html}\"",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,md,mdx,json,css,scss,html,astro,yml,yaml}\"",
     "test": "turbo run test",
+    "test:e2e": "pnpm --filter=api test:e2e",
     "prepare": "husky install",
     "setup-start": "node scripts/post-init.js"
   },
   "devDependencies": {
     "@changesets/cli": "^2.29.5",
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
     "@nestjs/cli": "^11.0.7",
+    "@repo/eslint-config": "workspace:^",
+    "@types/node": "^22.15.30",
     "dotenv": "^17.2.0",
     "eslint": "^9.31.0",
     "eslint-config-prettier": "^10.1.8",
@@ -34,8 +38,12 @@
   "engines": {
     "node": ">=18"
   },
+  "type": "module",
   "lint-staged": {
-    "*.{ts,tsx,js,jsx,json,md}": "prettier --write"
+    "*.{ts,tsx,js,jsx,json,md,css,scss,html,astro,yml,yaml}": [
+      "prettier --write",
+      "eslint --fix"
+    ]
   },
   "dependencies": {
     "axios": "^1.11.0",

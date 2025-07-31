@@ -1,0 +1,8 @@
+# Configuração para fechar issues/PRs inativos
+closeIssueMessage: 'Esta issue foi fechada por inatividade.'
+closePrMessage: 'Este PR foi fechado por inatividade.'
+daysUntilStale: 30
+daysUntilClose: 7
+exemptLabels:
+  - 'pinned'
+  - 'security'

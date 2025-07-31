@@ -1,0 +1,52 @@
+name: Update Internal Dependencies
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 3 * * 1'
+
+jobs:
+  update-internal-deps:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 8
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+      - run: pnpm install
+      - name: Atualiza dependências internas
+        run: pnpm update --latest --recursive --workspace
+      - name: Commit e push das atualizações
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git checkout -b chore/update-internal-deps
+          git add .
+          git commit -m "chore(deps): atualiza dependências internas"
+          git push origin chore/update-internal-deps || echo "Nada para commitar"
+      - name: Cria Pull Request automático
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: 'chore(deps): atualiza dependências internas'
+          branch: chore/update-internal-deps
+          title: 'chore(deps): atualiza dependências internas'
+          body: 'Atualização automática das dependências internas do monorepo.'
+
+      # -------------------------------------------------------------
+      # Após atualizar dependências internas, sincroniza com o template (upstream)
+      # Isso evita PRs redundantes de dependências caso o template e o filho atualizem juntos
+      # O PR de sync só será criado se houver diferença estrutural real após atualizar as dependências
+      # -------------------------------------------------------------
+      - name: Sincroniza com upstream (template)
+        uses: repo-sync/github-sync@v2
+        with:
+          source_repo: 'ArthurProjectCorrea/monorepo-starter'
+          source_branch: 'main'
+          destination_branch: 'main'
+          github_token: ${{ secrets.GH_PAT }}
+          sync_tags: 'true'

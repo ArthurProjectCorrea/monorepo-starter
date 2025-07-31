@@ -4,45 +4,52 @@ on:
   push:
     branches:
       - main
+  pull_request:
+    types: [closed]
+    branches:
+      - main
 
 jobs:
   release:
     runs-on: ubuntu-latest
+    if: >-
+      ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }} ||
+      ${{ github.event_name == 'pull_request' && github.base_ref == 'main' && github.head_ref == 'dev' && github.event.pull_request.merged == true }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
           registry-url: 'https://registry.npmjs.org/'
-
       - name: Install pnpm
         uses: pnpm/action-setup@v3
         with:
           version: 8
-
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Check for changeset
+        run: |
+          pnpm exec changeset status || (
+            echo '❌ Nenhum changeset encontrado. Adicione um arquivo de changeset para documentar as mudanças.' && exit 1
+          )
       - name: Create versions and changelogs
         run: pnpm exec changeset version
-
       - name: Publish packages
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: pnpm exec changeset publish
-
       - name: Cria Pull Request automático
         uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.GH_PAT }}
-          commit-message: "chore(release): version packages [skip ci]"
+          commit-message: 'chore(release): version packages [skip ci]'
           branch: ci/release-packages
-          title: "chore(release): version packages [skip ci]"
+          title: 'chore(release): version packages [skip ci]'
           body: |
             Este PR foi criado automaticamente pelo workflow de release.
             - Atualiza versões e changelogs

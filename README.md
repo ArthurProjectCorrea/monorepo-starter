@@ -1,5 +1,10 @@
 # 🧱 Fullstack Template Profissional — Turborepo, Next.js, NestJS, Astro
 
+<!-- DESCRIÇÃO DO PROJETO (será preenchida automaticamente pelo setup) -->
+<div id="project-description">
+<em>Descrição do projeto será inserida aqui automaticamente pelo script de setup.</em>
+</div>
+
 > Base sólida, escalável e pronta para qualquer projeto TypeScript moderno. Tudo já configurado: backend, frontend, documentação, automações e padrões profissionais.
 
 ---
@@ -46,8 +51,15 @@ packages/
 - `pnpm dev` — inicia todos os apps em modo desenvolvimento
 - `pnpm build` — builda todos os apps/pacotes
 - `pnpm lint` — roda o lint em todos os apps/pacotes
-- `pnpm test` — executa todos os testes automatizados
-- `pnpm dev --filter=<app> ` — roda um app específico (ex: `web`, `api`, `docs`)
+- `pnpm test` — executa todos os testes automatizados (unitários e integração)
+- `pnpm test:e2e` — executa os testes end-to-end do backend (NestJS/api) a partir da raiz
+- `pnpm dev --filter=<app>` — roda um app específico (ex: `web`, `api`, `docs`)
+
+---
+
+## 📋 Padrão de Commits
+
+Todos os commits devem seguir o padrão [Conventional Commits](./apps/docs/src/content/docs/monorepo/commits.md). Veja exemplos e dicas na documentação.
 
 ---
 

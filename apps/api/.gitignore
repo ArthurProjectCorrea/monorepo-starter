@@ -1,13 +1,8 @@
-# compiled output
-/dist
-/node_modules
-/build
 
-# Logs
-logs
-*.log
-npm-debug.log*
-pnpm-debug.log*
+# Regras específicas para apps/api (NestJS)
+dist/
+build/
+
 yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
@@ -36,6 +31,13 @@ lerna-debug.log*
 !.vscode/extensions.json
 
 # dotenv environment variable files
+.env
+.env.development.local
+# Cobertura e testes
+coverage/
+.nyc_output
+
+# Arquivos de ambiente
 .env
 .env.development.local
 .env.test.local

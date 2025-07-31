@@ -1,38 +1,3 @@
 {
-  "groups": [
-    {
-      "label": "Visão Geral",
-      "items": ["overview.md", "dev-checklist.md"]
-    },
-    {
-      "label": "Monorepo",
-      "items": [
-        "monorepo/index.mdx",
-        "monorepo/estrutura.mdx",
-        "monorepo/configuracoes.mdx",
-        "monorepo/comandos.mdx",
-        "monorepo/novos-comandos.mdx",
-        "monorepo/automacoes.mdx",
-        "monorepo/boas-praticas.mdx",
-        "monorepo/faq.mdx"
-      ]
-    },
-    {
-      "label": "Apps",
-      "items": ["frontend-structure.md", "backend-structure.md"]
-    },
-    {
-      "label": "Pacotes & Configs",
-      "items": [
-        "../packages/ui.md",
-        "../packages/eslint-config.md",
-        "../packages/tailwind-config.md",
-        "../packages/typescript-config.md"
-      ]
-    },
-    {
-      "label": "Contribuição",
-      "items": ["contributing.md", "github-token.md"]
-    }
-  ]
+  "groups": []
 }

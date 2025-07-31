@@ -1,27 +1,77 @@
 ---
 title: Visão Geral do Monorepo
+description: Estrutura, arquitetura e integração entre apps e pacotes do monorepo.
 ---
 
-# 🧱 Visão Geral do Monorepo
+import {
+  Card,
+  CardGrid,
+  LinkCard,
+  Aside,
+  FileTree,
+  Badge,
+  Steps,
+} from '@astrojs/starlight/components';
 
-Este monorepo é um template profissional fullstack, pronto para escalar projetos modernos com backend (NestJS), frontend (Next.js), documentação (Astro + Starlight) e automações. Ele centraliza configurações, componentes, tipagens e utilitários, promovendo padronização, reuso e produtividade.
+<Aside type="tip" title="O que é?" icon="star">
+  Este monorepo centraliza backend, frontend, UI e automações em um único repositório, facilitando
+  integração e manutenção.
+</Aside>
 
-## Estrutura
+<CardGrid>
+  <Card title="Backend (api)" icon="server">
+    NestJS modular
+  </Card>
+  <Card title="Frontend (web)" icon="globe">
+    Next.js SSR/SSG
+  </Card>
+  <Card title="UI" icon="component">
+    Componentes React
+  </Card>
+  <Card title="Config" icon="settings">
+    Configs compartilhadas
+  </Card>
+</CardGrid>
 
-```
-apps/
-  api/    → Backend (NestJS)
-  web/    → Frontend (Next.js)
-  docs/   → Documentação técnica (Astro + Starlight)
-packages/
-  config/ → Configs compartilhadas (eslint, prettier, tsconfig)
-  ui/     → Componentes React reutilizáveis
-  types/  → Tipagens globais
-  utils/  → Funções utilitárias
-```
+<FileTree>
+  <ul>
+    <li>
+      apps/
+      <ul>
+        <li>api</li>
+        <li>web</li>
+        <li>docs</li>
+      </ul>
+    </li>
+    <li>
+      packages/
+      <ul>
+        <li>ui</li>
+        <li>config</li>
+        <li>types</li>
+        <li>utils</li>
+      </ul>
+    </li>
+  </ul>
+</FileTree>
 
-- **Automação:** CI, scripts pós-clone, lint, test, build, releases automáticos.
-- **Padrão:** ESLint, Prettier, Husky, lint-staged, configs centralizadas.
-- **Reuso:** Componentes, tipagens e utilitários compartilhados.
+<Steps>
+  1. Use os comandos do README para build, lint e testes. 2. Siga os padrões de import e
+  configuração. 3. Consulte as subpáginas para detalhes de cada módulo.
+</Steps>
 
-> Explore os tópicos ao lado para detalhes sobre cada recurso e como utilizar o template ao máximo.
+## Scripts e Automação
+
+<CardGrid>
+  <LinkCard
+    title="Scripts de Automação"
+    href="./scripts/"
+    description="Automação de setup, pós-clone, sincronização de labels e proteção de branches. Garanta onboarding rápido e ambiente padronizado."
+  />
+</CardGrid>
+
+<Aside type="note" title="Sobre os scripts" icon="star">
+  Os scripts do monorepo automatizam tarefas essenciais como setup local, validações, integração com
+  GitHub e proteção de branches. Consulte a página dedicada para exemplos reais, boas práticas e
+  detalhes de cada script.
+</Aside>

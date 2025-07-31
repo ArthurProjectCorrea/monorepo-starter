@@ -1,6 +1,21 @@
 - name: feature
-  color: "1D76DB"
-  description: "Nova funcionalidade ou melhoria"
+  color: '1D76DB'
+  description: 'Nova funcionalidade ou melhoria'
 - name: enhancement
-  color: "84b6eb"
-  description: "Aprimoramento de funcionalidade existente"
+  color: '84b6eb'
+  description: 'Aprimoramento de funcionalidade existente'
+- name: bug
+  color: 'd73a4a'
+  description: 'Relato de bug ou comportamento inesperado'
+- name: refactor
+  color: 'fbca04'
+  description: 'Refatoração de código sem alteração de funcionalidade'
+- name: documentation
+  color: '0075ca'
+  description: 'Mudanças ou melhorias na documentação'
+- name: chore
+  color: 'bfe5bf'
+  description: 'Tarefas técnicas, manutenção ou ajustes não funcionais'
+- name: security
+  color: 'd73a4a'
+  description: 'Questões de segurança ou vulnerabilidades'

@@ -1,76 +1,32 @@
 ---
 title: Documentação do Monorepo
-description: Portal técnico do monorepo — navegue por apps, pacotes, automações e boas práticas.
-template: splash
-hero:
-  tagline: Monorepo profissional fullstack — backend, frontend, docs e automações.
-  image:
-    file: ../../assets/houston.webp
-  actions:
-    - text: Visão Geral
-      link: /docs/overview
-    - text: Estrutura do Monorepo
-      link: /docs/monorepo/estrutura
-    - text: Apps & Pacotes
-      link: /docs/monorepo
-    - text: Boas Práticas
-      link: /docs/monorepo/boas-praticas
-    - text: FAQ
-      link: /docs/monorepo/faq
+description: Portal central da documentação técnica do monorepo, arquitetura, integrações e guias.
 ---
 
+import { CardGrid, LinkCard, Aside } from '@astrojs/starlight/components';
 
-import { LinkCard, CardGrid } from '@astrojs/starlight/components';
+<Aside type="note" title="Sobre" icon="star">
+  Esta é a documentação central do monorepo. Navegue pelos tópicos abaixo para acessar guias,
+  referências e exemplos reais de cada módulo.
+</Aside>
 
-## Bem-vindo à documentação técnica do monorepo
-
-<CardGrid stagger>
+<CardGrid>
   <LinkCard
-    title="Visão Geral"
-    href="overview"
-    icon="dashboard"
-    description="Entenda a proposta, arquitetura e principais recursos do monorepo."
+    title="Monorepo"
+    href="/monorepo/"
+    description="Visão geral, arquitetura e integração."
+  />
+  <LinkCard title="API" href="/api/" description="Backend NestJS, rotas e integrações." />
+  <LinkCard title="Web" href="/web/" description="Frontend Next.js, SSR/SSG e UI." />
+  <LinkCard title="UI" href="/ui/" description="Guia de componentes React compartilhados." />
+  <LinkCard
+    title="Packages"
+    href="/packages/ui/"
+    description="Pacotes compartilhados do monorepo."
   />
   <LinkCard
-    title="Estrutura do Monorepo"
-    href="monorepo/estrutura"
-    icon="folder"
-    description="Veja como apps, pacotes e automações se organizam."
-  />
-  <LinkCard
-    title="Apps"
-    href="frontend-structure"
-    icon="rocket"
-    description="Frontend (Next.js) e Backend (NestJS) — estrutura, exemplos e dicas."
-  />
-  <LinkCard
-    title="Pacotes & Configs"
-    href="packages/ui"
-    icon="package"
-    description="Componentes, configs e utilitários compartilhados."
-  />
-  <LinkCard
-    title="Automação & Scripts"
-    href="monorepo/automacoes"
-    icon="bolt"
-    description="CI/CD, scripts pós-clone, integrações e dicas de automação."
-  />
-  <LinkCard
-    title="Boas Práticas"
-    href="monorepo/boas-praticas"
-    icon="check"
-    description="Dicas para manter o monorepo saudável, produtivo e escalável."
-  />
-  <LinkCard
-    title="FAQ"
-    href="monorepo/faq"
-    icon="help"
-    description="Perguntas frequentes e soluções para dúvidas comuns."
-  />
-  <LinkCard
-    title="Contribuição"
-    href="contributing"
-    icon="edit"
-    description="Como contribuir, abrir PRs e seguir o fluxo de desenvolvimento."
+    title="GitHub"
+    href="/github/"
+    description="Automação, workflows e scripts do repositório."
   />
 </CardGrid>

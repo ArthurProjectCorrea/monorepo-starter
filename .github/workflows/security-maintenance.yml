@@ -1,0 +1,77 @@
+name: Security & Maintenance
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 5 * * 1'
+
+jobs:
+  npm-audit:
+    name: NPM Audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm install -g pnpm
+      - run: pnpm install
+      - name: Rodar npm audit
+        run: pnpm audit --audit-level=moderate || true
+
+  codeql:
+    name: CodeQL Analysis
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+    strategy:
+      fail-fast: false
+      matrix:
+        language: [javascript, typescript]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: ${{ matrix.language }}
+      - name: Autobuild
+        uses: github/codeql-action/autobuild@v3
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
+        with:
+          category: '/language:${{ matrix.language }}'
+
+  update-actions:
+    name: Verificar atualizações de GitHub Actions
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Instala dependências para checagem
+        run: npm install -g action-validator
+      - name: Checa versões das Actions
+        run: |
+          npx action-validator --check-latest .github/workflows/*.yml || true
+
+  stale-branches:
+    name: Limpeza de branches antigas
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Lista branches não atualizadas há 90 dias
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: |
+          git fetch --all --prune
+          for branch in $(git for-each-ref --format='%(refname:short)' refs/remotes/origin/); do
+            if [ "$branch" != "main" ] && [ "$branch" != "dev" ]; then
+              last_commit=$(git log -1 --format="%ct" origin/$branch)
+              now=$(date +%s)
+              diff_days=$(( (now - last_commit) / 86400 ))
+              if [ $diff_days -gt 90 ]; then
+                echo "Branch $branch está inativa há $diff_days dias."
+              fi
+            fi
+          done

@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Roda build antes do push para garantir que a aplicação compila
+pnpm build || exit 1

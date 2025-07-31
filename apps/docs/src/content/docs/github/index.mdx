@@ -1,0 +1,43 @@
+---
+title: GitHub — Automação e Workflows
+description: Documentação das automações e workflows do repositório.
+---
+
+import { Card, LinkCard, CardGrid, Aside, FileTree } from '@astrojs/starlight/components';
+
+<Aside type="note" title="Sobre automações" icon="star">
+  Este escopo documenta todos os workflows, scripts e integrações automatizadas do repositório.
+</Aside>
+
+<CardGrid>
+  <Card title="Workflows" icon="workflow">
+    Documentação dos principais workflows de CI/CD, releases e validações automatizadas.
+  </Card>
+  <Card title="Configurações" icon="settings">
+    Detalhes sobre arquivos de configuração, secrets e integrações do GitHub.
+  </Card>
+</CardGrid>
+
+<FileTree>
+  <ul>
+    <li>
+      .github
+      <ul>
+        <li>
+          workflows
+          <ul>
+            <li>*.yml</li>
+          </ul>
+        </li>
+        <li>
+          scripts
+          <ul>
+            <li>post-init.js</li>
+            <li>sync-labels.js</li>
+            <li>init</li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</FileTree>

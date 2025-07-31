@@ -7,7 +7,6 @@ node_modules
 
 # ignore
 .env
-scripts/tmp/
 
 # testing
 coverage
