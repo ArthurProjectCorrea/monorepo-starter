@@ -105,18 +105,13 @@ docs(docs): improve setup documentation
 refactor(@repo/ui): reorganize internal components
 ```
 
-## [skip ci] — When and How to Use
+## Não utilize `[skip ci]`
 
-- Only use `[skip ci]` in the commit message when you are making changes that do **not** require running CI/CD pipelines (e.g., updating documentation, comments, or non-code files).
-- Never use `[skip ci]` in commits that affect source code, configuration, dependencies, or anything that could impact build, test, or release.
-- Place `[skip ci]` at the end of the commit message, after the description.
-- Example:
+**Atenção:** Não utilize `[skip ci]` em nenhuma mensagem de commit neste repositório.
 
-```bash
-docs(docs): update contributing guide [skip ci]
-```
+O uso de `[skip ci]` impede a execução dos workflows de validação e prejudica a garantia de qualidade e automação do monorepo. Todos os commits devem passar pelas validações automáticas de CI/CD, independentemente do tipo de alteração.
 
-- Avoid overusing `[skip ci]` to ensure CI/CD always validates relevant changes.
+Se precisar pular etapas de CI/CD, consulte o responsável pelo repositório antes de qualquer ação.
 
 ## Best Practices
 
