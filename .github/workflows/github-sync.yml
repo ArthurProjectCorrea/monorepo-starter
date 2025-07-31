@@ -13,7 +13,7 @@ jobs:
       - name: Configura secret GH_PAT
         env:
           GH_PAT: ${{ secrets.GH_PAT }}
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ secrets.GH_PAT }}
           GITHUB_REPO: ${{ github.repository }}
         run: |
           if [ -z "$GH_PAT" ]; then
@@ -31,7 +31,7 @@ jobs:
       - name: Protege branches principais
         env:
           GH_PAT: ${{ secrets.GH_PAT }}
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ secrets.GH_PAT }}
           GITHUB_REPO: ${{ github.repository }}
         run: |
           set -e
