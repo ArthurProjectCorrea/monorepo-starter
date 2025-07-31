@@ -10,20 +10,18 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event_name == 'workflow_dispatch'
     steps:
-      - name: Configura secrets GH_PAT e NPM_TOKEN
+      - name: Configura secret GH_PAT
         env:
           GH_PAT: ${{ secrets.GH_PAT }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_REPO: ${{ github.repository }}
         run: |
-          if [ -z "$GH_PAT" ] || [ -z "$NPM_TOKEN" ]; then
-            echo "Secrets GH_PAT ou NPM_TOKEN não definidos."
+          if [ -z "$GH_PAT" ]; then
+            echo "Secret GH_PAT não definido."
             exit 1
           fi
-          echo "Configurando secrets no repositório $GITHUB_REPO..."
+          echo "Configurando secret GH_PAT no repositório $GITHUB_REPO..."
           gh secret set GH_PAT --body "$GH_PAT" --repo "$GITHUB_REPO"
-          gh secret set NPM_TOKEN --body "$NPM_TOKEN" --repo "$GITHUB_REPO"
-          echo "Secrets configurados com sucesso!"
+          echo "Secret GH_PAT configurado com sucesso!"
 
   protect-branches:
     runs-on: ubuntu-latest
