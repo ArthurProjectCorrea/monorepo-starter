@@ -163,16 +163,16 @@ importers:
         version: 6.6.4
       '@testing-library/react':
         specifier: ^16.3.0
-        version: 16.3.0(@testing-library/dom@10.4.1)(@types/react-dom@19.1.6)(@types/react@19.1.8)(react-dom@19.1.1)(react@19.1.1)
+        version: 16.3.0(@testing-library/dom@10.4.1)(@types/react-dom@19.1.6)(@types/react@19.1.9)(react-dom@19.1.1)(react@19.1.1)
       '@types/node':
         specifier: ^22.15.30
         version: 22.16.5
       '@types/react':
-        specifier: ^19.1.0
-        version: 19.1.8
+        specifier: ^19.1.9
+        version: 19.1.9
       '@types/react-dom':
         specifier: ^19.1.1
-        version: 19.1.6(@types/react@19.1.8)
+        version: 19.1.6(@types/react@19.1.9)
       autoprefixer:
         specifier: ^10.4.20
         version: 10.4.21(postcss@8.5.6)
@@ -258,8 +258,8 @@ importers:
         specifier: ^22.15.30
         version: 22.16.5
       '@types/react':
-        specifier: ^19.1.0
-        version: 19.1.8
+        specifier: ^19.1.9
+        version: 19.1.9
       jsdom:
         specifier: ^26.1.0
         version: 26.1.0
@@ -4680,7 +4680,7 @@ packages:
       redent: 3.0.0
     dev: true
 
-  /@testing-library/react@16.3.0(@testing-library/dom@10.4.1)(@types/react-dom@19.1.6)(@types/react@19.1.8)(react-dom@19.1.1)(react@19.1.1):
+  /@testing-library/react@16.3.0(@testing-library/dom@10.4.1)(@types/react-dom@19.1.6)(@types/react@19.1.9)(react-dom@19.1.1)(react@19.1.1):
     resolution:
       {
         integrity: sha512-kFSyxiEDwv1WLl2fgsq6pPBbw5aWKrsY2/noi1Id0TK0UParSF62oFQFGHXIyaG4pp2tEub/Zlel+fjjZILDsw==,
@@ -4700,8 +4700,8 @@ packages:
     dependencies:
       '@babel/runtime': 7.28.2
       '@testing-library/dom': 10.4.1
-      '@types/react': 19.1.8
-      '@types/react-dom': 19.1.6(@types/react@19.1.8)
+      '@types/react': 19.1.9
+      '@types/react-dom': 19.1.6(@types/react@19.1.9)
       react: 19.1.1
       react-dom: 19.1.1(react@19.1.1)
     dev: true
@@ -4993,7 +4993,7 @@ packages:
     dependencies:
       undici-types: 6.21.0
 
-  /@types/react-dom@19.1.6(@types/react@19.1.8):
+  /@types/react-dom@19.1.6(@types/react@19.1.9):
     resolution:
       {
         integrity: sha512-4hOiT/dwO8Ko0gV1m/TJZYk3y0KBnY9vzDh7W+DH17b2HFSOGgdj33dhihPeuy3l0q23+4e+hoXHV6hCC4dCXw==,
@@ -5001,13 +5001,13 @@ packages:
     peerDependencies:
       '@types/react': ^19.0.0
     dependencies:
-      '@types/react': 19.1.8
+      '@types/react': 19.1.9
     dev: true
 
-  /@types/react@19.1.8:
+  /@types/react@19.1.9:
     resolution:
       {
-        integrity: sha512-AwAfQ2Wa5bCx9WP8nZL2uMZWod7J7/JSplxbTmBQ5ms6QpqNYm672H0Vu9ZVKVngQ+ii4R/byguVEUZQyeg44g==,
+        integrity: sha512-WmdoynAX8Stew/36uTSVMcLJJ1KRh6L3IZRx1PZ7qJtBqT3dYTgyDTx8H1qoRghErydW7xw9mSJ3wS//tCRpFA==,
       }
     dependencies:
       csstype: 3.1.3
