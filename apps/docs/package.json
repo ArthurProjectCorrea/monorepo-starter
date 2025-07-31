@@ -12,13 +12,13 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/starlight": "^0.35.1",
-    "astro": "^5.6.1",
+    "@astrojs/starlight": "^0.35.2",
+    "astro": "^5.12.6",
     "sharp": "^0.34.2",
     "starlight-nextjs-theme": "^0.2.1"
   },
   "devDependencies": {
-    "@repo/typescript-config": "workspace:*",
-    "@repo/eslint-config": "workspace:*"
+    "@repo/eslint-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*"
   }
 }
