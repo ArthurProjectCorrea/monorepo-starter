@@ -5008,13 +5008,9 @@ packages:
     peerDependenciesMeta:
       msw:
         optional: true
-      vite:
-        optional: true
-    dependencies:
-      '@vitest/spy': 3.2.4
-      estree-walker: 3.0.3
-      magic-string: 0.30.17
-      vite: 7.0.6(@types/node@22.16.5)
+      vitest:
+        specifier: ^3.2.4
+        version: 3.2.4(@types/node@24.1.0)(jsdom@26.1.0)
     dev: true
 
   /@vitest/pretty-format@3.2.4:
@@ -16029,7 +16025,7 @@ packages:
       vfile-message: 4.0.3
     dev: false
 
-  /vite-node@3.2.4(@types/node@22.16.5):
+  /vite-node@3.2.4(@types/node@24.1.0):
     resolution:
       {
         integrity: sha512-EbKSKh+bh1E1IFxeO0pg1n4dvoOTt0UDiXMd/qn++r98+jPO1xtJilvXldeuQ8giIB5IkpjCgMleHMNEsGH6pg==,
@@ -16041,7 +16037,7 @@ packages:
       debug: 4.4.1
       es-module-lexer: 1.7.0
       pathe: 2.0.3
-      vite: 7.0.6(@types/node@22.16.5)
+      vite: 7.0.6(@types/node@24.1.0)
     transitivePeerDependencies:
       - '@types/node'
       - jiti
@@ -16065,18 +16061,12 @@ packages:
     peerDependencies:
       vite: '*'
     peerDependenciesMeta:
-      vite:
-        optional: true
-    dependencies:
-      debug: 4.4.1
-      globrex: 0.1.2
-      tsconfck: 3.1.6(typescript@5.8.3)
-    transitivePeerDependencies:
-      - supports-color
-      - typescript
+      vitest:
+        specifier: ^3.2.4
+        version: 3.2.4(@types/node@24.1.0)(jsdom@26.1.0)
     dev: true
 
-  /vite@6.3.5(@types/node@22.16.5):
+  /vite@6.3.5(@types/node@24.1.0):
     resolution:
       {
         integrity: sha512-cZn6NDFE7wdTpINgs++ZJ4N49W2vRp8LCKrn3Ob1kYNtOo21vfDoaV5GzBfLU4MovSAB8uNRm4jgzVQZ+mBzPQ==,
@@ -16119,7 +16109,7 @@ packages:
       yaml:
         optional: true
     dependencies:
-      '@types/node': 22.16.5
+      '@types/node': 24.1.0
       esbuild: 0.25.8
       fdir: 6.4.6(picomatch@4.0.3)
       picomatch: 4.0.3
@@ -16187,20 +16177,6 @@ packages:
   /vitefu@1.1.1(vite@6.3.5):
     resolution:
       {
-        integrity: sha512-B/Fegf3i8zh0yFbpzZ21amWzHmuNlLlmJT6n7bu5e+pCHUKQIfXSYokrqOBGEMMe9UG2sostKQF9mml/vYaWJQ==,
-      }
-    peerDependencies:
-      vite: ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0-beta.0
-    peerDependenciesMeta:
-      vite:
-        optional: true
-    dependencies:
-      vite: 6.3.5(@types/node@22.16.5)
-    dev: false
-
-  /vitest@3.2.4(@types/node@22.16.5)(jsdom@26.1.0):
-    resolution:
-      {
         integrity: sha512-LUCP5ev3GURDysTWiP47wRRUpLKMOfPh+yKTx3kVIEiu5KOMeqzpnYNsKyOoVrULivR8tLcks4+lga33Whn90A==,
       }
     engines: { node: ^18.0.0 || ^20.0.0 || >=22.0.0 }
@@ -16213,6 +16189,7 @@ packages:
       '@vitest/ui': 3.2.4
       happy-dom: '*'
       jsdom: '*'
+      vite: ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0-beta.0
     peerDependenciesMeta:
       '@edge-runtime/vm':
         optional: true
