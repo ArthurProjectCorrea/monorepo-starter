@@ -9,6 +9,14 @@ jobs:
   update-internal-deps:
     runs-on: ubuntu-latest
     steps:
+      - name: Verifica se o segredo GH_PAT está disponível
+        run: |
+          if [ -z "${{ secrets.GH_PAT }}" ]; then
+            echo "ERRO: O segredo GH_PAT não está configurado nas Actions do repositório!" >&2
+            exit 1
+          else
+            echo "GH_PAT está disponível."
+          fi
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v3
         with:
@@ -41,7 +49,6 @@ jobs:
           branch: chore/update-internal-deps
           title: 'chore(deps-internal): atualiza dependências internas'
           body: 'Atualização automática das dependências internas do monorepo.'
-
       # -------------------------------------------------------------
       # Após atualizar dependências internas, sincroniza com o template (upstream)
       # Isso evita PRs redundantes de dependências caso o template e o filho atualizem juntos
