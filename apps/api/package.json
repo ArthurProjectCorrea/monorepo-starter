@@ -8,7 +8,7 @@
   "scripts": {
     "dev": "nest start --watch",
     "build": "nest build",
-    "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
+    "lint": "eslint . --max-warnings 0",
     "check-types": "tsc --noEmit",
     "start": "nest start",
     "start:debug": "nest start --debug --watch",
@@ -20,11 +20,11 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
-    "@nestjs/common": "^11.0.1",
-    "@nestjs/core": "^11.0.1",
-    "@nestjs/platform-express": "^11.0.1",
+    "@nestjs/common": "^11.1.5",
+    "@nestjs/core": "^11.1.5",
+    "@nestjs/platform-express": "^11.1.5",
     "reflect-metadata": "^0.2.2",
-    "rxjs": "^7.8.1"
+    "rxjs": "^7.8.2"
   },
   "@eslint/eslintrc": "^3.2.0",
   "@eslint/js": "^9.18.0",
@@ -41,7 +41,7 @@
     "@nestjs/testing": "^11.1.5",
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
-    "@types/jest": "^29.5.14",
+    "@types/jest": "^30.0.0",
     "@types/supertest": "^6.0.3",
     "supertest": "^7.1.4"
   },
