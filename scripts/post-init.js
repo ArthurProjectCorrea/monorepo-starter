@@ -240,44 +240,20 @@ async function main() {
 
   // 3. Setup identidade do repositório (nomes, descrição, substituições globais, validação, commit/push)
   const env = require('dotenv').config().parsed || process.env;
+
   // Detecta dados antigos
   const rootPkgPath = path.join(process.cwd(), 'package.json');
-  const uiPackagePath = path.join('packages', 'ui', 'package.json');
   let oldRepoName = 'monorepo-starter';
-  let oldUiName = '@repo/ui';
-  let oldUser = 'arthurcorreadev';
   if (fs.existsSync(rootPkgPath)) {
     const rootPkg = JSON.parse(fs.readFileSync(rootPkgPath, 'utf8'));
     if (rootPkg.name) oldRepoName = rootPkg.name;
   }
-  if (fs.existsSync(uiPackagePath)) {
-    const uiPkg = JSON.parse(fs.readFileSync(uiPackagePath, 'utf8'));
-    if (uiPkg.name) oldUiName = uiPkg.name;
-  }
-  if (oldUiName.startsWith('@')) {
-    oldUser = oldUiName.split('/')[0].replace('@', '');
-  }
 
   // Detecta dados novos
-  const githubUser = env.GITHUB_USER || oldUser;
+  const githubUser = env.GITHUB_USER || '';
   const repo = env.GITHUB_REPO || `${githubUser}/${oldRepoName}`;
-  const npmUser = env.NPM_USER || githubUser;
   const repoName = repo.split('/')[1] || oldRepoName;
-  const newUiName = `@${npmUser}/${repoName}-ui`;
   const newRepoName = repoName;
-  const newUser = npmUser;
-
-  // Atualiza o nome do pacote UI
-  if (fs.existsSync(uiPackagePath)) {
-    backupFile(uiPackagePath);
-    const uiPkg = JSON.parse(fs.readFileSync(uiPackagePath, 'utf8'));
-    if (uiPkg.name !== newUiName) {
-      uiPkg.name = newUiName;
-      uiPkg.publishConfig = { access: 'public' };
-      fs.writeFileSync(uiPackagePath, JSON.stringify(uiPkg, null, 2));
-      summary.push({ type: 'success', msg: `Nome do pacote UI atualizado para: ${newUiName}` });
-    }
-  }
 
   // Atualiza o nome do package.json raiz
   if (fs.existsSync(rootPkgPath)) {
@@ -316,12 +292,8 @@ async function main() {
     });
   }
 
-  // Substituições globais (UI, repo, user) em arquivos relevantes
-  const substitutions = [
-    [oldUiName, newUiName],
-    [oldRepoName, newRepoName],
-    [oldUser, newUser],
-  ];
+  // Substituição global do nome do repositório (monorepo-starter -> novo nome) em arquivos relevantes
+  const substitutions = [['monorepo-starter', newRepoName]];
   const exts = ['.ts', '.tsx', '.js', '.jsx', '.json', '.md', '.yml', '.yaml'];
   const dirs = ['apps', 'packages', '.', '.github', 'scripts'];
   const filesWithError = [];
