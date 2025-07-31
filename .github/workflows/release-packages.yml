@@ -39,10 +39,7 @@ jobs:
           )
       - name: Create versions and changelogs
         run: pnpm exec changeset version
-      - name: Publish packages
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: pnpm exec changeset publish
+      # Publicação no npm removida
       - name: Cria Pull Request automático
         uses: peter-evans/create-pull-request@v5
         with:
@@ -53,5 +50,4 @@ jobs:
           body: |
             Este PR foi criado automaticamente pelo workflow de release.
             - Atualiza versões e changelogs
-            - Publica pacotes
             - Sincroniza alterações no repositório
