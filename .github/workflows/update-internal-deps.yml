@@ -19,7 +19,7 @@ jobs:
           cache: 'pnpm'
       - run: pnpm install
       - name: Atualiza dependências internas
-        run: pnpm update --latest --recursive --workspace
+        run: pnpm update --latest --recursive
       - name: Commit e push das atualizações
         run: |
           git config --global user.name 'github-actions[bot]'
