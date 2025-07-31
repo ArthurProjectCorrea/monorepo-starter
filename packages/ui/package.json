@@ -1,5 +1,5 @@
 {
-  "name": "@arthurcorreadev/monorepo-starter-ui",
+  "name": "@repo/ui",
   "publishConfig": {
     "access": "public"
   },
