@@ -12,7 +12,8 @@ module.exports = {
         '@repo/eslint-config',
         '@repo/tailwind-config',
         '@repo/typescript-config',
-        'monorepo-starter'
+        'monorepo-starter',
+        'deps-internal'
       ]
     ]
   }

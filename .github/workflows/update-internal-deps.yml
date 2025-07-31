@@ -20,21 +20,21 @@ jobs:
       - run: pnpm install
       - name: Atualiza dependências internas
         run: pnpm update --latest --recursive
-      - name: Commit e push das atualizações
+      - name: Commit e push das atualizações de dependências internas
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           git checkout -b chore/update-internal-deps
           git add .
-          git commit -m "chore(deps): atualiza dependências internas"
+          git commit -m "chore(deps-internal): atualiza dependências internas" || echo "Nada para commitar"
           git push origin chore/update-internal-deps || echo "Nada para commitar"
       - name: Cria Pull Request automático
         uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: 'chore(deps): atualiza dependências internas'
+          commit-message: 'chore(deps-internal): atualiza dependências internas'
           branch: chore/update-internal-deps
-          title: 'chore(deps): atualiza dependências internas'
+          title: 'chore(deps-internal): atualiza dependências internas'
           body: 'Atualização automática das dependências internas do monorepo.'
 
       # -------------------------------------------------------------
