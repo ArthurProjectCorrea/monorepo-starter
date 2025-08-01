@@ -31,6 +31,14 @@ jobs:
       - run: pnpm install
       - name: Atualiza dependências internas
         run: pnpm update --latest --recursive
+      - name: Lint
+        run: pnpm lint
+      - name: Testes
+        run: pnpm test
+      - name: Build
+        run: pnpm build
+      - name: Audit
+        run: pnpm audit || true
       - name: Commit e push das atualizações de dependências internas
         env:
           GH_PAT: ${{ secrets.GH_PAT }}
