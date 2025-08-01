@@ -41,16 +41,16 @@ jobs:
         run: pnpm audit || true
       # O commit e push serão feitos automaticamente pelo create-pull-request
       # Não é necessário criar/pushar a branch manualmente
-      - name: Verifica se há modificações após update/lint/test/build
-        id: check_diff
+      - name: Verifica se há arquivos staged para commit após hooks
+        id: check_staged
         run: |
-          if git diff --quiet && git diff --cached --quiet; then
-            echo "has_changes=false" >> $GITHUB_OUTPUT
+          if git diff --cached --quiet; then
+            echo "has_staged=false" >> $GITHUB_OUTPUT
           else
-            echo "has_changes=true" >> $GITHUB_OUTPUT
+            echo "has_staged=true" >> $GITHUB_OUTPUT
           fi
       - name: Cria Pull Request automático
-        if: steps.check_diff.outputs.has_changes == 'true'
+        if: steps.check_staged.outputs.has_staged == 'true'
         uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.GH_PAT }}
