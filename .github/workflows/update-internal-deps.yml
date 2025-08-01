@@ -39,19 +39,8 @@ jobs:
         run: pnpm build
       - name: Audit
         run: pnpm audit || true
-      - name: Commit e push das atualizações de dependências internas
-        env:
-          GH_PAT: ${{ secrets.GH_PAT }}
-        run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git checkout main
-          git pull
-          git branch -D chore/update-internal-deps || true
-          git checkout -b chore/update-internal-deps
-          git add .
-          git commit -m "chore(deps-internal): atualiza dependências internas" || echo "Nada para commitar"
-          git push https://github-actions:${GH_PAT}@github.com/${{ github.repository }} chore/update-internal-deps || echo "Nada para commitar"
+      # O commit e push serão feitos automaticamente pelo create-pull-request
+      # Não é necessário criar/pushar a branch manualmente
       - name: Cria Pull Request automático
         uses: peter-evans/create-pull-request@v5
         with:
