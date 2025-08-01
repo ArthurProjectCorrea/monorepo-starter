@@ -1,37 +1,38 @@
 blank_issues_enabled: false
 issue_templates:
-  - name: Feature Request
-    description: Solicite uma nova feature seguindo o template detalhado.
-    title: '[Feature] <Nome da Feature>'
-    labels: [feature, enhancement]
-    assignees: []
-    template: feature_request.md
-  - name: Bug Report
-    description: Reporte um bug encontrado no monorepo.
-    title: '[Bug] <Breve descrição>'
+  - name: 'Bug Report'
+    description: 'Report a bug found in the monorepo.'
+    title: '[Bug] <Short description>'
     labels: [bug]
     assignees: []
     template: bug_report.md
-  - name: Melhoria/Refactor
-    description: Sugira uma melhoria ou refatoração.
-    title: '[Melhoria] <Breve descrição>'
+  - name: 'Feature Request'
+    description: 'Request a new feature using the detailed template.'
+    title: '[Feature] <Feature name>'
+    labels: [feature, enhancement]
+    assignees: []
+    template: feature_request.md
+  - name: 'Improvement/Refactor'
+    description: 'Suggest an improvement or refactor.'
+    title: '[Improvement] <Short description>'
     labels: [enhancement, refactor]
     assignees: []
     template: improvement.md
-  - name: Documentação
-    description: Solicite ou reporte melhorias na documentação.
-    title: '[Doc] <Breve descrição>'
+  - name: 'Documentation'
+    description: 'Request or report documentation improvements.'
+    title: '[Doc] <Short description>'
     labels: [documentation]
     assignees: []
     template: documentation.md
-  - name: Chore/Tarefa Técnica
-    description: Solicite uma tarefa técnica ou manutenção.
-    title: '[Chore] <Breve descrição>'
+  - name: 'Chore/Technical Task'
+    description: 'Request a technical task or maintenance.'
+    title: '[Chore] <Short description>'
     labels: [chore]
     assignees: []
     template: chore.md
   - name: 'Security Issue'
-    description: 'Reporte uma vulnerabilidade de segurança.'
-    labels: ['security']
+    description: 'Report a security vulnerability.'
+    title: '[Security] <Short description>'
+    labels: [security]
     assignees: []
     template: security.md

@@ -4,17 +4,27 @@ description: 'Sugira uma melhoria ou refatoração.'
 labels: ['enhancement', 'refactor']
 ---
 
-## 💡 Descrição da Melhoria
+## 💡 Improvement/Refactor Description
 
-Explique o que pode ser melhorado/refatorado e por quê.
+Explain what can be improved/refactored and why.
 
-Exemplo:
+Example:
 
-> Refatorar o componente Header para usar styled-components.
+> Refactor the Header component to use styled-components.
 
-## 📦 Contexto
+---
 
-- Pacote/app afetado: <!-- ex: api, web, ui -->
-- Impacto esperado: <!-- ex: performance, legibilidade, manutenção -->
+## 📦 Context
+
+- Affected package/app: <!-- e.g.: api, web, ui -->
+- Expected impact: <!-- e.g.: performance, readability, maintainability -->
+
+---
+
+## ✅ Checklist
+
+- [ ] Improvement/refactor is clearly described
+- [ ] Expected impact is defined
+- [ ] All relevant information provided
 
 ---

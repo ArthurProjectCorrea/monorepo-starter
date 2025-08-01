@@ -3,97 +3,97 @@ name: 'Feature Request'
 description: 'Solicite uma nova feature para o monorepo.'
 about: 'Template para solicitação de nova feature, cobrindo implementação, testes e documentação.'
 title: '[Feature] <Nome da Feature>'
-labels: ['feature', 'enhancement']
-assignees: []
----
 
-## 🚧 Nome da Branch
 
-Padrão sugerido: `feat/<numero-issue>-<nome-descritivo>`
+## 🚧 Branch Name
 
-Exemplo: `feat/123-login-social`
+Suggested pattern: `feat/<issue-number>-<short-description>`
+
+Example: `feat/123-social-login`
 
 ---
 
----
+## 📌 Feature Description
 
-## 📌 Descrição da Feature
+Describe clearly and objectively:
 
-Descreva de forma clara e objetiva:
+- What will be implemented?
+- What will NOT be delivered in this issue (out of scope or postponed)?
+- What problem/motivation does this implementation address?
+- What value does this feature add?
 
-- O que será implementado?
-- O que NÃO será entregue nesta issue (escopo fora ou adiado)?
-- Qual o problema/motivo dessa implementação?
-- Qual valor essa feature agrega?
-
-> **Importante:** Ao criar o PR, referencie esta issue e detalhe no PR tudo que foi implementado, não implementado e qualquer extra realizado.
+> **Important:** When creating the PR, reference this issue and detail in the PR everything that was implemented, not implemented, and any extras.
 
 ---
 
-## 📋 Tarefas
+## 📋 Tasks
 
-- [ ] Implementação principal
-- [ ] Testes unitários e e2e
-- [ ] Atualização da documentação
-- [ ] Validação com demais pacotes/apps
-- [ ] Revisão de código
-
----
-
-## 🛠️ Detalhes Técnicos
-
-| Item                      | Descrição                                     |
-| ------------------------- | --------------------------------------------- |
-| **Apps/Pacotes afetados** | Ex: `apps/api`, `apps/web`, `packages/ui`     |
-| **Dependências**          | Ex: `zod`, `axios`                            |
-| **Aliases/Paths**         | Ex: `@/shared/*`, `@api/*`                    |
-| **Scripts auxiliares**    | Scripts de build, seed, deploy, etc.          |
-| **Ambiente**              | Alguma variável nova? Configuração no `.env`? |
+- [ ] Main implementation
+- [ ] Unit and e2e tests
+- [ ] Documentation update
+- [ ] Validation with other packages/apps
+- [ ] Code review
 
 ---
 
-## 🧪 Estratégia de Testes
+## 🛠️ Technical Details
 
-- Frameworks utilizados: `Jest`, `Vitest`, etc.
-- Tipos: unitários, integração, e2e
-- Principais cenários de teste
-- Mocks/stubs esperados
-- Cobertura mínima desejada (ex: 80%)
+| Item                       | Description                                 |
+| -------------------------- | ------------------------------------------- |
+| **Affected apps/packages** | E.g.: `apps/api`, `apps/web`, `packages/ui` |
+| **Dependencies**           | E.g.: `zod`, `axios`                        |
+| **Aliases/Paths**          | E.g.: `@/shared/*`, `@api/*`                |
+| **Helper scripts**         | Build, seed, deploy scripts, etc.           |
+| **Environment**            | Any new variable? `.env` configuration?     |
 
 ---
 
-## 📚 Documentação
+## 🧪 Test Strategy
 
-- [ ] `README.md` do pacote ou app
+- Frameworks used: `Jest`, `Vitest`, etc.
+- Types: unit, integration, e2e
+- Main test scenarios
+- Expected mocks/stubs
+- Minimum desired coverage (e.g., 80%)
+
+---
+
+## 📚 Documentation
+
+- [ ] Package or app `README.md`
 - [ ] `apps/docs` via Starlight
-- [ ] Comentários diretamente no código
+- [ ] Comments directly in the code
 
 ---
 
-## ✅ Critérios de Aceite
+## ✅ Acceptance Criteria
 
-- [ ] Comportamento esperado implementado
-- [ ] Sem regressões em apps/pacotes impactados
-- [ ] Testes cobrindo os principais fluxos
-- [ ] Documentação técnica clara e acessível
-- [ ] Merge sem conflitos com a `dev`
-
----
-
-## 🧠 Observações Finais
-
-- Possíveis dúvidas, riscos, dependências externas ou bloqueios
-- Sugestões de abordagem, validações extras ou integrações futuras
-- Pontos que devem ser revisados no PR (ex: decisões técnicas, desvios do escopo, entregas extras)
+- [ ] Expected behavior implemented
+- [ ] No regressions in impacted apps/packages
+- [ ] Tests cover main flows
+- [ ] Clear and accessible technical documentation
+- [ ] Merge without conflicts with `dev`
 
 ---
 
-🔁 **Gatilhos IA (Copilot/ChatGPT)**  
-Use os comandos abaixo para automações específicas:
+## 📝 Final Notes
 
-- `@start`: Iniciar fluxo da feature
-- `@branch`: Gerar nome da branch
-- `@testar`: Planejar e gerar testes
-- `@documentar`: Iniciar documentação
-- `@commitar`: Gerar commit semântico
-- `@pullrequest`: Criar e validar PR
+- Possible doubts, risks, external dependencies, or blockers
+- Suggestions for approach, extra validations, or future integrations
+- Points to be reviewed in the PR (e.g., technical decisions, scope deviations, extra deliveries)
+
+---
+
+♻️ **AI Triggers (Copilot/ChatGPT)**
+Use the commands below for specific automations:
+
+- `@start`: Start feature flow
+- `@branch`: Generate branch name
+- `@test`: Plan and generate tests
+- `@document`: Start documentation
+- `@commit`: Generate semantic commit
+- `@pullrequest`: Create and validate PR
+
+```
+
+```

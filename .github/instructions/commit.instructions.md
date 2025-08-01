@@ -4,26 +4,26 @@ applyTo: '**'
 
 # Conventional Commits Guide for monorepo-starter
 
-## Nova Regra: Commits automatizados devem usar commit-by-scope.js e scopes.json
+## Automated Commits: Mandatory commit-by-scope.js and scopes.json Workflow
 
-Sempre que for solicitado a fazer commits em lote ou automatizados (ex: atualização de dependências, refatorações em múltiplos pacotes, etc), siga este fluxo:
+Whenever you are required to perform batch or automated commits (e.g., dependency updates, refactoring across multiple packages, etc.), you must follow this workflow:
 
-1. Execute o script `scripts/commit-by-scope.js` na raiz do projeto. Ele irá gerar o arquivo `scripts/temp/scopes.json` agrupando os arquivos alterados por escopo (nome do package).
-2. Leia o arquivo `scripts/temp/scopes.json` para identificar os grupos de arquivos por escopo.
-3. Para cada escopo listado no arquivo, faça um commit separado, seguindo a estrutura convencional de commit deste guia, agrupando os arquivos daquele escopo.
-4. Nunca misture arquivos de escopos diferentes no mesmo commit.
+1. Run the script `scripts/commit-by-scope.js` from the project root. This will generate the file `scripts/temp/scopes.json`, grouping changed files by scope (package name).
+2. Read the file `scripts/temp/scopes.json` to identify file groups by scope.
+3. For each scope listed in the file, create a separate commit, following the conventional commit structure described in this guide, grouping only files from that scope.
+4. Never mix files from different scopes in the same commit.
 
-> Exemplo de fluxo:
+> Example workflow:
 >
 > 1. `node scripts/commit-by-scope.js`
-> 2. Ler o resultado em `scripts/temp/scopes.json`
-> 3. Para cada chave (escopo) no JSON, faça um commit com os arquivos daquele grupo, usando o tipo e mensagem apropriados.
+> 2. Read the result in `scripts/temp/scopes.json`
+> 3. For each key (scope) in the JSON, create a commit with the files in that group, using the appropriate type and message.
 
-Este procedimento garante que os commits estejam sempre corretos e agrupados conforme as regras do monorepo, mesmo em automações.
+This procedure ensures that all commits are always correct and grouped according to monorepo rules, even in automated scenarios.
 
-## Scopes: How to determine the correct scope for each file
+## Scopes: How to Determine the Correct Scope for Each File
 
-Scopes are now strictly defined as the `name` field of the nearest `package.json` found when traversing up from the file being committed. This ensures that every file in the monorepo is associated with the correct package for commit and versioning purposes.
+Scopes are strictly defined as the `name` field of the nearest `package.json` found when traversing up from the file being committed. This ensures that every file in the monorepo is associated with the correct package for commit and versioning purposes.
 
 **How to determine the scope for a file:**
 
@@ -32,7 +32,7 @@ Scopes are now strictly defined as the `name` field of the nearest `package.json
 3. If not, move up one directory and check again.
 4. Repeat this process until you find a `package.json` or reach the project root.
 5. If you reach the project root and find a `package.json`, use its `name` as the scope (`monorepo-starter`).
-6. If no `package.json` is found, the file should not be committed (this should not happen in a properly structured monorepo).
+6. If no `package.json` is found, do not commit the file (this should not happen in a properly structured monorepo).
 
 **Example:**
 
@@ -71,9 +71,9 @@ This logic must be followed strictly to maintain consistency and to ensure that 
 <type>(scope): short description
 ```
 
-- **Scope**: always use the name of the nearest `package.json` as described above.
+- **Scope**: Always use the name of the nearest `package.json` as described above.
 - **Main types**: feat, fix, refactor, perf, chore, docs, style, test, ci, build, revert.
-- **Title**: up to 72 characters, imperative, no period at the end.
+- **Title**: Up to 72 characters, imperative, no period at the end.
 
 ## Required Workflow
 
@@ -83,11 +83,12 @@ This logic must be followed strictly to maintain consistency and to ensure that 
 4. Create one commit per (scope, type) group (e.g., feat(api), fix(web), chore(@repo/ui)).
 5. Never mix files from different scopes or types in the same commit.
 
-## When to use BREAKING CHANGE
+## When to Use BREAKING CHANGE
 
-- You must indicate a breaking change (not backward compatible, e.g., API removal/renaming, contract change, expected behavior change) in one of two ways:
-  1. Add `!` after the type or scope in the commit header (e.g., `feat(api)!:` or `fix!:`).
-  2. Or, include `BREAKING CHANGE:` in the commit body.
+You must indicate a breaking change (not backward compatible, e.g., API removal/renaming, contract change, expected behavior change) in one of two ways:
+
+1. Add `!` after the type or scope in the commit header (e.g., `feat(api)!:` or `fix!:`).
+2. Or, include `BREAKING CHANGE:` in the commit body.
 
 **Examples:**
 
@@ -105,9 +106,9 @@ feat(api): remove legacy endpoint
 BREAKING CHANGE: The /v1/legacy endpoint was removed. Update your integrations.
 ```
 
-- Any commit marked as a breaking change will trigger a major version bump for the affected package.
+Any commit marked as a breaking change will trigger a major version bump for the affected package.
 
-## Types that DO NOT trigger versioning
+## Types That DO NOT Trigger Versioning
 
 - chore, docs, style, test, ci, build, revert (unless BREAKING CHANGE).
 - Only feat, fix, refactor (when it changes the API), perf (when it changes the API), and BREAKING CHANGE affect versioning.
@@ -122,13 +123,13 @@ docs(docs): improve setup documentation
 refactor(@repo/ui): reorganize internal components
 ```
 
-## Não utilize `[skip ci]`
+## Do NOT Use `[skip ci]`
 
-**Atenção:** Não utilize `[skip ci]` em nenhuma mensagem de commit neste repositório.
+**Warning:** Never use `[skip ci]` in any commit message in this repository.
 
-O uso de `[skip ci]` impede a execução dos workflows de validação e prejudica a garantia de qualidade e automação do monorepo. Todos os commits devem passar pelas validações automáticas de CI/CD, independentemente do tipo de alteração.
+Using `[skip ci]` prevents validation workflows from running and undermines the quality and automation guarantees of the monorepo. All commits must pass automatic CI/CD validation, regardless of the type of change.
 
-Se precisar pular etapas de CI/CD, consulte o responsável pelo repositório antes de qualquer ação.
+If you need to skip CI/CD steps, consult the repository maintainer before taking any action.
 
 ## Best Practices
 
@@ -140,4 +141,4 @@ Se precisar pular etapas de CI/CD, consulte o responsável pelo repositório ant
 
 ---
 
-This guide is mandatory for all commits in the monorepo-starter. Questions? Check the README or ask for a review.
+This guide is mandatory for all commits in the monorepo-starter. For questions, check the README or request a review.

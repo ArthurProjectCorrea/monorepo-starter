@@ -4,27 +4,39 @@ description: 'Reporte um bug encontrado no monorepo.'
 labels: ['bug']
 ---
 
-## 🐞 Descrição do Bug
+## 🐞 Bug Description
 
-Descreva o problema encontrado, incluindo:
+Describe the problem found, including:
 
-- O que aconteceu?
-- O que esperava que acontecesse?
-- Passos para reproduzir o bug
+- What happened?
+- What did you expect to happen?
+- Steps to reproduce the bug
 
-Exemplo:
+Example:
 
-> O botão de login não responde ao clique na tela inicial.
-> Esperado: abrir modal de autenticação.
-> Passos: 1. Acessar /login 2. Clicar no botão 3. Nada acontece
+> The login button does not respond to clicks on the home screen.
+> Expected: open authentication modal.
+> Steps: 1. Go to /login 2. Click the button 3. Nothing happens
 
-## 📦 Contexto
+---
 
-- Pacote/app afetado: <!-- ex: api, web, ui -->
-- Ambiente: <!-- ex: local, produção, SO, navegador -->
+## 📦 Context
 
-## 📝 Evidências
+- Affected package/app: <!-- e.g.: api, web, ui -->
+- Environment: <!-- e.g.: local, production, OS, browser -->
 
-Inclua prints, logs ou links relevantes.
+---
+
+## 📝 Evidence
+
+Include screenshots, logs, or relevant links.
+
+---
+
+## ✅ Checklist
+
+- [ ] Bug is reproducible
+- [ ] All relevant information provided
+- [ ] Evidence attached
 
 ---

@@ -4,17 +4,27 @@ description: 'Solicite ou reporte melhorias na documentação.'
 labels: ['documentation']
 ---
 
-## 📚 Descrição
+## 📚 Documentation Description
 
-Explique o que precisa ser documentado ou melhorado.
+Explain what needs to be documented or improved.
 
-Exemplo:
+Example:
 
-> Documentar o fluxo de autenticação no arquivo docs/monorepo/auth.md
+> Document the authentication flow in docs/monorepo/auth.md
 
-## 📦 Contexto
+---
 
-- Local da doc: <!-- ex: apps/docs, arquivo específico -->
-- Público alvo: <!-- ex: devs backend, frontend, novos devs -->
+## 📦 Context
+
+- Documentation location: <!-- e.g.: apps/docs, specific file -->
+- Target audience: <!-- e.g.: backend devs, frontend devs, new devs -->
+
+---
+
+## ✅ Checklist
+
+- [ ] Documentation need is clearly described
+- [ ] Context and target audience are defined
+- [ ] All relevant information provided
 
 ---

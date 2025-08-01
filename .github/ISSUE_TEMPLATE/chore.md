@@ -4,17 +4,27 @@ description: 'Solicite uma tarefa técnica ou manutenção.'
 labels: ['chore']
 ---
 
-## 🔧 Descrição da Tarefa
+## 🔧 Task Description
 
-Explique a tarefa técnica ou manutenção necessária.
+Explain the required technical task or maintenance.
 
-Exemplo:
+Example:
 
-> Atualizar dependências do pacote web para última versão do Next.js
+> Update web package dependencies to the latest Next.js version
 
-## 📦 Contexto
+---
 
-- Pacote/app afetado: <!-- ex: api, web, ui -->
-- Justificativa: <!-- por que é importante? -->
+## 📦 Context
+
+- Affected package/app: <!-- e.g.: api, web, ui -->
+- Justification: <!-- why is this important? -->
+
+---
+
+## ✅ Checklist
+
+- [ ] Task is clearly described
+- [ ] Justification is provided
+- [ ] All relevant information provided
 
 ---
