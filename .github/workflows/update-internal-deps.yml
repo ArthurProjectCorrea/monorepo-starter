@@ -41,7 +41,7 @@ jobs:
         run: pnpm audit || true
       # O commit e push serão feitos automaticamente pelo create-pull-request
       # Não é necessário criar/pushar a branch manualmente
-      - name: Verifica se há modificações após update/lint/test/build
+      - name: Verifica se há modificacoes após update/lint/test/build
         id: check_diff
         run: |
           if git diff --quiet && git diff --cached --quiet; then
