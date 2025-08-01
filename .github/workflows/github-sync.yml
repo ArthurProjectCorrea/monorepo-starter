@@ -42,14 +42,7 @@ jobs:
             "restrictions": null
           }' > branch-protection-main.json
           gh api -X PUT repos/$GITHUB_REPO/branches/main/protection --input branch-protection-main.json
-          echo '{
-            "required_status_checks": {"strict": true, "contexts": []},
-            "enforce_admins": true,
-            "required_pull_request_reviews": {"dismiss_stale_reviews": true, "require_code_owner_reviews": true},
-            "restrictions": null
-          }' > branch-protection-dev.json
-          gh api -X PUT repos/$GITHUB_REPO/branches/dev/protection --input branch-protection-dev.json
-          echo "Branches protegidas com sucesso!"
+          echo "Proteção aplicada apenas à branch main!"
   sync-labels:
     runs-on: ubuntu-latest
     steps:
