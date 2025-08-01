@@ -1,42 +1,32 @@
 ---
 name: 'Feature PR'
-description: 'Pull Request para implementação de nova feature'
-labels: ['feature', 'enhancement']
+about: 'Pull request for a new feature. Use this template when closing a feature_request issue.'
 ---
 
-## Descrição da Feature
+## 🚀 Feature Summary
 
-Descreva resumidamente a feature implementada.
+- What feature was implemented? Reference the issue (e.g., Closes #123).
+- What problem or motivation does this address?
+- Who benefits from this feature?
+- Is this MVP, nice-to-have, or breaking change?
+- Are there external dependencies or integrations?
+- What are the main usage scenarios?
+- What are the risks or rollout considerations?
 
-Exemplo:
+## 📋 Checklist
 
-> Adiciona autenticação social via Google e Facebook na tela de login.
+- [ ] Main implementation delivered
+- [ ] UI/UX design (if applicable)
+- [ ] API contract (if applicable)
+- [ ] Unit and e2e tests
+- [ ] Documentation updated
+- [ ] Validation with other packages/apps
+- [ ] No unrelated changes
+- [ ] Linked to original feature request
 
-### Referência à Issue
+## 📝 Notes for Reviewers
 
-<!-- Informe o número/link da issue relacionada. Exemplo: Closes #123 -->
-
-### O que foi implementado
-
-<!-- Liste tudo que foi entregue, incluindo melhorias ou ajustes além do escopo original -->
-
-### O que NÃO foi implementado
-
-<!-- Liste itens do escopo da issue que não foram entregues e o motivo -->
-
-### Extras implementados
-
-<!-- Detalhe entregas que não estavam previstas na issue, mas foram incluídas -->
-
----
-
-## Checklist
-
-- [ ] Testes realizados
-- [ ] Documentação atualizada (se aplicável)
-- [ ] Não há conflitos com a branch base
-
----
+- Any special instructions, risks, or context for reviewers?
 
 ## Observações
 

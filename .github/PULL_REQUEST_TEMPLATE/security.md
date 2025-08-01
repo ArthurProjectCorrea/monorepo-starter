@@ -1,23 +1,26 @@
 ---
 name: 'Security PR'
-description: 'Pull Request para correção de vulnerabilidade.'
-labels: ['security']
+about: 'Pull request for security fixes. Use this template when closing a security issue.'
 ---
 
-## Descrição da Correção de Segurança
+## 🚨 Security Fix Summary
 
-Explique resumidamente a vulnerabilidade corrigida e o impacto.
+- What vulnerability or risk was addressed? Reference the issue (e.g., Closes #123).
+- How was the vulnerability discovered?
+- What was the impact or risk level?
+- What was the fix or mitigation?
+- Is there a regression or related issue?
+- Is private contact or responsible disclosure needed?
+- What is out of scope or deferred?
 
-Exemplo:
+## 📋 Checklist
 
-> Corrige endpoint /api/user para exigir autenticação antes de retornar dados sensíveis.
+- [ ] Vulnerability is clearly described and justified
+- [ ] Steps to reproduce provided (if possible)
+- [ ] Impact and risk level documented
+- [ ] No unrelated changes
+- [ ] Linked to original security issue
 
-### Referência à Issue
+## 📝 Notes for Reviewers
 
-<!-- Informe o número/link da issue de segurança relacionada. Exemplo: Closes #123 -->
-
-### O que foi implementado
-
-<!-- Liste tudo que foi entregue para mitigar/corrigir a vulnerabilidade -->
-
----
+- Any special instructions, context, or reviewer guidance?

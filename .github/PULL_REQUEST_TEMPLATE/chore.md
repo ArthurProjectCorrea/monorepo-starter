@@ -1,23 +1,25 @@
 ---
-name: 'Chore/Tarefa Técnica PR'
-description: 'Pull Request para tarefa técnica ou manutenção.'
-labels: ['chore']
+name: 'Chore/Technical Task PR'
+about: 'Pull request for technical chores or maintenance. Use this template when closing a chore issue.'
 ---
 
-## Descrição da Tarefa
+## 🛠️ Chore/Task Summary
 
-Explique resumidamente a tarefa técnica ou manutenção implementada.
+- What technical task or maintenance was performed? Reference the issue (e.g., Closes #123).
+- What was the motivation or justification?
+- Is this routine or one-off?
+- Any impact on build, deploy, CI/CD, or dependencies?
+- What is out of scope or deferred?
 
-Exemplo:
+## 📋 Checklist
 
-> Atualiza dependências do pacote web para última versão do Next.js
+- [ ] Task is complete and justified
+- [ ] No breaking changes (unless justified)
+- [ ] Tests updated/added (if needed)
+- [ ] Documentation updated (if needed)
+- [ ] No unrelated changes
+- [ ] Linked to original chore issue
 
-### Referência à Issue
+## 📝 Notes for Reviewers
 
-<!-- Informe o número/link da issue relacionada. Exemplo: Closes #123 -->
-
-### O que foi implementado
-
-<!-- Liste tudo que foi entregue, incluindo melhorias ou ajustes além do escopo original -->
-
----
+- Any special instructions, risks, or context for reviewers?
