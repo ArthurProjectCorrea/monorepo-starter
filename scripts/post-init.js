@@ -185,7 +185,7 @@ async function ensureBranches() {
   // Garante que main e dev existem, e faz checkout em dev
   let branches = execSync('git branch --list', { encoding: 'utf8' })
     .split('\n')
-    .map((b) => b.replace('*', '').trim())
+    .map((b) => b.replace(/\*/g, '').trim())
     .filter(Boolean);
   const hasMain = branches.includes('main');
   const hasDev = branches.includes('dev');
