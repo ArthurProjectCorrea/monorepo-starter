@@ -27,8 +27,27 @@ This instruction defines the workflow for Copilot Chat (or any AI agent) to anal
 
 4. **Template Selection and Pre-filling**
    - Locate the appropriate issue template in `.github/ISSUE_TEMPLATE` based on the identified type.
-   - Copy the template and pre-fill it with the relevant information from the requirements document.
-   - Save the pre-filled template as a new file in `.github/temp/`, using a clear and unique filename (e.g., `feature_request_api.md`, `feature_request_web.md`).
+   - Copy the template **starting only after the YAML front matter** (ou seja, tudo após o segundo bloco `---`).
+   - Preencha todos os campos do markdown com as informações relevantes do requisito, bug ou contexto.
+   - Nunca inclua o bloco YAML (`--- ... ---`) no corpo da issue enviada ao GitHub, pois isso quebra a renderização e a leitura.
+   - Salve o template preenchido como um novo arquivo em `.github/temp/`, usando um nome claro e único (ex: `feature_request_api.md`, `bug_report_web.md`).
+   - Exemplo de extração correta:
+     - Template original:
+       ```markdown
+       ---
+       name: 'Feature Request'
+       ---
+
+       ## 🛠️ Branch Name
+
+       ...
+       ```
+     - Corpo a ser usado na issue:
+       ```markdown
+       ## 🛠️ Branch Name
+
+       ...
+       ```
 
 5. **One Issue per Project**
    - Ensure that each project receives its own issue file.
@@ -36,9 +55,9 @@ This instruction defines the workflow for Copilot Chat (or any AI agent) to anal
    - **Exception for UI and Web:** If changes in the `ui` package are part of a feature or fix for the `web` project (e.g., new or updated components used directly by `web`), document and track these changes within the same issue as `web`. Only create a separate issue for `ui` if the demand is exclusive to the shared package (such as a global refactor or a new generic component not tied to a specific app).
 
 6. **Issue Submission to GitHub**
-   - After generating and saving all issue files in `.github/temp/`, submit each issue to GitHub using the GitHub CLI (`gh issue create`) or an equivalent automated process.
-   - **Important:** Before submitting, always remove the YAML front matter (the block between `---` at the top of the file) from the template. Only the Markdown content should be used as the body of the issue to ensure correct formatting on GitHub.
-   - Ensure that the correct project, title, and labels are set according to the template and context.
+   - Após gerar e salvar todos os arquivos de issue em `.github/temp/`, envie cada issue para o GitHub usando o GitHub CLI (`gh issue create`) ou processo automatizado equivalente.
+   - **Importante:** Sempre remova o YAML front matter (bloco entre `---` no topo do arquivo) antes de enviar. Use apenas o conteúdo markdown (a partir do primeiro título, como `## 🛠️ Branch Name`) como corpo da issue para garantir formatação correta no GitHub.
+   - Certifique-se de definir corretamente o projeto, título e labels conforme o template e o contexto.
 
 7. **Special Cases**
    - For `fix` (bug) issues: Instead of a requirements document, you will provide an error report or error message. The agent must analyze this report/message, extract as much context as possible (such as affected project, steps to reproduce, environment, etc.), and use the bug report template to create a dedicated issue for the relevant project in `.github/temp/`.

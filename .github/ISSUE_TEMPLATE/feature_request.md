@@ -15,23 +15,30 @@ Example: `feat/123-social-login`
 
 ## 📌 Feature Description
 
-Describe clearly and objectively:
+Describe the feature in detail:
 
-- What will be implemented?
-- What will NOT be delivered in this issue (out of scope or postponed)?
-- What problem/motivation does this implementation address?
-- What value does this feature add?
+- **What will be implemented?** (Describe the new functionality, UI, API, workflow, etc.)
+- **What will NOT be delivered in this issue?** (Out of scope, postponed, or nice-to-have)
+- **What problem or motivation does this address?** (Business value, user pain, compliance, etc.)
+- **Who benefits from this feature?** (End user, dev, ops, external partner, etc.)
+- **Is this MVP, nice-to-have, or breaking change?**
+- **Are there external dependencies or integrations?** (APIs, third-party, other teams)
+- **What are the main usage scenarios?** (Describe at least one real user flow)
+- **What are the risks or rollout considerations?** (Migration, data, feature flag, phased rollout)
 
 > **Important:** When creating the PR, reference this issue and detail in the PR everything that was implemented, not implemented, and any extras.
 
 ---
 
-## 📋 Tasks
+## 📋 Feature Checklist
 
 - [ ] Main implementation
+- [ ] UI/UX design (if applicable)
+- [ ] API contract (if applicable)
 - [ ] Unit and e2e tests
 - [ ] Documentation update
 - [ ] Validation with other packages/apps
+- [ ] Rollout/feature flag (if needed)
 - [ ] Code review
 
 ---
@@ -41,18 +48,19 @@ Describe clearly and objectively:
 | Item                       | Description                                 |
 | -------------------------- | ------------------------------------------- |
 | **Affected apps/packages** | E.g.: `apps/api`, `apps/web`, `packages/ui` |
-| **Dependencies**           | E.g.: `zod`, `axios`                        |
+| **Dependencies**           | E.g.: `zod`, `axios`, external APIs         |
 | **Aliases/Paths**          | E.g.: `@/shared/*`, `@api/*`                |
-| **Helper scripts**         | Build, seed, deploy scripts, etc.           |
-| **Environment**            | Any new variable? `.env` configuration?     |
+| **Helper scripts**         | Build, seed, deploy, migration, etc.        |
+| **Environment/config**     | Any new variable? `.env` configuration?     |
+| **Rollout/flags**          | Feature flag, phased rollout, migration     |
 
 ---
 
 ## 🧪 Test Strategy
 
-- Frameworks used: `Jest`, `Vitest`, etc.
+- What are the main test scenarios for this feature?
+- What frameworks will be used? (`Jest`, `Vitest`, etc.)
 - Types: unit, integration, e2e
-- Main test scenarios
 - Expected mocks/stubs
 - Minimum desired coverage (e.g., 80%)
 
@@ -60,25 +68,29 @@ Describe clearly and objectively:
 
 ## 📚 Documentation
 
-- [ ] Package or app `README.md`
-- [ ] `apps/docs` via Starlight
-- [ ] Comments directly in the code
+- [ ] Update package or app `README.md`
+- [ ] Update `apps/docs` via Starlight
+- [ ] Add comments directly in the code
+- [ ] Add usage example or guide (if user-facing)
 
 ---
 
 ## ✅ Acceptance Criteria
 
 - [ ] Expected behavior implemented
+- [ ] Main usage scenario(s) covered
 - [ ] No regressions in impacted apps/packages
 - [ ] Tests cover main flows
-- [ ] Clear and accessible technical documentation
+- [ ] Documentation is clear and accessible
+- [ ] Rollout/flags (if needed) validated
 - [ ] Merge without conflicts with `dev`
 
 ---
 
 ## 📝 Final Notes
 
-- Possible doubts, risks, external dependencies, or blockers
+- Doubts, risks, external dependencies, or blockers
+- Rollback plan (if needed)
 - Suggestions for approach, extra validations, or future integrations
 - Points to be reviewed in the PR (e.g., technical decisions, scope deviations, extra deliveries)
 

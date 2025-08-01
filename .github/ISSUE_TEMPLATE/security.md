@@ -16,29 +16,35 @@ Example: `security/123-auth-bypass`
 
 ## 🚨 Vulnerability Description
 
-Describe clearly and objectively:
+Describe the security issue in detail:
 
-- What is the vulnerability or security risk?
-- What is the impact or risk level?
-- How was it discovered?
-- Is it reproducible? If so, how?
-- Is it public or has it been exploited?
+- **Type of vulnerability:** (e.g., XSS, CSRF, IDOR, privilege escalation, dependency, etc.)
+- **How was it discovered?** (Manual test, audit, bug bounty, user report, etc.)
+- **Steps to reproduce:** (Detailed steps, PoC, curl, screenshot, etc.)
+- **Impact or risk level:** (Data leak, privilege escalation, DoS, etc. Is it critical, high, medium, low?)
+- **Is it public or has it been exploited?** (CVE, exploit published, seen in the wild?)
+- **Mitigation or workaround:** (Is there a temporary fix? Isolate, disable, restrict, etc.)
+- **Is private contact needed?** (Sensitive details, responsible disclosure)
+- **Related issues/PRs:** (Links to similar vulnerabilities, previous fixes)
 
 Example:
 
-> Endpoint /api/user returns sensitive data without authentication.
+> Type: IDOR. Discovered via bug bounty. Steps: 1. Login as user A, 2. Access /api/user/2, 3. Receives user B's data. Impact: data leak, high. Not public, not exploited. No workaround. Contact security@company.com for details.
 
 ---
 
-## � Tasks
+## 📋 Security Checklist
 
-- [ ] Reproduce the vulnerability
-- [ ] Identify root cause
-- [ ] Implement fix or mitigation
-- [ ] Add/Update tests (if needed)
-- [ ] Update documentation (if needed)
-- [ ] Validate in all affected packages/apps
-- [ ] Code review
+- [ ] Vulnerability is clearly described and justified
+- [ ] Steps to reproduce provided (if possible)
+- [ ] Impact and risk level documented
+- [ ] Evidence or PoC attached (if possible)
+- [ ] Private contact provided (if needed)
+- [ ] Root cause identified
+- [ ] Fix or mitigation implemented
+- [ ] Tests updated/added (if needed)
+- [ ] Documentation updated (if needed)
+- [ ] Code review completed
 
 ---
 
@@ -50,41 +56,46 @@ Example:
 | **Environment**            | Production, staging, local, etc.            |
 | **Attack vector**          | E.g.: API endpoint, UI, dependency          |
 | **Exploitability**         | How easy is it to exploit?                  |
-| **Impact**                 | Data leak, privilege escalation, etc.       |
+| **Impact**                 | Data leak, privilege escalation, DoS, etc.  |
+| **CVE or reference**       | CVE-2025-XXXX, bug bounty link, etc.        |
 
 ---
 
 ## 📝 Evidence
 
-Include screenshots, logs, or proof of concept if possible.
+Attach any relevant evidence:
 
-> **Important:** Do not publicly disclose sensitive details. The maintainer will contact you for more information.
+- Screenshots, logs, or proof of concept (PoC)
+- CVE, bug bounty, or external reference
+- > **Important:** Do not publicly disclose sensitive details. The maintainer will contact you for more information.
 
 ---
 
-## 📚 Documentation
+## 📚 Documentation (if relevant)
 
-- [ ] Package or app `README.md` updated (if needed)
-- [ ] `apps/docs` via Starlight (if needed)
-- [ ] Comments directly in the code (if needed)
+- [ ] Update package or app `README.md` (if needed)
+- [ ] Update `apps/docs` via Starlight (if needed)
+- [ ] Add comments directly in the code (if needed)
 
 ---
 
 ## ✅ Acceptance Criteria
 
 - [ ] Vulnerability is clearly described and justified
-- [ ] Context and environment are provided
-- [ ] Evidence attached (if possible)
+- [ ] Steps to reproduce and impact documented
+- [ ] Evidence or PoC attached (if possible)
+- [ ] Private contact provided (if needed)
 - [ ] No regressions in impacted apps/packages
 - [ ] Tests (if needed) cover main flows
-- [ ] Clear and accessible technical documentation (if needed)
+- [ ] Documentation is clear and updated (if needed)
 - [ ] Merge without conflicts with `dev`
 
 ---
 
 ## 📝 Final Notes
 
-- Possible doubts, risks, external dependencies, or blockers
+- Doubts, risks, external dependencies, or blockers
+- Rollback plan (if needed)
 - Suggestions for approach, extra validations, or future integrations
 - Points to be reviewed in the PR (e.g., technical decisions, scope deviations, extra deliveries)
 

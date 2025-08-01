@@ -16,25 +16,31 @@ Example: `docs/123-auth-flow`
 
 ## 📚 Documentation Description
 
-Describe clearly and objectively:
+Describe the documentation need in detail:
 
-- What needs to be documented or improved?
-- What is the motivation or justification?
-- What is out of scope (if anything)?
+- **What is missing or unclear?** (API, onboarding, usage, migration, troubleshooting, etc.)
+- **Target audience:** (New devs, backend, frontend, QA, external users, etc.)
+- **Format:** (Markdown, code comments, diagrams, guides, FAQ, etc.)
+- **Motivation:** (Why is this documentation needed? Is it a recurring doubt? Is it for onboarding? Is it for compliance?)
+- **Examples or references:** (Links to similar docs, code, or external references)
+- **Known pain points:** (Where do people usually get stuck? What is most confusing?)
+- **What is out of scope?** (Anything intentionally not included)
 
 Example:
 
-> Document the authentication flow in docs/monorepo/auth.md
+> Add a migration guide for v3 to v4 in docs/monorepo/migration.md. Target: all devs. Format: markdown with code samples. Motivation: recurring confusion in onboarding. Out of scope: legacy features.
 
 ---
 
-## � Tasks
+## 📋 Documentation Checklist
 
-- [ ] Main documentation or update
-- [ ] Validate technical accuracy
-- [ ] Review for clarity and accessibility
-- [ ] Validate in all affected packages/apps
-- [ ] Code review
+- [ ] Documentation need is clearly described and justified
+- [ ] Target audience and format defined
+- [ ] Examples or references provided (if possible)
+- [ ] Pain points or gaps identified
+- [ ] Technical accuracy validated
+- [ ] Clarity and accessibility reviewed
+- [ ] Code review completed
 
 ---
 
@@ -43,9 +49,12 @@ Example:
 | Item                       | Description                                   |
 | -------------------------- | --------------------------------------------- |
 | **Documentation location** | E.g.: `apps/docs`, `README.md`, specific file |
-| **Target audience**        | E.g.: backend devs, frontend devs, new devs   |
+| **Audience**               | E.g.: backend devs, frontend devs, new devs   |
+| **Type**                   | API, onboarding, migration, troubleshooting   |
+| **Format**                 | Markdown, code, diagram, video, etc.          |
 | **Related features**       | E.g.: authentication, deployment, setup       |
 | **Helper scripts**         | Build, deploy, doc generation, etc.           |
+| **Pain points**            | Where do people get stuck?                    |
 | **Environment**            | OS, browser, device, etc. (if relevant)       |
 
 ---
@@ -53,7 +62,9 @@ Example:
 ## ✅ Acceptance Criteria
 
 - [ ] Documentation need is clearly described and justified
-- [ ] Context and target audience are defined
+- [ ] Audience and format are defined
+- [ ] Examples or references provided (if possible)
+- [ ] Pain points or gaps addressed
 - [ ] Documentation is technically accurate and accessible
 - [ ] Merge without conflicts with `dev`
 
@@ -61,7 +72,7 @@ Example:
 
 ## 📝 Final Notes
 
-- Possible doubts, risks, external dependencies, or blockers
+- Doubts, risks, external dependencies, or blockers
 - Suggestions for approach, extra validations, or future integrations
 - Points to be reviewed in the PR (e.g., technical decisions, scope deviations, extra deliveries)
 

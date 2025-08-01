@@ -16,25 +16,31 @@ Example: `chore/123-update-deps`
 
 ## 🔧 Task Description
 
-Describe clearly and objectively:
+Describe the technical task or maintenance required:
 
-- What technical task or maintenance is required?
-- What is the motivation or justification?
-- What is out of scope (if anything)?
+- **Type of task:** (Dependency upgrade, code cleanup, script/automation, infra, CI/CD, etc.)
+- **Motivation/justification:** (Why is this needed? Is it blocking something? Is it technical debt?)
+- **Is it routine or one-off?** (E.g., regular update, migration, infra change)
+- **Potential impact:** (Could it break something? Affect build, deploy, CI/CD?)
+- **Dependencies or order:** (Should it be done before/after another task? Is it blocking something else?)
+- **What is out of scope?** (Anything intentionally not included)
 
 Example:
 
-> Update web package dependencies to the latest Next.js version
+> Upgrade all workspace dependencies to latest minor versions. Motivation: keep security and compatibility. Routine task, no breaking changes expected. Should be done before next release. Out of scope: major upgrades.
 
 ---
 
-## � Tasks
+## 📋 Chore Checklist
 
-- [ ] Main implementation
-- [ ] Add/Update tests (if needed)
-- [ ] Update documentation (if needed)
-- [ ] Validate in all affected packages/apps
-- [ ] Code review
+- [ ] Task is clearly described and justified
+- [ ] Type of task and impact documented
+- [ ] Dependencies and order considered
+- [ ] No breaking changes (unless justified)
+- [ ] Tests updated/added (if needed)
+- [ ] Documentation updated (if needed)
+- [ ] CI/CD or automation validated (if relevant)
+- [ ] Code review completed
 
 ---
 
@@ -44,17 +50,17 @@ Example:
 | -------------------------- | ------------------------------------------- |
 | **Affected apps/packages** | E.g.: `apps/api`, `apps/web`, `packages/ui` |
 | **Dependencies**           | E.g.: `zod`, `axios`                        |
-| **Aliases/Paths**          | E.g.: `@/shared/*`, `@api/*`                |
-| **Helper scripts**         | Build, seed, deploy scripts, etc.           |
-| **Environment**            | OS, browser, device, network, etc.          |
+| **Helper scripts/CI**      | Build, seed, deploy, lint, test, release    |
+| **Automation**             | Is there a script or workflow involved?     |
+| **Environment**            | OS, CI/CD, local, etc.                      |
 
 ---
 
-## 📚 Documentation
+## 📚 Documentation (if relevant)
 
-- [ ] Package or app `README.md` updated
-- [ ] `apps/docs` via Starlight
-- [ ] Comments directly in the code
+- [ ] Update package or app `README.md` (if needed)
+- [ ] Update `apps/docs` via Starlight (if needed)
+- [ ] Add comments directly in the code (if needed)
 
 ---
 
@@ -62,15 +68,18 @@ Example:
 
 - [ ] Task is clearly described and justified
 - [ ] No regressions in impacted apps/packages
+- [ ] No breaking changes (unless justified)
 - [ ] Tests (if needed) cover main flows
-- [ ] Clear and accessible technical documentation (if needed)
+- [ ] Documentation is clear and updated (if needed)
+- [ ] CI/CD or automation validated (if relevant)
 - [ ] Merge without conflicts with `dev`
 
 ---
 
 ## 📝 Final Notes
 
-- Possible doubts, risks, external dependencies, or blockers
+- Doubts, risks, external dependencies, or blockers
+- Rollback plan (if needed)
 - Suggestions for approach, extra validations, or future integrations
 - Points to be reviewed in the PR (e.g., technical decisions, scope deviations, extra deliveries)
 
