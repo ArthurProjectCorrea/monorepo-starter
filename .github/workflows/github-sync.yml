@@ -28,7 +28,7 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event_name == 'workflow_dispatch'
     steps:
-      - name: Protege branches principais
+      - name: Protege branch main (apenas PRs)
         env:
           GH_PAT: ${{ secrets.GH_PAT }}
           GH_TOKEN: ${{ secrets.GH_PAT }}
@@ -38,11 +38,26 @@ jobs:
           echo '{
             "required_status_checks": {"strict": true, "contexts": []},
             "enforce_admins": true,
-            "required_pull_request_reviews": null,
+            "required_pull_request_reviews": {"required_approving_review_count": 0},
             "restrictions": null
           }' > branch-protection-main.json
           gh api -X PUT repos/$GITHUB_REPO/branches/main/protection --input branch-protection-main.json
-          echo "Proteção aplicada apenas à branch main!"
+          echo "Proteção aplicada à branch main: commits diretos bloqueados, apenas PRs!"
+      - name: Protege branch dev (commits diretos permitidos)
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+          GITHUB_REPO: ${{ github.repository }}
+        run: |
+          set -e
+          echo '{
+            "required_status_checks": {"strict": false, "contexts": []},
+            "enforce_admins": false,
+            "required_pull_request_reviews": null,
+            "restrictions": null
+          }' > branch-protection-dev.json
+          gh api -X PUT repos/$GITHUB_REPO/branches/dev/protection --input branch-protection-dev.json
+          echo "Proteção aplicada à branch dev: commits diretos permitidos!"
   sync-labels:
     runs-on: ubuntu-latest
     steps:
