@@ -1,38 +1,38 @@
 blank_issues_enabled: false
 issue_templates:
   - name: 'Bug Report'
-    description: 'Report a bug found in the monorepo.'
-    title: '[Bug] <Short description>'
+    description: 'Report a bug or unexpected behavior in the monorepo.'
+    title: '[Bug] <Short Description>'
     labels: [bug]
     assignees: []
     template: bug_report.md
   - name: 'Feature Request'
     description: 'Request a new feature using the detailed template.'
-    title: '[Feature] <Feature name>'
+    title: '[Feature] <Short Description>'
     labels: [feature, enhancement]
     assignees: []
     template: feature_request.md
   - name: 'Improvement/Refactor'
-    description: 'Suggest an improvement or refactor.'
-    title: '[Improvement] <Short description>'
+    description: 'Request an improvement or refactor in the monorepo.'
+    title: '[Improvement] <Short Description>'
     labels: [enhancement, refactor]
     assignees: []
     template: improvement.md
-  - name: 'Documentation'
-    description: 'Request or report documentation improvements.'
-    title: '[Doc] <Short description>'
+  - name: 'Docs'
+    description: 'Request or improve documentation in the monorepo.'
+    title: '[Docs] <Short Description>'
     labels: [documentation]
     assignees: []
     template: documentation.md
   - name: 'Chore/Technical Task'
-    description: 'Request a technical task or maintenance.'
-    title: '[Chore] <Short description>'
+    description: 'Request a technical task or maintenance activity.'
+    title: '[Chore] <Short Description>'
     labels: [chore]
     assignees: []
     template: chore.md
   - name: 'Security Issue'
-    description: 'Report a security vulnerability.'
-    title: '[Security] <Short description>'
+    description: 'Report a security vulnerability or sensitive issue.'
+    title: '[Security] <Short Description>'
     labels: [security]
     assignees: []
     template: security.md

@@ -36,7 +36,9 @@ This instruction defines the workflow for Copilot Chat (or any AI agent) to anal
    - **Exception for UI and Web:** If changes in the `ui` package are part of a feature or fix for the `web` project (e.g., new or updated components used directly by `web`), document and track these changes within the same issue as `web`. Only create a separate issue for `ui` if the demand is exclusive to the shared package (such as a global refactor or a new generic component not tied to a specific app).
 
 6. **Issue Submission to GitHub**
-   - After generating and saving all issue files in `.github/temp/`, submit each issue to GitHub using the GitHub CLI (`gh issue create`) or an equivalent automated process. Ensure that the content of the pre-filled template is used as the body of the issue, and that the correct project, title, and labels are set according to the template and context.
+   - After generating and saving all issue files in `.github/temp/`, submit each issue to GitHub using the GitHub CLI (`gh issue create`) or an equivalent automated process.
+   - **Important:** Before submitting, always remove the YAML front matter (the block between `---` at the top of the file) from the template. Only the Markdown content should be used as the body of the issue to ensure correct formatting on GitHub.
+   - Ensure that the correct project, title, and labels are set according to the template and context.
 
 7. **Special Cases**
    - For `fix` (bug) issues: Instead of a requirements document, you will provide an error report or error message. The agent must analyze this report/message, extract as much context as possible (such as affected project, steps to reproduce, environment, etc.), and use the bug report template to create a dedicated issue for the relevant project in `.github/temp/`.
